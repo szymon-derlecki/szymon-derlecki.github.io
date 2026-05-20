@@ -6,7 +6,7 @@ defaultContentLanguage = 'pl'
   languageName = "PL"
   title = "Szymon Derlecki"
   weight = 1
-  contentDir = "content"  
+  contentDir = "content/pl"  
   [languages.pl.params]
     author = "Szymon Derlecki"
     info = "Deep Learning / Computer Vision / Signal Processing"
