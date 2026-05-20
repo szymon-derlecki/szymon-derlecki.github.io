@@ -51,6 +51,7 @@ defaultContentLanguage = 'pl'
 [params]
   avatarURL = "images/image_szymon.jpg"
   customCSS = ["css/custom.css"]
+  customJS = ["js/language.js"]
   
   # Kolorowanie składni
   pygmentsStyle = "monokai"
