@@ -6,6 +6,7 @@ defaultContentLanguage = 'pl'
   languageName = "PL"
   title = "Szymon Derlecki"
   weight = 1
+  contentDir = "content"  
   [languages.pl.params]
     author = "Szymon Derlecki"
     info = "Deep Learning / Computer Vision / Signal Processing"
@@ -28,6 +29,7 @@ defaultContentLanguage = 'pl'
   languageName = "EN"
   title = "Szymon Derlecki"
   weight = 2
+  contentDir = "content/en"  
   [languages.en.params]
     author = "Szymon Derlecki"
     info = "Deep Learning / Computer Vision / Signal Processing"
