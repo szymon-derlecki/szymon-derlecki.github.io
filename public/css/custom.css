@@ -1,0 +1,28 @@
+/* ==========================================================
+   TRYB CIEMNY: Signal Processing Mode (Amber/Phosphor)
+   ========================================================== */
+body.colorscheme-dark { 
+    --bg-color: #0d0a00; 
+    --fg-color: #ffb000; 
+    --primary-color: #ffcc00; 
+    --secondary-color: #ffb000; /* Kolor linków po najechaniu itp. */
+}
+
+/* Stylizacja obrazków - symulacja skanowania wizyjnego TYLKO w trybie ciemnym */
+body.colorscheme-dark img {
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 10px rgba(255, 176, 0, 0.2);
+}
+
+/* ==========================================================
+   STYLE GLOBALNE (Dla obu trybów: Light i Dark)
+   ========================================================== */
+
+/* Dodatkowy efekt dla bloków kodu */
+code {
+    /* Używam szarego z przezroczystością, aby wyglądało dobrze i w trybie jasnym i ciemnym */
+    background-color: rgba(128, 128, 128, 0.15); 
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}

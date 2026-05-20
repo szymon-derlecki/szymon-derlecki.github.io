@@ -1,0 +1,53 @@
+baseURL = 'https://szymon-derlecki.github.io/'
+theme = 'hugo-coder'
+defaultContentLanguage = 'pl'
+
+[languages.pl]
+  languageName = "PL"
+  title = "Szymon Derlecki | CV"
+  weight = 1
+  [languages.pl.params]
+    author = "Szymon Derlecki"
+    info = "Deep Learning / Computer Vision / Signal Processing"
+    description = "Portfolio techniczne: Przetwarzanie sygnałów i wizja komputerowa"
+
+  [[languages.pl.menu.main]]
+    name = "O mnie"
+    url = "about/"
+    weight = 1
+  [[languages.pl.menu.main]]
+    name = "Portfolio"
+    url = "posts/"
+    weight = 2
+
+[languages.en]
+  languageName = "EN"
+  title = "Szymon Derlecki | CV"
+  weight = 2
+  [languages.en.params]
+    author = "Szymon Derlecki"
+    info = "Deep Learning / Computer Vision / Signal Processing"
+    description = "Technical Portfolio: Signal Processing & CV"
+
+  [[languages.en.menu.main]]
+    name = "About"
+    url = "about/"
+    weight = 1
+  [[languages.en.menu.main]]
+    name = "Portfolio"
+    url = "posts/"
+    weight = 2
+
+[params]
+  avatarURL = "images/image_szymon.jpg"
+  customCSS = ["css/custom.css"]
+  
+  # Kolorowanie składni
+  pygmentsStyle = "monokai"
+  pygmentsCodeFences = true
+  
+  # --- DODANE: Natywna obsługa trybów ---
+  # "auto" sprawia, że strona dostosuje się do systemu usera, 
+  # ale doda też ikonkę księżyca/słońca w menu do ręcznego przełączania.
+  colorScheme = "auto" 
+  hideColorSchemeToggle = false
