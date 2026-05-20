@@ -3,7 +3,7 @@ title: "Kontakt"
 slug: "contact"
 ---
 
-Możesz się ze mną skontaktować tutaj:
+W ten sposób możesz się ze mną skontaktować:
 
 - **Email:**
 - **Numer telefonu:**

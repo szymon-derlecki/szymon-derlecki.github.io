@@ -3,8 +3,8 @@ title: "Contact"
 slug: "contact"
 ---
 
-Feel free to reach out:
+You can reach me here:
 
 - **Email:**
-- **Numer telefonu:**
+- **Phone number:**
 - **LinkedIN:**
