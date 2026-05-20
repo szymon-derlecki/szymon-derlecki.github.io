@@ -4,7 +4,7 @@ defaultContentLanguage = 'pl'
 
 [languages.pl]
   languageName = "PL"
-  title = "Szymon Derlecki | CV"
+  title = "Szymon Derlecki"
   weight = 1
   [languages.pl.params]
     author = "Szymon Derlecki"
@@ -19,10 +19,14 @@ defaultContentLanguage = 'pl'
     name = "Portfolio"
     url = "posts/"
     weight = 2
+  [[languages.pl.menu.main]]
+    name = "Kontakt"
+    url = "contact/"
+    weight = 3
 
 [languages.en]
   languageName = "EN"
-  title = "Szymon Derlecki | CV"
+  title = "Szymon Derlecki"
   weight = 2
   [languages.en.params]
     author = "Szymon Derlecki"
@@ -37,6 +41,10 @@ defaultContentLanguage = 'pl'
     name = "Portfolio"
     url = "posts/"
     weight = 2
+  [[languages.en.menu.main]]
+    name = "Contact"
+    url = "contact/"
+    weight = 3
 
 [params]
   avatarURL = "images/image_szymon.jpg"
