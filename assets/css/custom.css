@@ -27,38 +27,3 @@ code {
     font-family: 'Courier New', monospace;
 }
 
-/* ==========================================================
-   Obsługa flag językowych (Integracja z motywem)
-   ========================================================== */
-
-/* Kontener przełącznika języków */
-.languages {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 10px;
-}
-
-/* Stylizacja linków językowych */
-.languages a {
-    text-decoration: none;
-    /* Ukrywamy oryginalny tekst (PL/EN), zostawiamy tylko flagę */
-    font-size: 0; 
-}
-
-/* Dodanie flag */
-.languages a[href*="/pl/"]::before {
-    content: "🇵🇱";
-    font-size: 1.2rem; /* Dopasuj rozmiar flagi do czcionki */
-}
-
-.languages a[href*="/en/"]::before {
-    content: "🇬🇧";
-    font-size: 1.2rem;
-}
-
-/* Wzmocnienie efektu w trybie ciemnym (Signal Processing Mode) */
-body.colorscheme-dark .languages a:hover::before {
-    /* Delikatna poświata po najechaniu na flagę */
-    filter: drop-shadow(0 0 5px var(--primary-color));
-}
