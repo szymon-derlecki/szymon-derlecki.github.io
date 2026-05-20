@@ -36,22 +36,21 @@ defaultContentLanguage = 'pl'
     description = "Portfolio"
 
   [[languages.en.menu.main]]
-    name = "About"
-    url = "about/"
-    weight = 1
+  name = "About"
+  url = "/en/about/"
+  weight = 1
   [[languages.en.menu.main]]
     name = "Portfolio"
-    url = "posts/"
+    url = "/en/posts/"
     weight = 2
   [[languages.en.menu.main]]
     name = "Contact"
-    url = "contact/"
+    url = "/en/contact/"
     weight = 3
 
 [params]
   avatarURL = "images/image_szymon.jpg"
   customCSS = ["css/custom.css"]
-  customJS = ["js/language.js"]
   
   # Kolorowanie składni
   pygmentsStyle = "monokai"

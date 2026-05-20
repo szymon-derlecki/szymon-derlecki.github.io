@@ -1,19 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Zapisz wybrany język gdy user kliknie przełącznik
-  document.querySelectorAll('.navigation-item a[href]').forEach(function(link) {
-    const href = link.getAttribute('href');
-    if (href && (href.startsWith('/en') || href === '/')) {
+  // Zapisz jezyk gdy kliknieto przelacznik
+  document.querySelectorAll('.navigation-list a').forEach(function(link) {
+    const text = link.textContent.trim();
+    if (text === 'EN' || text === 'PL') {
       link.addEventListener('click', function() {
-        if (href.startsWith('/en')) {
-          localStorage.setItem('lang', 'en');
-        } else {
-          localStorage.setItem('lang', 'pl');
-        }
+        localStorage.setItem('lang', text.toLowerCase());
       });
     }
   });
 
-  // Przekieruj na właściwy język jeśli nie zgadza się z zapisanym
   const savedLang = localStorage.getItem('lang');
   if (!savedLang) return;
 
@@ -21,10 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const isEnglish = currentPath.startsWith('/en');
 
   if (savedLang === 'en' && !isEnglish) {
-    const newPath = '/en' + currentPath;
-    window.location.replace(newPath);
-  } else if (savedLang === 'pl' && isEnglish) {
-    const newPath = currentPath.replace('/en', '');
-    window.location.replace(newPath);
+    // Znajdz link do angielskiej wersji tej strony
+    const enLink = document.querySelector('.navigation-list a[href*="/en"]');
+    if (enLink) {
+      window.location.replace(enLink.getAttribute('href'));
+    }
   }
 });
