@@ -1,5 +1,6 @@
 ---
 title: "Kontakt"
+slug: "contact"
 ---
 
 Możesz się ze mną skontaktować tutaj:
