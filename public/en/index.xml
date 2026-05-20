@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Szymon Derlecki</title>
-    <link>http://localhost:61019/en/</link>
+    <link>http://localhost:1313/en/</link>
     <description>Recent content on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="http://localhost:61019/en/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>http://localhost:61019/en/about/</link>
+      <link>http://localhost:1313/en/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:61019/en/about/</guid>
+      <guid>http://localhost:1313/en/about/</guid>
       <description>&lt;p&gt;Coming soon&amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Contact</title>
-      <link>http://localhost:61019/en/contact/</link>
+      <link>http://localhost:1313/en/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:61019/en/contact/</guid>
+      <guid>http://localhost:1313/en/contact/</guid>
       <description>&lt;p&gt;Feel free to reach out:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email:&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Numer telefonu:&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;LinkedIN:&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
