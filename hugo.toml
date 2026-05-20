@@ -1,4 +1,4 @@
-baseURL = 'https://szymon-derlecki.github.io/'
+baseURL = 'https://VadorInPython.github.io/szymon-derlecki.github.io/'
 theme = 'hugo-coder'
 defaultContentLanguage = 'pl'
 
