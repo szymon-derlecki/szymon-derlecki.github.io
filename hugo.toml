@@ -1,4 +1,4 @@
-baseURL = 'https://VadorInPython.github.io/szymon-derlecki.github.io/'
+baseURL = 'https://szymon-derlecki.github.io/'
 theme = 'hugo-coder'
 defaultContentLanguage = 'pl'
 
@@ -9,7 +9,7 @@ defaultContentLanguage = 'pl'
   [languages.pl.params]
     author = "Szymon Derlecki"
     info = "Deep Learning / Computer Vision / Signal Processing"
-    description = "Portfolio techniczne: Przetwarzanie sygnałów i wizja komputerowa"
+    description = "Portfolio"
 
   [[languages.pl.menu.main]]
     name = "O mnie"
@@ -27,7 +27,7 @@ defaultContentLanguage = 'pl'
   [languages.en.params]
     author = "Szymon Derlecki"
     info = "Deep Learning / Computer Vision / Signal Processing"
-    description = "Technical Portfolio: Signal Processing & CV"
+    description = "Portfolio"
 
   [[languages.en.menu.main]]
     name = "About"
