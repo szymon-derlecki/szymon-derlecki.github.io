@@ -1,0 +1,20 @@
+{{ define "content" }}
+<div class="portfolio-page-container">
+  <h1 class="portfolio-title">{{ .Title }}</h1>
+  
+  {{ .Content }}
+
+  <div class="portfolio-grid">
+    {{ range .Sections }}
+    <a href="{{ .Permalink }}" class="portfolio-card">
+      <div class="card-content">
+        <h3 class="card-title">{{ .Title }}</h3>
+        {{ if .Description }}
+          <p class="card-description">{{ .Description }}</p>
+        {{ end }}
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

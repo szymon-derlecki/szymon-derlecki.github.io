@@ -1,17 +1,30 @@
 /* ==========================================================
-   TRYB CIEMNY: Signal Processing Mode (Amber/Phosphor)
+   TRYB CIEMNY: Cyber Blue / Tech Ice Mode
    ========================================================== */
 body.colorscheme-dark { 
-    --bg-color: #0d0a00; 
-    --fg-color: #ffb000; 
-    --primary-color: #ffcc00; 
-    --secondary-color: #ffb000; /* Kolor linków po najechaniu itp. */
+    --bg-color: #060b13; /* Głęboki, elegancki granat (ciemniejszy niebieski) */
+    --fg-color: #7dd3fc; /* Jasny, lodowy niebieski - główny tekst */
+    --primary-color: #38bdf8; /* Żywy, jasny niebieski do akcentów i hovera */
+    --secondary-color: #0ea5e9; /* Średni niebieski do głębszych elementów */
 }
 
 /* Stylizacja obrazków - symulacja skanowania wizyjnego TYLKO w trybie ciemnym */
 body.colorscheme-dark img {
     border: 1px solid var(--primary-color);
-    box-shadow: 0 0 10px rgba(255, 176, 0, 0.2);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+/* Dostosowanie kafelków portfolio do klimatu Cyber Blue */
+body.colorscheme-dark .portfolio-card {
+    background-color: rgba(14, 165, 233, 0.02);
+    border-color: rgba(14, 165, 233, 0.25); /* Ciemniejszy niebieski jako baza ramki */
+}
+
+body.colorscheme-dark .portfolio-card:hover {
+    background-color: rgba(56, 189, 248, 0.05);
+    border-color: var(--primary-color); /* Rozświetlenie do jasnego niebieskiego */
+    /* Miękka, niebieska poświata (Glow) */
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
 }
 
 /* ==========================================================
@@ -20,10 +33,83 @@ body.colorscheme-dark img {
 
 /* Dodatkowy efekt dla bloków kodu */
 code {
-    /* Używam szarego z przezroczystością, aby wyglądało dobrze i w trybie jasnym i ciemnym */
     background-color: rgba(128, 128, 128, 0.15); 
     padding: 2px 4px;
     border-radius: 3px;
     font-family: 'Courier New', monospace;
 }
 
+/* Główny kontener - rozpycha stronę i centruje ją względem menu */
+.portfolio-page-container {
+    width: 100% !important;
+    max-width: 1100px !important; 
+    margin: 0 auto !important;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Wyśrodkowanie tytułu Portfolio na pełnej szerokości */
+.portfolio-title {
+    text-align: center !important;
+    width: 100% !important;
+    margin: 3rem 0 2.5rem 0 !important;
+    font-size: 2.5rem;
+}
+
+/* Kontener siatki kafelków - wymuszenie układu 2x2 */
+.portfolio-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 24px !important;
+    margin-top: 2rem;
+    padding: 10px 0;
+    width: 100% !important;
+}
+
+/* Responsywność: na telefonach kafelki wskoczą jeden pod drugi */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Stylbadge / Pojedynczego kafelka (tryb jasny) */
+.portfolio-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 25px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    text-decoration: none !important;
+    color: inherit !important;        
+    background-color: rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    min-height: 150px;
+}
+
+/* Efekt hover dla trybu jasnego */
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.04);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Tytuł wewnątrz kafelka - duży i wyraźny */
+.card-title {
+    margin: 0 0 12px 0 !important;
+    font-size: 1.6rem !important;
+    font-weight: 700 !important; 
+    text-align: center;
+    letter-spacing: -0.02em; 
+}
+
+/* Opis pod tytułem kafelka */
+.card-description {
+    margin: 0 !important;
+    font-size: 1.05rem !important;
+    line-height: 1.5 !important; 
+    opacity: 0.85 !important;
+    text-align: center;
+}
