@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Deep Learning &amp; Computer Vision on Szymon Derlecki</title>
-    <link>http://localhost:57418/en/posts/deep-learning/</link>
+    <link>https://szymon-derlecki.github.io/en/posts/deep-learning/</link>
     <description>Recent content in Deep Learning &amp; Computer Vision on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="http://localhost:57418/en/posts/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://szymon-derlecki.github.io/en/posts/deep-learning/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

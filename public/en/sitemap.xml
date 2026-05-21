@@ -2,124 +2,124 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:63476/en/about/</loc>
+    <loc>https://szymon-derlecki.github.io/en/posts/deep-learning/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/about/"
+                href="https://szymon-derlecki.github.io/posts/deep-learning/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/about/"
+                href="https://szymon-derlecki.github.io/en/posts/deep-learning/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/posts/autonomous-systems/</loc>
+    <loc>https://szymon-derlecki.github.io/en/posts/remote-sensing/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/posts/autonomous-systems/"
+                href="https://szymon-derlecki.github.io/posts/remote-sensing/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/posts/autonomous-systems/"
+                href="https://szymon-derlecki.github.io/en/posts/remote-sensing/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/categories/</loc>
+    <loc>https://szymon-derlecki.github.io/en/posts/autonomous-systems/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/categories/"
+                href="https://szymon-derlecki.github.io/posts/autonomous-systems/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/categories/"
+                href="https://szymon-derlecki.github.io/en/posts/autonomous-systems/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/contact/</loc>
+    <loc>https://szymon-derlecki.github.io/en/posts/publications/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/contact/"
+                href="https://szymon-derlecki.github.io/posts/publications/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/contact/"
+                href="https://szymon-derlecki.github.io/en/posts/publications/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/posts/deep-learning/</loc>
+    <loc>https://szymon-derlecki.github.io/en/about/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/posts/deep-learning/"
+                href="https://szymon-derlecki.github.io/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/posts/deep-learning/"
+                href="https://szymon-derlecki.github.io/en/about/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/posts/</loc>
+    <loc>https://szymon-derlecki.github.io/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/posts/"
+                href="https://szymon-derlecki.github.io/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/posts/"
+                href="https://szymon-derlecki.github.io/en/categories/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/posts/publications/</loc>
+    <loc>https://szymon-derlecki.github.io/en/contact/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/posts/publications/"
+                href="https://szymon-derlecki.github.io/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/posts/publications/"
+                href="https://szymon-derlecki.github.io/en/contact/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/posts/remote-sensing/</loc>
+    <loc>https://szymon-derlecki.github.io/en/posts/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/posts/remote-sensing/"
+                href="https://szymon-derlecki.github.io/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/posts/remote-sensing/"
+                href="https://szymon-derlecki.github.io/en/posts/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/</loc>
+    <loc>https://szymon-derlecki.github.io/en/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/"
+                href="https://szymon-derlecki.github.io/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/"
+                href="https://szymon-derlecki.github.io/en/"
                 />
   </url><url>
-    <loc>http://localhost:63476/en/tags/</loc>
+    <loc>https://szymon-derlecki.github.io/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:63476/tags/"
+                href="https://szymon-derlecki.github.io/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63476/en/tags/"
+                href="https://szymon-derlecki.github.io/en/tags/"
                 />
   </url>
 </urlset>

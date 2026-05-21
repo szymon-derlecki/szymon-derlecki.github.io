@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Publikacje on Szymon Derlecki</title>
-    <link>http://localhost:55239/posts/publications/</link>
+    <link>https://szymon-derlecki.github.io/posts/publications/</link>
     <description>Recent content in Publikacje on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>pl</language>
-    <atom:link href="http://localhost:55239/posts/publications/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://szymon-derlecki.github.io/posts/publications/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
