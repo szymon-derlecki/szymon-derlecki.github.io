@@ -38,18 +38,6 @@
                 href="http://localhost:1313/en/posts/autonomous-systems/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/posts/hobby/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pl"
-                href="http://localhost:1313/posts/hobby/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/posts/hobby/"
-                />
-  </url><url>
     <loc>http://localhost:1313/en/posts/publications/</loc>
     <xhtml:link
                 rel="alternate"
@@ -60,6 +48,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="http://localhost:1313/en/posts/publications/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/en/posts/hobby/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/hobby/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/hobby/"
                 />
   </url><url>
     <loc>http://localhost:1313/en/about/</loc>
