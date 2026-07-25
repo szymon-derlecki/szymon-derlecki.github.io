@@ -1,7 +1,7 @@
 ---
 title: "Publications"
 description: "Scientific papers and publications"
-weight: 40
+weight: 50
 ---
 
 * [DMD: A Danish Ship Detection Dataset](/IGARSS_Publication.pdf)
