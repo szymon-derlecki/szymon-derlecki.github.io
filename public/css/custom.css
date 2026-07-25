@@ -113,3 +113,17 @@ code {
     opacity: 0.85 !important;
     text-align: center;
 }
+
+/* Wyśrodkowanie nieparzystego (piątego) kafelka w siatce 2x2 */
+.portfolio-grid .portfolio-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1; /* Rozciąga obszar kafelka na obie kolumny */
+    justify-self: center; /* Środkuje kafelek w tym rozciągniętym obszarze */
+    width: calc(50% - 12px); /* 12px to połowa Twojego gap: 24px, dzięki temu kafelek ma idealnie taką samą szerokość jak te wyżej */
+}
+
+/* Zabezpieczenie dla widoku mobilnego - wracamy do pełnej szerokości */
+@media (max-width: 768px) {
+    .portfolio-grid .portfolio-card:last-child:nth-child(odd) {
+        width: 100% !important;
+    }
+}
