@@ -3,8 +3,5 @@ title: "Kontakt"
 slug: "contact"
 ---
 
-W ten sposób możesz się ze mną skontaktować:
-
-- **Email:**
-- **Numer telefonu:**
-- **LinkedIN:**
+- **Email: szymonderleckibusiness@gmail.com**
+- **LinkedIN: https://www.linkedin.com/in/szderlecki/**
