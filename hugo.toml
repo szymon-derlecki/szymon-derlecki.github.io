@@ -61,3 +61,6 @@ defaultContentLanguage = 'pl'
   # ale doda też ikonkę księżyca/słońca w menu do ręcznego przełączania.
   colorScheme = "auto" 
   hideColorSchemeToggle = false
+
+[markup.goldmark.renderer]
+  unsafe = true

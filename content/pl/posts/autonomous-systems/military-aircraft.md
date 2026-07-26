@@ -28,54 +28,55 @@ Zastosowane podejście pozwoliło mi na osiągnięcie dokładności wynoszącej 
 ![Detekcja F-35](/images/f-35_detection.png)
 ![Detekcja A-400M](/images/a-400_detection.png)
 
+
 <details>
 <summary><b>Kliknij, aby zobaczyć pełną listę wspieranych maszyn (46 klas)</b></summary>
-
-* A10
-* A400M
-* AG600
-* AV8B
-* B1
-* B2
-* B52
-* Be200
-* C2
-* C5
-* C17
-* C130
-* E2
-* E7
-* EF2000
-* F4
-* F14
-* F15
-* F16
-* F117
-* F18
-* F22
-* F35
-* J10
-* J20
-* JAS39
-* KC135
-* Mig31
-* Mirage2000
-* MQ9
-* P3
-* Rafale
-* RQ4
-* SR71
-* Su25
-* Su34
-* Su57
-* Tornado
-* Tu95
-* Tu160
-* U2
-* US2
-* V22
-* Vulcan
-* XB70
-* YF23
-
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; margin: 12px 0;">
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">A-10</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">A-400M</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">AG-600</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">AV-8B</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">B-1</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">B-2</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">B-52</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Be-200</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">C-2</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">C-5</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">C-17</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">C-130</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">E-2</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">E-7</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">EF-2000</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-4</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-14</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-15</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-16</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-117</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-18</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-22</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-35</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">J-10</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">J-20</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">JAS-39</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">KC-135</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">MiG-31</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Mirage 2000</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">MQ-9</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">P-3</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Rafale</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">RQ-4</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">SR-71</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Su-25</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Su-34</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Su-57</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Tornado</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Tu-95</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Tu-160</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">U-2</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">US-2</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">V-22</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Vulcan</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">XB-70</span>
+  <span style="background: #2d2d2d; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">YF-23</span>
+</div>
 </details>
