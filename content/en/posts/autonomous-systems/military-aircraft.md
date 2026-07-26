@@ -11,7 +11,7 @@ This was one of my first major projects, serving as a crucial stepping stone dur
 **Data and Challenges**
 To build this solution, I utilised the open-source ["Military Aircraft Detection Dataset"](https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data). Knowing that real-world problems require robust data, I expanded this dataset with my own photographs taken at various airshows across Poland and Europe over the last 15 years (full album available [here](https://www.flickr.com/photos/160419049@N02/albums/)). A portion of these photos ultimately served as my test data.
 
-The model was trained to recognise **46** distinct aircraft classes[cite: 1], including the **F-4, F-16, F-22 Raptor, Tornado, JAS-39 Gripen, and EF-2000**.
+The model was trained to recognise **46** distinct aircraft classes, including the **F-4, F-16, F-22 Raptor, Tornado, JAS-39 Gripen, and EF-2000**.
 
 As with any meaningful project, I encountered significant challenges early on. Exploratory data analysis revealed a heavily imbalanced class distribution. Instead of taking the easy route and reducing the majority classes, I tackled the problem head-on through oversampling during the training phase preparation. Artificially balancing the dataset allowed the core architecture, **EfficientNetV2B1**, to learn the unique characteristics of each aircraft equally. 
 
