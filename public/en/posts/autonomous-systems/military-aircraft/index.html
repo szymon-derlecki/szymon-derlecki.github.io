@@ -193,20 +193,20 @@
 
       <div class="post-content">
         
-        <p><strong>Project Overview</strong>
-This was one of my first major projects, serving as a crucial stepping stone during my application to DTU. It ignited my deep involvement in machine learning, particularly in defence and military applications - an area where I have always been driven to create a real impact.</p>
-<p><strong>Data and Challenges</strong>
-To build this solution, I utilised the open-source <a href="https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data"  class="external-link" target="_blank" rel="noopener">&ldquo;Military Aircraft Detection Dataset&rdquo;</a>. Knowing that real-world problems require robust data, I expanded this dataset with my own photographs taken at various airshows across Poland and Europe over the last 15 years (full album available <a href="https://www.flickr.com/photos/160419049@N02/albums/"  class="external-link" target="_blank" rel="noopener">here</a>). A portion of these photos ultimately served as my test data.</p>
+        <p><strong>Project Overview</strong></p>
+<p>This was one of my first major projects, serving as a crucial stepping stone during my application to DTU. It ignited my deep involvement in machine learning, particularly in defence and military applications - an area where I have always been driven to create a real impact.</p>
+<p><strong>Data and Challenges</strong></p>
+<p>To build this solution, I utilised the open-source <a href="https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data"  class="external-link" target="_blank" rel="noopener">&ldquo;Military Aircraft Detection Dataset&rdquo;</a>. Knowing that real-world problems require robust data, I expanded this dataset with my own photographs taken at various airshows across Poland and Europe over the last 15 years (full album available <a href="https://www.flickr.com/photos/160419049@N02/albums/"  class="external-link" target="_blank" rel="noopener">here</a>). A portion of these photos ultimately served as my test data.</p>
 <p>The model was trained to recognise <strong>46</strong> distinct aircraft classes, including the <strong>F-4, F-16, F-22 Raptor, Tornado, JAS-39 Gripen, and EF-2000</strong>.</p>
 <p>As with any meaningful project, I encountered significant challenges early on. Exploratory data analysis revealed a heavily imbalanced class distribution. Instead of taking the easy route and reducing the majority classes, I tackled the problem head-on through oversampling during the training phase preparation. Artificially balancing the dataset allowed the core architecture, <strong>EfficientNetV2B1</strong>, to learn the unique characteristics of each aircraft equally.</p>
 <p>To push the model further and tailor it to my exact needs, I engineered a custom classification block utilising <code>GlobalMaxPooling2D</code>, <code>BatchNormalization</code>, <code>Dropout</code>, and <code>Dense</code> layers. This prevented the model from favouring the most frequent aircraft and reinforced regularisation, effectively mitigating the risk of overfitting.</p>
-<p><strong>Results</strong>
-By consistently pushing through these technical hurdles, this approach delivered a solid accuracy of approximately <strong>85%</strong> on the test set.</p>
+<p><strong>Results</strong></p>
+<p>By consistently pushing through these technical hurdles, this approach delivered a solid accuracy of approximately <strong>85%</strong> on the test set.</p>
 <p><a href="https://github.com/szymon-derlecki/Bachelor_Thesis/blob/main/Bachelor_Thesis_Project.ipynb"  class="external-link" target="_blank" rel="noopener">View the complete project code in my GitHub repository</a></p>
 <hr>
-<h3 id="sample-detections">
-  Sample Detections
-  <a class="heading-link" href="#sample-detections">
+<h3 id="sample-classifications">
+  Sample Classifications
+  <a class="heading-link" href="#sample-classifications">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>

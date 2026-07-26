@@ -27,7 +27,7 @@ By consistently pushing through these technical hurdles, this approach delivered
 
 ---
 
-### Sample Detections
+### Sample Classifications
 
 ![EF-2000 Detection](/images/f-16_detection.png)
 ![F-35 Detection](/images/f-18_detection.png)
