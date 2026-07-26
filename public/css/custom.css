@@ -2,36 +2,32 @@
    TRYB CIEMNY: Cyber Blue / Tech Ice Mode
    ========================================================== */
 body.colorscheme-dark { 
-    --bg-color: #060b13; /* Głęboki, elegancki granat (ciemniejszy niebieski) */
-    --fg-color: #7dd3fc; /* Jasny, lodowy niebieski - główny tekst */
-    --primary-color: #38bdf8; /* Żywy, jasny niebieski do akcentów i hovera */
-    --secondary-color: #0ea5e9; /* Średni niebieski do głębszych elementów */
+    --bg-color: #060b13;
+    --fg-color: #7dd3fc;
+    --primary-color: #38bdf8;
+    --secondary-color: #0ea5e9;
 }
 
-/* Stylizacja obrazków - symulacja skanowania wizyjnego TYLKO w trybie ciemnym */
 body.colorscheme-dark img {
     border: 1px solid var(--primary-color);
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
 }
 
-/* Dostosowanie kafelków portfolio do klimatu Cyber Blue */
 body.colorscheme-dark .portfolio-card {
     background-color: rgba(14, 165, 233, 0.02);
-    border-color: rgba(14, 165, 233, 0.25); /* Ciemniejszy niebieski jako baza ramki */
+    border-color: rgba(14, 165, 233, 0.25);
 }
 
 body.colorscheme-dark .portfolio-card:hover {
     background-color: rgba(56, 189, 248, 0.05);
-    border-color: var(--primary-color); /* Rozświetlenie do jasnego niebieskiego */
-    /* Miękka, niebieska poświata (Glow) */
+    border-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
 }
 
 /* ==========================================================
-   STYLE GLOBALNE (Dla obu trybów: Light i Dark)
+   STYLE GLOBALNE
    ========================================================== */
 
-/* Dodatkowy efekt dla bloków kodu */
 code {
     background-color: rgba(128, 128, 128, 0.15); 
     padding: 2px 4px;
@@ -39,7 +35,6 @@ code {
     font-family: 'Courier New', monospace;
 }
 
-/* Główny kontener - rozpycha stronę i centruje ją względem menu */
 .portfolio-page-container {
     width: 100% !important;
     max-width: 1100px !important; 
@@ -48,7 +43,6 @@ code {
     box-sizing: border-box;
 }
 
-/* Wyśrodkowanie tytułu Portfolio na pełnej szerokości */
 .portfolio-title {
     text-align: center !important;
     width: 100% !important;
@@ -56,47 +50,37 @@ code {
     font-size: 2.5rem;
 }
 
-/* Kontener siatki kafelków - wymuszenie układu 2x2 */
 .portfolio-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important; 
+    grid-template-columns: 1fr !important;
     gap: 24px !important;
-    margin-top: 2rem;
+    margin: 2rem auto 0 auto !important;
     padding: 10px 0;
     width: 100% !important;
+    max-width: 700px !important;
 }
 
-/* Responsywność: na telefonach kafelki wskoczą jeden pod drugi */
-@media (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
-
-/* Stylbadge / Pojedynczego kafelka (tryb jasny) */
 .portfolio-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 35px 25px;
+    padding: 50px 35px;
     border: 1px solid #ccc;
     border-radius: 12px;
     text-decoration: none !important;
     color: inherit !important;        
     background-color: rgba(0, 0, 0, 0.02);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-    min-height: 150px;
+    min-height: 200px;
 }
 
-/* Efekt hover dla trybu jasnego */
 .portfolio-card:hover {
     transform: translateY(-5px);
     background-color: rgba(0, 0, 0, 0.04);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* Tytuł wewnątrz kafelka - duży i wyraźny */
 .card-title {
     margin: 0 0 12px 0 !important;
     font-size: 1.6rem !important;
@@ -105,7 +89,6 @@ code {
     letter-spacing: -0.02em; 
 }
 
-/* Opis pod tytułem kafelka */
 .card-description {
     margin: 0 !important;
     font-size: 1.05rem !important;
@@ -114,16 +97,9 @@ code {
     text-align: center;
 }
 
-/* Wyśrodkowanie nieparzystego (piątego) kafelka w siatce 2x2 */
-.portfolio-grid .portfolio-card:last-child:nth-child(odd) {
-    grid-column: 1 / -1; /* Rozciąga obszar kafelka na obie kolumny */
-    justify-self: center; /* Środkuje kafelek w tym rozciągniętym obszarze */
-    width: calc(50% - 12px); /* 12px to połowa Twojego gap: 24px, dzięki temu kafelek ma idealnie taką samą szerokość jak te wyżej */
-}
-
-/* Zabezpieczenie dla widoku mobilnego - wracamy do pełnej szerokości */
 @media (max-width: 768px) {
-    .portfolio-grid .portfolio-card:last-child:nth-child(odd) {
-        width: 100% !important;
+    .portfolio-grid {
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
     }
 }
