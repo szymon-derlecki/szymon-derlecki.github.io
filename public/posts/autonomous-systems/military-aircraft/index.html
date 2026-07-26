@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Klasyfikacja Samolotów Wojskowych · Szymon Derlecki
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Szymon Derlecki">
+<meta name="description" content="Model uczenia maszynowego do detekcji 46 klas samolotów wojskowych.">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Klasyfikacja Samolotów Wojskowych">
+  <meta name="twitter:description" content="Model uczenia maszynowego do detekcji 46 klas samolotów wojskowych.">
+
+<meta property="og:url" content="http://localhost:1313/posts/autonomous-systems/military-aircraft/">
+  <meta property="og:site_name" content="Szymon Derlecki">
+  <meta property="og:title" content="Klasyfikacja Samolotów Wojskowych">
+  <meta property="og:description" content="Model uczenia maszynowego do detekcji 46 klas samolotów wojskowych.">
+  <meta property="og:locale" content="pl">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-26T00:00:00+00:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/autonomous-systems/military-aircraft/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/custom.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Szymon Derlecki
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">O mnie</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Portfolio</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Kontakt</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="/en/posts/autonomous-systems/military-aircraft/">EN</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/autonomous-systems/military-aircraft/">
+              Klasyfikacja Samolotów Wojskowych
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2026-07-26T00:00:00Z">
+                lipca 26, 2026
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              2 min czytania
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      
+
+
+      <div class="post-content">
+        
+        <p><strong>Opis projektu</strong>
+Jest to pierwszy z moich poważniejszych projektów, a zarazem ten, który służył jako fundament w trakcie mojej rekrutacji na studia na DTU. Zapoczątkował on moje zaangażowanie w projekty bazujące na uczeniu maszynowym, zwłaszcza te dotyczące zastosowań militarnych.</p>
+<p><strong>Dane i wyzwania</strong>
+Aby go wykonać, wykorzystałem ogólnodostępny zbiór danych <a href="https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data"  class="external-link" target="_blank" rel="noopener">&ldquo;Military Aircraft Detection Dataset&rdquo;</a>, który jako dataset w stylu open-source był już wielokrotnie modyfikowany. Zbiór ten rozszerzyłem o autorskie fotografie wykonywane podczas pokazów lotniczych w Polsce i za granicą na przestrzeni ostatnich 15 lat (pełny album dostępny <a href="https://www.flickr.com/photos/160419049@N02/albums/"  class="external-link" target="_blank" rel="noopener">tutaj</a>), z których część również posłużyła jako dane testowe.</p>
+<p>Model został wytrenowany do rozpoznawania <strong>46</strong> klas maszyn[cite: 1], w tym m.in.: <strong>[F-4, F-16, F-22 Raptor, Tornado, JAS-39 Gripen czy EF-2000]</strong>.</p>
+<p>Jedno z głównych wyzwań pojawiło się już na etapie analizy eksploracyjnej - zbiór charakteryzował się mocno niezbalansowanym rozkładem klas poszczególnych maszyn. Zamiast redukować pulę obrazów z klas większościowych, zastosowałem technikę oversamplingu w fazie przygotowywania danych treningowych. Sztuczne zbilansowanie zbioru pozwoliło architekturze bazowej <strong>EfficientNetV2B1</strong>, którą dodatkowo nadbudowałem własnym blokiem klasyfikującym (wykorzystującym warstwy <code>GlobalMaxPooling2D</code>, <code>BatchNormalization</code>, <code>Dropout</code> oraz <code>Dense</code>), na równomierną naukę cech charakterystycznych każdej z maszyn. Zapobiegło to faworyzowaniu samolotów, które były najbardziej liczne podczas treningu, a dodane warstwy wzmocniły regularyzację i zminimalizowały ryzyko przeuczenia (overfittingu).</p>
+<p><strong>Wyniki</strong>
+Zastosowane podejście pozwoliło mi na osiągnięcie dokładności wynoszącej okolice <strong>85%</strong> na zbiorze testowym.</p>
+<p><a href="https://github.com/szymon-derlecki/Bachelor_Thesis/blob/main/Bachelor_Thesis_Project.ipynb"  class="external-link" target="_blank" rel="noopener">Zobacz pełny kod projektu w repozytorium na GitHub</a></p>
+<hr>
+<h3 id="przykładowe-detekcje">
+  Przykładowe detekcje
+  <a class="heading-link" href="#przyk%c5%82adowe-detekcje">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><img src="static/images/ef-2000_detection.png" alt="Detekcja EF-2000">
+<img src="static/images/f-35_detection.png" alt="Detekcja F-35">
+<img src="static/images/a-400_detection.png" alt="Detekcja A-400M"></p>
+<!-- raw HTML omitted -->
+<ul>
+<li>A10</li>
+<li>A400M</li>
+<li>AG600</li>
+<li>AV8B</li>
+<li>B1</li>
+<li>B2</li>
+<li>B52</li>
+<li>Be200</li>
+<li>C2</li>
+<li>C5</li>
+<li>C17</li>
+<li>C130</li>
+<li>E2</li>
+<li>E7</li>
+<li>EF2000</li>
+<li>F4</li>
+<li>F14</li>
+<li>F15</li>
+<li>F16</li>
+<li>F117</li>
+<li>F18</li>
+<li>F22</li>
+<li>F35</li>
+<li>J10</li>
+<li>J20</li>
+<li>JAS39</li>
+<li>KC135</li>
+<li>Mig31</li>
+<li>Mirage2000</li>
+<li>MQ9</li>
+<li>P3</li>
+<li>Rafale</li>
+<li>RQ4</li>
+<li>SR71</li>
+<li>Su25</li>
+<li>Su34</li>
+<li>Su57</li>
+<li>Tornado</li>
+<li>Tu95</li>
+<li>Tu160</li>
+<li>U2</li>
+<li>US2</li>
+<li>V22</li>
+<li>Vulcan</li>
+<li>XB70</li>
+<li>YF23</li>
+</ul>
+<!-- raw HTML omitted -->
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2026
+     Szymon Derlecki 
+    ·
+    
+    Napędzane przez <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

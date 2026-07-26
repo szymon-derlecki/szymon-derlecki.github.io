@@ -74,6 +74,18 @@
                 href="http://localhost:1313/en/contact/"
                 />
   </url><url>
+    <loc>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/autonomous-systems/military-aircraft/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/autonomous-systems/military-aircraft/"
+                />
+  </url><url>
     <loc>http://localhost:1313/en/posts/</loc>
     <xhtml:link
                 rel="alternate"

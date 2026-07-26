@@ -21,5 +21,12 @@
       <guid>http://localhost:1313/en/contact/</guid>
       <description>&lt;p&gt;You can reach me here:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email: &lt;a href=&#34;mailto:szymonderleckibusiness@gmail.com&#34; &gt;szymonderleckibusiness@gmail.com&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;LinkedIN: &lt;a href=&#34;https://www.linkedin.com/in/szderlecki/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.linkedin.com/in/szderlecki/&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
+    <item>
+      <title>Military Aircraft Classification</title>
+      <link>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/szymon-derlecki/Bachelor_Thesis/blob/main/Bachelor_Thesis_Project.ipynb&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Whole code available at github&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
