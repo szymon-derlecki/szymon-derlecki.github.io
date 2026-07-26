@@ -5,7 +5,8 @@
   {{ .Content }}
 
   <div class="portfolio-grid">
-    {{ range .Sections }}
+    <!-- ZMIANA TUTAJ: Używamy .RegularPages zamiast .Sections -->
+    {{ range .RegularPages }}
     <a href="{{ .Permalink }}" class="portfolio-card">
       <div class="card-content">
         <h3 class="card-title">{{ .Title }}</h3>
