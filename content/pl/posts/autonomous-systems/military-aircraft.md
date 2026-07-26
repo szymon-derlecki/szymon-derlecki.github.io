@@ -1,6 +1,6 @@
 ---
 title: "Klasyfikacja Samolotów Wojskowych"
-date: 2026-07-26
+date: 2026-07-25
 draft: false
 description: "Model uczenia maszynowego do detekcji 46 klas samolotów wojskowych."
 ---
