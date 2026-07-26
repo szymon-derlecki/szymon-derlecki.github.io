@@ -24,9 +24,9 @@ Zastosowane podejście pozwoliło mi na osiągnięcie dokładności wynoszącej 
 
 ### Przykładowe detekcje
 
-![Detekcja EF-2000](images/ef-2000_detection.png)
-![Detekcja F-35](images/f-35_detection.png)
-![Detekcja A-400M](images/a-400_detection.png)
+![Detekcja EF-2000](/images/ef-2000_detection.png)
+![Detekcja F-35](/images/f-35_detection.png)
+![Detekcja A-400M](/images/a-400_detection.png)
 
 <details>
 <summary><b>Kliknij, aby zobaczyć pełną listę wspieranych maszyn (46 klas)</b></summary>
