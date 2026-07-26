@@ -6,9 +6,11 @@ description: "A machine learning model for detecting 46 classes of military airc
 ---
 
 **Project Overview**
+
 This was one of my first major projects, serving as a crucial stepping stone during my application to DTU. It ignited my deep involvement in machine learning, particularly in defence and military applications - an area where I have always been driven to create a real impact.
 
 **Data and Challenges**
+
 To build this solution, I utilised the open-source ["Military Aircraft Detection Dataset"](https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data). Knowing that real-world problems require robust data, I expanded this dataset with my own photographs taken at various airshows across Poland and Europe over the last 15 years (full album available [here](https://www.flickr.com/photos/160419049@N02/albums/)). A portion of these photos ultimately served as my test data.
 
 The model was trained to recognise **46** distinct aircraft classes, including the **F-4, F-16, F-22 Raptor, Tornado, JAS-39 Gripen, and EF-2000**.
