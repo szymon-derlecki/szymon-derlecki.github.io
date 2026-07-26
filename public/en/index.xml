@@ -6,7 +6,15 @@
     <description>Recent content on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>en</language>
+    <lastBuildDate>Sat, 25 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Military Aircraft Classification</title>
+      <link>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</link>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Project Overview&lt;/strong&gt;&#xA;This was one of my first major projects, serving as a crucial stepping stone during my application to DTU. It ignited my deep involvement in machine learning, particularly in defence and military applications - an area where I have always been driven to create a real impact.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Data and Challenges&lt;/strong&gt;&#xA;To build this solution, I utilised the open-source &lt;a href=&#34;https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;Military Aircraft Detection Dataset&amp;rdquo;&lt;/a&gt;. Knowing that real-world problems require robust data, I expanded this dataset with my own photographs taken at various airshows across Poland and Europe over the last 15 years (full album available &lt;a href=&#34;https://www.flickr.com/photos/160419049@N02/albums/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). A portion of these photos ultimately served as my test data.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>About</title>
       <link>http://localhost:1313/en/about/</link>
@@ -20,13 +28,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/en/contact/</guid>
       <description>&lt;p&gt;You can reach me here:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email: &lt;a href=&#34;mailto:szymonderleckibusiness@gmail.com&#34; &gt;szymonderleckibusiness@gmail.com&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;LinkedIN: &lt;a href=&#34;https://www.linkedin.com/in/szderlecki/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.linkedin.com/in/szderlecki/&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Military Aircraft Classification</title>
-      <link>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/szymon-derlecki/Bachelor_Thesis/blob/main/Bachelor_Thesis_Project.ipynb&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Whole code available at github&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

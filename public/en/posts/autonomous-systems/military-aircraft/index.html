@@ -13,22 +13,24 @@
 
 
 <meta name="author" content="Szymon Derlecki">
-<meta name="description" content="Whole code available at github">
+<meta name="description" content="A machine learning model for detecting 46 classes of military aircraft.">
 <meta name="keywords" content="">
 
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Military Aircraft Classification">
-  <meta name="twitter:description" content="Whole code available at github">
+  <meta name="twitter:description" content="A machine learning model for detecting 46 classes of military aircraft.">
 
 <meta property="og:url" content="http://localhost:1313/en/posts/autonomous-systems/military-aircraft/">
   <meta property="og:site_name" content="Szymon Derlecki">
   <meta property="og:title" content="Military Aircraft Classification">
-  <meta property="og:description" content="Whole code available at github">
+  <meta property="og:description" content="A machine learning model for detecting 46 classes of military aircraft.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-25T00:00:00+00:00">
 
 
 
@@ -171,13 +173,13 @@
           <div class="date">
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="0001-01-01T00:00:00Z">
-                January 1, 0001
+              <time datetime="2026-07-25T00:00:00Z">
+                July 25, 2026
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              One-minute read
+              2-minute read
             </span>
           </div>
           
@@ -191,8 +193,78 @@
 
       <div class="post-content">
         
-        <p><a href="https://github.com/szymon-derlecki/Bachelor_Thesis/blob/main/Bachelor_Thesis_Project.ipynb"  class="external-link" target="_blank" rel="noopener">Whole code available at github</a></p>
-
+        <p><strong>Project Overview</strong>
+This was one of my first major projects, serving as a crucial stepping stone during my application to DTU. It ignited my deep involvement in machine learning, particularly in defence and military applications - an area where I have always been driven to create a real impact.</p>
+<p><strong>Data and Challenges</strong>
+To build this solution, I utilised the open-source <a href="https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data"  class="external-link" target="_blank" rel="noopener">&ldquo;Military Aircraft Detection Dataset&rdquo;</a>. Knowing that real-world problems require robust data, I expanded this dataset with my own photographs taken at various airshows across Poland and Europe over the last 15 years (full album available <a href="https://www.flickr.com/photos/160419049@N02/albums/"  class="external-link" target="_blank" rel="noopener">here</a>). A portion of these photos ultimately served as my test data.</p>
+<p>The model was trained to recognise <strong>46</strong> distinct aircraft classes, including the <strong>F-4, F-16, F-22 Raptor, Tornado, JAS-39 Gripen, and EF-2000</strong>.</p>
+<p>As with any meaningful project, I encountered significant challenges early on. Exploratory data analysis revealed a heavily imbalanced class distribution. Instead of taking the easy route and reducing the majority classes, I tackled the problem head-on through oversampling during the training phase preparation. Artificially balancing the dataset allowed the core architecture, <strong>EfficientNetV2B1</strong>, to learn the unique characteristics of each aircraft equally.</p>
+<p>To push the model further and tailor it to my exact needs, I engineered a custom classification block utilising <code>GlobalMaxPooling2D</code>, <code>BatchNormalization</code>, <code>Dropout</code>, and <code>Dense</code> layers. This prevented the model from favouring the most frequent aircraft and reinforced regularisation, effectively mitigating the risk of overfitting.</p>
+<p><strong>Results</strong>
+By consistently pushing through these technical hurdles, this approach delivered a solid accuracy of approximately <strong>85%</strong> on the test set.</p>
+<p><a href="https://github.com/szymon-derlecki/Bachelor_Thesis/blob/main/Bachelor_Thesis_Project.ipynb"  class="external-link" target="_blank" rel="noopener">View the complete project code in my GitHub repository</a></p>
+<hr>
+<h3 id="sample-detections">
+  Sample Detections
+  <a class="heading-link" href="#sample-detections">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><img src="/images/f-16_detection.png" alt="EF-2000 Detection">
+<img src="/images/f-18_detection.png" alt="F-35 Detection">
+<img src="/images/typhoon_detection.png" alt="A-400M Detection"></p>
+<details>
+<summary><b>Click here to see what aircraft are supported (46 types)</b></summary>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; margin: 12px 0;">
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">A-10</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">A-400M</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">AG-600</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">AV-8B</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">B-1</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">B-2</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">B-52</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Be-200</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">C-2</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">C-5</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">C-17</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">C-130</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">E-2</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">E-7</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">EF-2000</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-4</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-14</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-15</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-16</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-117</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-18</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-22</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">F-35</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">J-10</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">J-20</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">JAS-39</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">KC-135</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">MiG-31</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Mirage 2000</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">MQ-9</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">P-3</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Rafale</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">RQ-4</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">SR-71</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Su-25</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Su-34</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Su-57</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Tornado</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Tu-95</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Tu-160</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">U-2</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">US-2</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">V-22</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">Vulcan</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">XB-70</span>
+  <span style="border: 1px solid #666; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; text-align: center;">YF-23</span>
+</div>
+</details>
       </div>
 
 

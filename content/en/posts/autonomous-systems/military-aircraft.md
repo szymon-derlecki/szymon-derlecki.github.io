@@ -18,6 +18,7 @@ As with any meaningful project, I encountered significant challenges early on. E
 To push the model further and tailor it to my exact needs, I engineered a custom classification block utilising `GlobalMaxPooling2D`, `BatchNormalization`, `Dropout`, and `Dense` layers. This prevented the model from favouring the most frequent aircraft and reinforced regularisation, effectively mitigating the risk of overfitting.
 
 **Results**
+
 By consistently pushing through these technical hurdles, this approach delivered a solid accuracy of approximately **85%** on the test set.
 
 [View the complete project code in my GitHub repository](https://github.com/szymon-derlecki/Bachelor_Thesis/blob/main/Bachelor_Thesis_Project.ipynb)
