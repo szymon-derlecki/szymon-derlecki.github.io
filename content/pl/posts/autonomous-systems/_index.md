@@ -1,5 +1,5 @@
 ---
 title: "Systemy Autonomiczne"
-description: "Projekty związane z systemami bezzałogowymi"
+description: "Wszelkie projekty, któe wykonałem samodzielnie, a także te nad którymi współpracowałęm z innymi osobami"
 weight: 30
 ---

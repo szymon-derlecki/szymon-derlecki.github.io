@@ -1,5 +1,5 @@
 ---
 title: "Autonomous Systems"
-description: "Projects in unmanned autonomous systems"
+description: "Every Project I have done or have cooperated on during my Masters"
 weight: 30
 ---
