@@ -49,11 +49,13 @@ Wysoki wskaźnik czułości (83%) dowodzi, że detektor skutecznie odnajduje zde
 
 ### Prawidłowa Detekcja
 Wyraźna sylwetka samolotu z zauważalną smugą chromatyczną.
+
 ![Prawidłowa detekcja](/images/prawidlowa_detekcja.png)
 
 ### Fałszywa Detekcja (False Positive)
 Obiekt na ziemi błędnie zidentyfikowany jako samolot.
-![Nieprawidłowa detekcja](/images/nieprawidlowa_detekcja.png)
+
+![Nieprawidłowa detekcja](/images/bledna_detekcja.png)
 
 ## Plany Rozwoju (Future Work)
 1.  **Rozbudowa zbioru danych:** Dodanie większej liczby tzw. negatywnych przykładów (boiska, autostrady), co powinno znacząco zredukować liczbę fałszywych detekcji.

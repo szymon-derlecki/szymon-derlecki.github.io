@@ -194,8 +194,8 @@
       <div class="post-content">
         
         <p><strong>Cel Projektu</strong></p>
-<p>Ten projekt skupia się na automatycznym wykrywaniu sylwetek samolotów na obrazach satelitarnych Sentinel-2 przy użyciu architektury YOLO (You Only Look Once). Głównym założeniem jest lokalizacja małych obiektów na zdjęciach o relatywnie niskiej rozdzielczości przestrzennej (10m/px), co stanowi klasyczny problem detekcji małych obiektów w domenie powiązanej z obserwacją naszej planety.</p>
-<p>System powstał jako pasywna, oparta na obrazie alternatywa i uzupełnienie dla tradycyjnych systemów śledzenia (takich jak np. ADS-B), co ma szczególne znaczenie w strategicznie wrażliwych obszarach, jak region Morza Bałtyckiego, gdzie chociażby transpondery samolotów mogą być celowo wyłączane.</p>
+<p>Ten projekt skupia się na automatycznym wykrywaniu sylwetek samolotów na obrazach satelitarnych Sentinel-2 przy użyciu architektury YOLO (You Only Look Once). Głównym założeniem jest lokalizacja małych obiektów na zdjęciach o relatywnie niskiej rozdzielczości przestrzennej (10 m/px), co stanowi klasyczny problem detekcji małych obiektów w dziedzinie obserwacji Ziemi (Earth Observation).</p>
+<p>System powstał jako pasywna, oparta na analizie obrazu alternatywa i uzupełnienie dla tradycyjnych systemów śledzenia (takich jak np. ADS-B). Ma to szczególne znaczenie w strategicznie wrażliwych obszarach, takich jak region Morza Bałtyckiego, gdzie transpondery samolotów bywają celowo wyłączane.</p>
 <h2 id="zbiór-danych-i-wyzwania">
   Zbiór Danych i Wyzwania
   <a class="heading-link" href="#zbi%c3%b3r-danych-i-wyzwania">
@@ -205,7 +205,7 @@
 </h2>
 <p>Model został wytrenowany na <strong>579 obrazach RGB</strong> z satelity Sentinel-2, a walidacja wyników została przeprowadzona z użyciem metadanych ADS-B pozyskanych dla konkretnego dnia z bazy OpenSky Network.</p>
 <p><strong>Efekt &ldquo;Planebow&rdquo;</strong>
-Unikatowym zjawiskiem obserwowanym w tym zbiorze danych jest tzw. efekt &ldquo;planebow&rdquo; (chromatyczna smuga przedstawiające 3 sylwetki tego samego samolotu bardzo blisko siebie). Wynika on z faktu, że czujniki satelity Sentinel-2 rejestrują pasma czerwone, zielone i niebieskie w sposób sekwencyjny. W przypadku szybko poruszających się obiektów - takich jak właśnie samoloty na wysokościach przelotowych (ale także np. samochody jadące z większą prędkością po drogach szybkiego ruchu lub autostradach)  powoduje to przesunięcie kolorów względem siebie. To zjawisko wizualne na pewnym etapie okazało się kluczową wskazówką ułatwiającą detekcję.</p>
+Unikatowym zjawiskiem obserwowanym w tym zbiorze danych jest tzw. efekt &ldquo;planebow&rdquo; (chromatyczna smuga przedstawiająca trzy sylwetki tego samego samolotu bardzo blisko siebie). Wynika on z faktu, że czujniki satelity Sentinel-2 rejestrują pasma czerwone, zielone i niebieskie w sposób sekwencyjny. W przypadku szybko poruszających się obiektów – takich jak samoloty na wysokościach przelotowych (ale także np. samochody jadące z dużą prędkością po autostradach) – powoduje to wizualne rozwarstwienie kolorów. To zjawisko na pewnym etapie okazało się kluczową wskazówką ułatwiającą detekcję.</p>
 <h2 id="model-i-architektura">
   Model i Architektura
   <a class="heading-link" href="#model-i-architektura">
@@ -213,7 +213,7 @@ Unikatowym zjawiskiem obserwowanym w tym zbiorze danych jest tzw. efekt &ldquo;p
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Do utworzenia rozwiązania dla tego konkretnego problemu wykorzystano architekturę <strong>YOLOv8s</strong>. Wybór ten podyktowany był brakiem konieczności stosowania tzw. kotwic (anchor-free), oddzielonym mechanizmem predykcji oraz dobrą wydajnością przy wykrywaniu małych obiektów na sprzęcie o ograniczonych zasobach obliczeniowych, takim jak zwyczajny gamingowy laptop.</p>
+<p>Do zbudowania rozwiązania wykorzystano architekturę <strong>YOLOv8s</strong>. Wybór ten był podyktowany brakiem konieczności stosowania tzw. kotwic (anchor-free), niezależnym mechanizmem predykcji oraz dobrą wydajnością przy wykrywaniu małych obiektów na sprzęcie o ograniczonych zasobach obliczeniowych (takim jak standardowy laptop gamingowy).</p>
 <p><strong>Parametry Treningowe:</strong></p>
 <ul>
 <li><strong>Rozmiar wejścia:</strong> 640x640 pikseli</li>
@@ -222,7 +222,7 @@ Unikatowym zjawiskiem obserwowanym w tym zbiorze danych jest tzw. efekt &ldquo;p
 <li><strong>Learning Rate:</strong> 0.001</li>
 <li><strong>Confidence Threshold:</strong> 0.25</li>
 <li><strong>IoU Threshold (NMS):</strong> 0.45</li>
-<li><strong>Augmentacja:</strong> Zaimplementowano nietypowy pipeline z użyciem biblioteki <code>Albumentations</code> (odbicia lustrzane, rotacje $\pm45^{\circ}$, zmiany jasności). Celowo zrezygnowano z agresywnego przycinania obrazów (cropping), aby nie zniekształcić wspomnianego wyżej efektu &ldquo;planebow&rdquo;.</li>
+<li><strong>Augmentacja:</strong> Zaimplementowano dedykowany pipeline z użyciem biblioteki <code>Albumentations</code> (odbicia lustrzane, rotacje $\pm45^{\circ}$, zmiany jasności). Celowo zrezygnowano z agresywnego przycinania obrazów (cropping), aby nie zniekształcić wspomnianego wyżej efektu &ldquo;planebow&rdquo;.</li>
 </ul>
 <h2 id="ewaluacja-i-wyniki">
   Ewaluacja i Wyniki
@@ -239,7 +239,7 @@ Unikatowym zjawiskiem obserwowanym w tym zbiorze danych jest tzw. efekt &ldquo;p
 <li><strong>Czułość (Recall):</strong> 83%</li>
 <li><strong>F1-Score:</strong> 71%</li>
 </ul>
-<p>Wysoki wskaźnik czułości (83%) dowodzi, że detektor skutecznie odnajduje zdecydowaną większość rzeczywistych samolotów. Umiarkowana precyzja wynika z występowania fałszywych detekcji (False Positives) w miejscach przypominających samoloty, takich jak boiska piłkarskie, panele słoneczne, jasne dachy oraz wspomniane wcześniej szybko poruszające się samochody, które również generują podobne smugi chromatyczne na zdjęciach.</p>
+<p>Wysoki wskaźnik czułości (83%) dowodzi, że detektor skutecznie odnajduje zdecydowaną większość rzeczywistych samolotów. Umiarkowana precyzja wynika z występowania fałszywych detekcji (False Positives) w miejscach przypominających sylwetki maszyn. Należą do nich m.in. boiska piłkarskie, panele słoneczne, jasne dachy oraz wspomniane wcześniej, szybko poruszające się samochody, które również generują podobne smugi chromatyczne.</p>
 <h2 id="przykłady-detekcji">
   Przykłady Detekcji
   <a class="heading-link" href="#przyk%c5%82ady-detekcji">
@@ -255,8 +255,8 @@ Unikatowym zjawiskiem obserwowanym w tym zbiorze danych jest tzw. efekt &ldquo;p
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Wyraźna sylwetka samolotu z zauważalną smugą chromatyczną.
-<img src="/sciezka/do/prawidlowej_detekcji.jpg" alt="Prawidłowa detekcja"></p>
+<p>Wyraźna sylwetka samolotu z zauważalną smugą chromatyczną.</p>
+<p><img src="/images/prawidlowa_detekcja.png" alt="Prawidłowa detekcja"></p>
 <h3 id="fałszywa-detekcja-false-positive">
   Fałszywa Detekcja (False Positive)
   <a class="heading-link" href="#fa%c5%82szywa-detekcja-false-positive">
@@ -264,8 +264,8 @@ Unikatowym zjawiskiem obserwowanym w tym zbiorze danych jest tzw. efekt &ldquo;p
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Obiekt na ziemi błędnie zidentyfikowany jako samolot.
-<img src="/sciezka/do/nieprawidlowej_detekcji.jpg" alt="Nieprawidłowa detekcja"></p>
+<p>Obiekt na ziemi błędnie zidentyfikowany jako samolot.</p>
+<p><img src="/images/bledna_detekcja.png" alt="Nieprawidłowa detekcja"></p>
 <h2 id="plany-rozwoju-future-work">
   Plany Rozwoju (Future Work)
   <a class="heading-link" href="#plany-rozwoju-future-work">
@@ -275,9 +275,10 @@ Unikatowym zjawiskiem obserwowanym w tym zbiorze danych jest tzw. efekt &ldquo;p
 </h2>
 <ol>
 <li><strong>Rozbudowa zbioru danych:</strong> Dodanie większej liczby tzw. negatywnych przykładów (boiska, autostrady), co powinno znacząco zredukować liczbę fałszywych detekcji.</li>
-<li><strong>Segmentacja instancji (Instance Segmentation):</strong> Zastosowanie modeli typu Mask R-CNN lub YOLACT, które pomogą wyizolować dokładny kształt obiektu zamiast używać standardowych ramek.</li>
+<li><strong>Segmentacja instancji (Instance Segmentation):</strong> Zastosowanie modeli typu Mask R-CNN lub YOLACT, które pomogą wyizolować dokładny kształt obiektu, zamiast zamykać go w standardowych ramkach (bounding boxes).</li>
 <li><strong>Filtrowanie kontekstowe:</strong> Wdrożenie dodatkowych reguł odrzucających obiekty na podstawie ich rozmiaru lub analizy tła (np. wykluczenie detekcji w gęstej tkance miejskiej bez obecności chmur).</li>
 </ol>
+<p><strong>Repozytorium Projektu:</strong> <a href="https://github.com/szymon-derlecki/Individual-course-Aircraft-Detection-in-Sentinel-2-Satellite-Images-using-Deep-Learning-25"  class="external-link" target="_blank" rel="noopener">GitHub - Individual-course-Aircraft-Detection-in-Sentinel-2-Satellite-Images-using-Deep-Learning-25</a></p>
 
       </div>
 
