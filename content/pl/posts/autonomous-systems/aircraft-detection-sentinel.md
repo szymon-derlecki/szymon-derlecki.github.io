@@ -52,12 +52,12 @@ Wyraźna sylwetka samolotu z zauważalną smugą chromatyczną.
 
 ![Prawidłowa detekcja](/images/prawidlowa_detekcja.png)
 
-### Fałszywa Detekcja (False Positive)
+### Fałszywa Detekcja 
 Obiekt na ziemi błędnie zidentyfikowany jako samolot.
 
 ![Nieprawidłowa detekcja](/images/bledna_detekcja.png)
 
-## Plany Rozwoju (Future Work)
+## Plany Rozwoju 
 1.  **Rozbudowa zbioru danych:** Dodanie większej liczby tzw. negatywnych przykładów (boiska, autostrady), co powinno znacząco zredukować liczbę fałszywych detekcji.
 2.  **Segmentacja instancji (Instance Segmentation):** Zastosowanie modeli typu Mask R-CNN lub YOLACT, które pomogą wyizolować dokładny kształt obiektu, zamiast zamykać go w standardowych ramkach (bounding boxes).
 3.  **Filtrowanie kontekstowe:** Wdrożenie dodatkowych reguł odrzucających obiekty na podstawie ich rozmiaru lub analizy tła (np. wykluczenie detekcji w gęstej tkance miejskiej bez obecności chmur).
