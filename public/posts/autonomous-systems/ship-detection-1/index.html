@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Automatyczne wykrywanie statków w rejonie mostu nad Wielkim Bełtem · Szymon Derlecki
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Szymon Derlecki">
+<meta name="description" content="Model oparty na architekturze YOLOv8n, służący do wykrywania statków oraz tworzenia nowego zbioru danych z rejonu Wielkiego Bełtu.">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Automatyczne wykrywanie statków w rejonie mostu nad Wielkim Bełtem">
+  <meta name="twitter:description" content="Model oparty na architekturze YOLOv8n, służący do wykrywania statków oraz tworzenia nowego zbioru danych z rejonu Wielkiego Bełtu.">
+
+<meta property="og:url" content="http://localhost:1313/posts/autonomous-systems/ship-detection-1/">
+  <meta property="og:site_name" content="Szymon Derlecki">
+  <meta property="og:title" content="Automatyczne wykrywanie statków w rejonie mostu nad Wielkim Bełtem">
+  <meta property="og:description" content="Model oparty na architekturze YOLOv8n, służący do wykrywania statków oraz tworzenia nowego zbioru danych z rejonu Wielkiego Bełtu.">
+  <meta property="og:locale" content="pl">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-26T00:00:00+00:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/autonomous-systems/ship-detection-1/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/custom.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Szymon Derlecki
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">O mnie</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Portfolio</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Kontakt</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="/en/posts/autonomous-systems/ship-detection-1/">EN</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/autonomous-systems/ship-detection-1/">
+              Automatyczne wykrywanie statków w rejonie mostu nad Wielkim Bełtem
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2026-07-26T00:00:00Z">
+                lipca 26, 2026
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              2 min czytania
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      
+
+
+      <div class="post-content">
+        
+        <p>Praca z danymi wizyjnymi w środowisku morskim potrafi być nie lada wyzwaniem. Dziś chciałbym podzielić się kulisami mojego projektu, który z prostego pomysłu na ekstrakcję danych ewoluował w pełnoprawną publikację naukową i stał się solidnym fundamentem moich dalszych badań nad fuzją danych i systemami autonomicznymi.</p>
+<h3 id="jak-powstał-zbiór-danych">
+  Jak powstał zbiór danych?
+  <a class="heading-link" href="#jak-powsta%c5%82-zbi%c3%b3r-danych">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Wszystko zaczęło się od pozyskania surowych materiałów. Za pomocą przygotowanego skryptu (<code>storebaelt_cameras_acquistions.ipynb</code>) automatycznie wydobyłem klatki z ogólnodostępnych kamer monitorujących cieśninę Wielki Bełt. System zapisywał zdjęcia z częstotliwością co 10 sekund na przestrzeni kilku dni w grudniu i styczniu. Większość z nich ukazuje statki w dziennych warunkach późnej jesieni i zimy. To właśnie te obrazy, po procesie ręcznego etykietowania, utworzyły nową bazę - <strong>Danish Maritime Dataset (DMD)</strong>.</p>
+<h3 id="trenowanie-modelu-i-walka-z-data-leakage">
+  Trenowanie modelu i walka z Data Leakage
+  <a class="heading-link" href="#trenowanie-modelu-i-walka-z-data-leakage">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Sam model detekcji został oparty na architekturze YOLOv8n. W trakcie prac przetestowałem kilka różnych konfiguracji, co szczegółowo udokumentowałem w notatniku <code>demo.ipynb</code>, gdzie znajdują się również informacje o zastosowanych augmentacjach (m.in. zmiany fotometryczne i transformacje geometryczne).</p>
+<p>Najlepsze rezultaty przyniósł scenariusz, w którym model został najpierw poddany pre-trenowaniu na dużych zbiorach morskich (Singapore Maritime Dataset oraz SeaShips), a następnie fine-tuningowi na części zdjęć z naszych duńskich kamer. Aby zapewnić wiarygodność wyników i całkowicie wyeliminować zjawisko <em>data leakage</em>, zastosowałem rygorystyczny podział: model uczył się na klatkach z konkretnych dni, natomiast testowany był na zdjęciach z zupełnie innych dób.</p>
+<h3 id="wyniki-a-kapryśna-pogoda">
+  Wyniki a kapryśna pogoda
+  <a class="heading-link" href="#wyniki-a-kapry%c5%9bna-pogoda">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Ostateczny model poradził sobie świetnie, osiągając mAP50 na poziomie 0.93 dla kamery umieszczonej na wschodnim pylonie mostu oraz 0.85 dla kamery z poziomu morza. Praca nad tym projektem dobitnie uświadomiła mi jednak, jak ogromny wpływ na skuteczność algorytmów wizyjnych mają warunki atmosferyczne. Zimowa aura, mgła czy ostre odbicia słońca na tafli wody stanowią poważny problem decyzyjny dla sieci neuronowej.</p>
+<p>Płynie z tego jasny wniosek: idealnym scenariuszem rozwoju byłoby dotrenowanie modelu na zdjęciach ze wszystkich pór roku - czy to poprzez zebranie wielomiesięcznych danych, czy też przez zaawansowaną, syntetyczną augmentację symulującą różnorodne zjawiska pogodowe.</p>
+<h3 id="co-dalej-od-zbioru-danych-po-pracę-magisterską">
+  Co dalej? Od zbioru danych po pracę magisterską
+  <a class="heading-link" href="#co-dalej-od-zbioru-danych-po-prac%c4%99-magistersk%c4%85">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Zbiór danych i oparta na nim analiza posłużyły do napisania mojej pierwszej publikacji badawczej, którą miałem okazję zaprezentować na konferencji IGARSS 2026.</p>
+<p>Zarówno wyuczony model, jak i sam zbiór DMD, zostały zintegrowane jako kluczowe elementy mojej pracy magisterskiej. Wykorzystałem je do budowy znacznie szerszej architektury monitorowania ruchu morskiego, polegającej na wielosensorowej fuzji danych - łączącej detekcję z kamer m.in. z systemami AIS oraz rozproszonymi czujnikami akustycznymi (DAS).</p>
+<p><strong>Materiały do projektu:</strong></p>
+<ul>
+<li>Zbiór danych na platformie Zenodo: <a href="https://zenodo.org/records/18267483"  class="external-link" target="_blank" rel="noopener">https://zenodo.org/records/18267483</a></li>
+<li>Pełna treść artykułu naukowego: <a href="https://szymon-derlecki.github.io/IGARSS_Publication.pdf/"  class="external-link" target="_blank" rel="noopener">IGARSS_Publication.pdf</a></li>
+</ul>
+<p><em>Poniżej zdjęcie z przykładem udanej detekcji:</em></p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2026
+     Szymon Derlecki 
+    ·
+    
+    Napędzane przez <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

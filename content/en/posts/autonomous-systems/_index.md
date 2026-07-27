@@ -1,7 +1,8 @@
 ---
 title: "Autonomous Systems"
-description: "Every Project I have done or have cooperated on during my Masters"
+description: "A collection of projects completed during my Master's studies, covering computer vision, machine learning, and autonomous systems."
 weight: 30
 ---
 
 1. [Military Aircraft Classification](military-aircraft)
+2. [Automatic Ship Detection in the Great Belt Bridge Area](ship-detection-1)

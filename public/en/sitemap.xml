@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/en/posts/autonomous-systems/</loc>
-    <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
@@ -39,21 +39,21 @@
                 href="http://localhost:1313/en/posts/hobby/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</loc>
-    <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/en/posts/autonomous-systems/ship-detection-1/</loc>
+    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:1313/posts/autonomous-systems/military-aircraft/"
+                href="http://localhost:1313/posts/autonomous-systems/ship-detection-1/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/posts/autonomous-systems/military-aircraft/"
+                href="http://localhost:1313/en/posts/autonomous-systems/ship-detection-1/"
                 />
   </url><url>
     <loc>http://localhost:1313/en/posts/</loc>
-    <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
@@ -66,7 +66,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/en/</loc>
-    <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
@@ -76,6 +76,19 @@
                 rel="alternate"
                 hreflang="en"
                 href="http://localhost:1313/en/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</loc>
+    <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/autonomous-systems/military-aircraft/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/autonomous-systems/military-aircraft/"
                 />
   </url><url>
     <loc>http://localhost:1313/en/about/</loc>
