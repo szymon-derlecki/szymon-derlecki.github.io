@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/posts/autonomous-systems/</loc>
-    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -39,21 +39,21 @@
                 href="http://localhost:1313/posts/hobby/"
                 />
   </url><url>
-    <loc>http://localhost:1313/posts/autonomous-systems/ship-detection-1/</loc>
-    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/posts/autonomous-systems/localization_and_mapping/</loc>
+    <lastmod>2026-07-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/posts/autonomous-systems/ship-detection-1/"
+                href="http://localhost:1313/en/posts/autonomous-systems/localization_and_mapping/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="http://localhost:1313/posts/autonomous-systems/ship-detection-1/"
+                href="http://localhost:1313/posts/autonomous-systems/localization_and_mapping/"
                 />
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -66,7 +66,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -76,6 +76,19 @@
                 rel="alternate"
                 hreflang="pl"
                 href="http://localhost:1313/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/posts/autonomous-systems/ship-detection-1/</loc>
+    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/autonomous-systems/ship-detection-1/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/autonomous-systems/ship-detection-1/"
                 />
   </url><url>
     <loc>http://localhost:1313/posts/autonomous-systems/aircraft-detection-sentinel/</loc>
