@@ -6,3 +6,4 @@ weight: 30
 
 1. [Military Aircraft Classification](military-aircraft)
 2. [Automatic Ship Detection in the Great Belt Bridge Area](ship-detection-1)
+3. [Aircraft Detection in Sentinel-2 Satellite Imagery](aircraft-detection-sentinel)
