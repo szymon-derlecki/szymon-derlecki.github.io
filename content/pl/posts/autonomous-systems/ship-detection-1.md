@@ -9,7 +9,7 @@ Praca z danymi wizyjnymi w środowisku morskim potrafi być nie lada wyzwaniem. 
 
 ### Jak powstał zbiór danych?
 
-Wszystko zaczęło się od pozyskania surowych materiałów. Za pomocą przygotowanego skryptu [`storebaelt_cameras_acquistions.ipynb`](https://github.com/szymon-derlecki/OSINT_project/blob/master/Storebaelt_cameras_acquistions.ipynb) automatycznie pobrałem klatki z ogólnodostępnych kamer monitorujących cieśninę Wielki Bełt. System zapisywał je z częstotliwością 10 sekund na przestrzeni kilku dni w grudniu i styczniu. Większość z nich ukazuje statki w dziennych warunkach późnej jesieni i zimy. To właśnie te obrazy, po procesie ręcznego etykietowania, utworzyły nowy zbiór danych - **Danish Maritime Dataset (DMD)**.
+Wszystko zaczęło się od pozyskania surowych materiałów. Za pomocą przygotowanego skryptu [`storebaelt_cameras_acquistions.ipynb`](https://github.com/szymon-derlecki/OSINT_project/blob/master/Storebaelt_cameras_acquistions.ipynb) automatycznie pobrałem klatki z ogólnodostępnych kamer monitorujących cieśninę Wielki Bełt. System zapisywał je z częstotliwością 10 sekund na przestrzeni kilku dni w grudniu i styczniu. Większość z nich ukazuje statki w dziennych warunkach późnej jesieni i zimy. To właśnie te obrazy, po procesie etykietowania, utworzyły nowy zbiór danych - **Danish Maritime Dataset (DMD)**.
 
 ### Trenowanie modelu i walka z Data Leakage
 
@@ -25,7 +25,7 @@ Płynie z tego jasny wniosek: idealnym scenariuszem rozwoju byłoby dotrenowanie
 
 ### Co dalej? Od zbioru danych po pracę magisterską
 
-Zbiór danych i oparta na nim analiza posłużyły do napisania mojej pierwszej publikacji badawczej, którą miałem okazję zaprezentować na konferencji IGARSS 2026. 
+Zbiór danych i oparta na nim analiza posłużyły do napisania mojej pierwszej publikacji badawczej, którą niedługo będę miał okazję zaprezentować na konferencji IGARSS 2026. 
 
 Zarówno wyuczony model, jak i sam zbiór DMD, zostały zintegrowane jako kluczowe elementy mojej pracy magisterskiej. Wykorzystałem je do budowy znacznie szerszej architektury monitorowania ruchu morskiego, polegającej na wielosensorowej fuzji danych - łączącej detekcję z kamer m.in. z systemami AIS oraz rozproszonymi czujnikami akustycznymi (DAS).
 

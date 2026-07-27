@@ -179,7 +179,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              0-minute read
+              3-minute read
             </span>
           </div>
           
@@ -193,7 +193,36 @@
 
       <div class="post-content">
         
-        
+        <p><strong>Project Overview</strong></p>
+<p>Working with computer vision in maritime environments is not a simple task. What started as a straightforward idea for data extraction ultimately evolved into a research publication and became the foundation for my master&rsquo;s thesis on autonomous systems and multi-sensor data fusion. This project ignited my deep involvement in open-source intelligence (OSINT) and coastal surveillance - areas where I am driven to create a real impact.</p>
+<p><strong>Data and Challenges</strong></p>
+<p>To build this solution, I wrote an automated script (<a href="https://github.com/szymon-derlecki/OSINT_project/blob/master/Storebaelt_cameras_acquistions.ipynb"  class="external-link" target="_blank" rel="noopener"><code>storebaelt_cameras_acquistions.ipynb</code></a>) to extract frames from publicly available surveillance cameras monitoring the Great Belt Strait. Capturing images every 10 seconds over several days in December and January meant dealing with tough, late-autumn and winter daytime conditions. After systematically annotating the images this collection became the <strong>Danish Maritime Dataset (DMD)</strong>.</p>
+<p>The core architecture I chose for this project was <strong>YOLOv8n</strong>. As with any meaningful project, I encountered significant challenges early on. To push the model further and ensure its reliability, I experimented with various configurations and augmentations - such as color adjustments (e.g., brightness/HSV shifts) and geometric transformations (e.g., rotations) - where some of them are documented in my <a href="https://github.com/szymon-derlecki/OSINT_project/blob/master/demo.ipynb"  class="external-link" target="_blank" rel="noopener"><code>demo.ipynb</code></a> notebook.</p>
+<p>Instead of taking an easy route, I have examined various training strategies. The model was initially pre-trained on large-scale maritime datasets (Singapore Maritime Dataset and SeaShips) and subsequently fine-tuned on a subset of our Danish camera feeds. To tackle the  risk of <em>data leakage</em> head-on, I implemented a strict temporal split: the model learned from frames captured on specific days and was tested on the ones from completely different days.</p>
+<p><strong>Results</strong></p>
+<p>By consistently pushing through these technical challenges, the model achieved a solid <strong>mAP50 of 0.93</strong> for the camera mounted on the East Pylon, and <strong>0.85</strong> for the sea-level camera on Sprogø.</p>
+<p>However, this project highlighted how deeply atmospheric conditions impact computer vision algorithms. Winter weather, dense fog, and sharp sun glare reflecting off the water surface present significant decision-making hurdles for neural networks. A clear takeaway is that the ideal scenario would involve training the model across all seasons - either by collecting multi-month data or by engineering advanced synthetic augmentations to simulate diverse weather conditions.</p>
+<p><strong>Future Work and Master&rsquo;s Thesis</strong></p>
+<p>This project served as a crucial stepping stone for me. The dataset and the underlying analysis led to my first research publication, which soon I will have the opportunity to present at the IGARSS 2026 conference.</p>
+<p>Furthermore, both the trained model and the DMD dataset became key components of my master&rsquo;s thesis. I utilised them to build a comprehensive maritime traffic monitoring architecture based on multi-sensor data fusion - integrating camera detections with Automatic Identification Systems (AIS) and Distributed Acoustic Sensing (DAS).</p>
+<p><strong>Project Resources:</strong></p>
+<ul>
+<li>Dataset available on Zenodo: <a href="https://zenodo.org/records/18267483"  class="external-link" target="_blank" rel="noopener">https://zenodo.org/records/18267483</a></li>
+<li>Full research paper: <a href="https://szymon-derlecki.github.io/IGARSS_Publication.pdf/"  class="external-link" target="_blank" rel="noopener">IGARSS_Publication.pdf</a></li>
+</ul>
+<hr>
+<h3 id="sample-classifications">
+  Sample Classifications
+  <a class="heading-link" href="#sample-classifications">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><img src="/images/storebaelt_east_two_detections.jpg" alt="East Pylon Detection">
+<em>View from the camera located on the East Pylon of the Storebaelt bridge.</em></p>
+<p><img src="/images/sprogoe_detection.jpg" alt="Sprogø Detection">
+<em>View from the camera located on the island of Sprogø.</em></p>
+
       </div>
 
 
