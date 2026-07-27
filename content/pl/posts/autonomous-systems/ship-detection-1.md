@@ -35,9 +35,9 @@ Zarówno wyuczony model, jak i sam zbiór DMD, zostały zintegrowane jako kluczo
 
 *Poniżej zdjęcia z przykładami udanych detekcji:*
 
-![Detekcja statku - pylon wschodni](static/images/storebaelt_east_frame_detection.jpg)
+![Detekcja statku - pylon wschodni](/images/storebaelt_east_frame_detection.jpg)
 *Widok z kamery umiejscowionej na wschodnim pylonie mostu Storebaelt*
 
-![Detekcja statku - Sprogø](images/sprogoe_frame_detection.jpg)
+![Detekcja statku - Sprogø](/images/sprogoe_frame_detection.jpg)
 *Widok z kamery umiejscowionej na wysepce Sprogø*
 

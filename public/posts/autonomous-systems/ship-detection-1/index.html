@@ -179,7 +179,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              2 min czytania
+              3 min czytania
             </span>
           </div>
           
@@ -201,7 +201,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Wszystko zaczęło się od pozyskania surowych materiałów. Za pomocą przygotowanego skryptu (<code>storebaelt_cameras_acquistions.ipynb</code>) automatycznie wydobyłem klatki z ogólnodostępnych kamer monitorujących cieśninę Wielki Bełt. System zapisywał zdjęcia z częstotliwością co 10 sekund na przestrzeni kilku dni w grudniu i styczniu. Większość z nich ukazuje statki w dziennych warunkach późnej jesieni i zimy. To właśnie te obrazy, po procesie ręcznego etykietowania, utworzyły nową bazę - <strong>Danish Maritime Dataset (DMD)</strong>.</p>
+<p>Wszystko zaczęło się od pozyskania surowych materiałów. Za pomocą przygotowanego skryptu <a href="https://github.com/szymon-derlecki/OSINT_project/blob/master/Storebaelt_cameras_acquistions.ipynb"  class="external-link" target="_blank" rel="noopener"><code>storebaelt_cameras_acquistions.ipynb</code></a> automatycznie pobrałem klatki z ogólnodostępnych kamer monitorujących cieśninę Wielki Bełt. System zapisywał je z częstotliwością 10 sekund na przestrzeni kilku dni w grudniu i styczniu. Większość z nich ukazuje statki w dziennych warunkach późnej jesieni i zimy. To właśnie te obrazy, po procesie ręcznego etykietowania, utworzyły nowy zbiór danych - <strong>Danish Maritime Dataset (DMD)</strong>.</p>
 <h3 id="trenowanie-modelu-i-walka-z-data-leakage">
   Trenowanie modelu i walka z Data Leakage
   <a class="heading-link" href="#trenowanie-modelu-i-walka-z-data-leakage">
@@ -209,7 +209,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Sam model detekcji został oparty na architekturze YOLOv8n. W trakcie prac przetestowałem kilka różnych konfiguracji, co szczegółowo udokumentowałem w notatniku <code>demo.ipynb</code>, gdzie znajdują się również informacje o zastosowanych augmentacjach (m.in. zmiany fotometryczne i transformacje geometryczne).</p>
+<p>Sam model detekcji bazuje na architekturze YOLOv8n. W trakcie prac przetestowałem kilka różnych konfiguracji, z czego część można zobaczyć w notatniku <a href="https://github.com/szymon-derlecki/OSINT_project/blob/master/demo.ipynb"  class="external-link" target="_blank" rel="noopener"><code>demo.ipynb</code></a>, gdzie znajdują się również informacje o zastosowanych augmentacjach (m.in. takich jak modyfikacje właściwości obrazu takich jak np. jasność, czy modyfikacje geometryczne takie jak chociażby obrót obrazu).</p>
 <p>Najlepsze rezultaty przyniósł scenariusz, w którym model został najpierw poddany pre-trenowaniu na dużych zbiorach morskich (Singapore Maritime Dataset oraz SeaShips), a następnie fine-tuningowi na części zdjęć z naszych duńskich kamer. Aby zapewnić wiarygodność wyników i całkowicie wyeliminować zjawisko <em>data leakage</em>, zastosowałem rygorystyczny podział: model uczył się na klatkach z konkretnych dni, natomiast testowany był na zdjęciach z zupełnie innych dób.</p>
 <h3 id="wyniki-a-kapryśna-pogoda">
   Wyniki a kapryśna pogoda
@@ -219,7 +219,7 @@
   </a>
 </h3>
 <p>Ostateczny model poradził sobie świetnie, osiągając mAP50 na poziomie 0.93 dla kamery umieszczonej na wschodnim pylonie mostu oraz 0.85 dla kamery z poziomu morza. Praca nad tym projektem dobitnie uświadomiła mi jednak, jak ogromny wpływ na skuteczność algorytmów wizyjnych mają warunki atmosferyczne. Zimowa aura, mgła czy ostre odbicia słońca na tafli wody stanowią poważny problem decyzyjny dla sieci neuronowej.</p>
-<p>Płynie z tego jasny wniosek: idealnym scenariuszem rozwoju byłoby dotrenowanie modelu na zdjęciach ze wszystkich pór roku - czy to poprzez zebranie wielomiesięcznych danych, czy też przez zaawansowaną, syntetyczną augmentację symulującą różnorodne zjawiska pogodowe.</p>
+<p>Płynie z tego jasny wniosek: idealnym scenariuszem rozwoju byłoby dotrenowanie modelu na zdjęciach ze wszystkich pór roku - czy to poprzez zebranie wielomiesięcznych danych, czy też przez użycie bardzo zaawansowanych augmentacji wspomnianych klatek z kamer, tak by zasymulować różnorodne zjawiska pogodowe.</p>
 <h3 id="co-dalej-od-zbioru-danych-po-pracę-magisterską">
   Co dalej? Od zbioru danych po pracę magisterską
   <a class="heading-link" href="#co-dalej-od-zbioru-danych-po-prac%c4%99-magistersk%c4%85">
@@ -234,7 +234,11 @@
 <li>Zbiór danych na platformie Zenodo: <a href="https://zenodo.org/records/18267483"  class="external-link" target="_blank" rel="noopener">https://zenodo.org/records/18267483</a></li>
 <li>Pełna treść artykułu naukowego: <a href="https://szymon-derlecki.github.io/IGARSS_Publication.pdf/"  class="external-link" target="_blank" rel="noopener">IGARSS_Publication.pdf</a></li>
 </ul>
-<p><em>Poniżej zdjęcie z przykładem udanej detekcji:</em></p>
+<p><em>Poniżej zdjęcia z przykładami udanych detekcji:</em></p>
+<p><img src="/images/storebaelt_east_frame_detection.jpg" alt="Detekcja statku - pylon wschodni">
+<em>Widok z kamery umiejscowionej na wschodnim pylonie mostu Storebaelt</em></p>
+<p><img src="/images/sprogoe_frame_detection.jpg" alt="Detekcja statku - Sprogø">
+<em>Widok z kamery umiejscowionej na wysepce Sprogø</em></p>
 
       </div>
 
