@@ -9,11 +9,11 @@
     <lastBuildDate>Mon, 27 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>System SLAM dla robota (ROS2)</title>
+      <title>System SLAM dla mobilnego robota (ROS 2 &#43; TurtleBot)</title>
       <link>http://localhost:1313/posts/autonomous-systems/localization_and_mapping/</link>
       <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/autonomous-systems/localization_and_mapping/</guid>
-      <description></description>
+      <description>&lt;h2 id=&#34;cel-projektu&#34;&gt;&#xA;  Cel projektu&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#cel-projektu&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Projekt polegał na oprogramowaniu wirtualnego robota (TurtleBot) w taki sposób, aby potrafił on samodzielnie eksplorować zupełnie nowe dla siebie pomieszczenie. Jego zadaniem było płynne nawigowanie bez kolizji z przeszkodami przy jednoczesnym budowaniu użytecznej mapy przestrzeni, która posłużyłaby mu do późniejszej nawigacji. Projekt zrealizowano jako zadanie końcowe w ramach kursu „Robot Autonomy” na moich studiach magisterskich na uczelni DTU.&lt;/p&gt;&#xA;&lt;p&gt;Zamiast tworzyć podstawy sterowania od zera, wykorzystaliśmy platformę &lt;strong&gt;ROS 2 (Robot Operating System)&lt;/strong&gt;. Połączyliśmy jej wbudowane funkcjonalności z naszymi autorskimi, zaawansowanymi algorytmami decyzyjnymi.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Automatyczne wykrywanie statków w rejonie mostu nad Wielkim Bełtem</title>

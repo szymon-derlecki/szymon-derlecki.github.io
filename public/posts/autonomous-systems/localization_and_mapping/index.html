@@ -3,7 +3,7 @@
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
-  System SLAM dla robota (ROS2) · Szymon Derlecki
+  System SLAM dla mobilnego robota (ROS 2 &#43; TurtleBot) · Szymon Derlecki
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +13,19 @@
 
 
 <meta name="author" content="Szymon Derlecki">
-<meta name="description" content="Oprogramowanie dla robota TurtleBot, dzięki któremu potrafi on samodzielnie jeździć, tworzyć mapę otoczenia na żywo (SLAM) i decydować, gdzie chce pojechać dalej.">
+<meta name="description" content="Oprogramowanie dla robota TurtleBot, dzięki któremu potrafi on samodzielnie eksplorować przestrzeń, tworzyć mapę otoczenia w czasie rzeczywistym (SLAM) i planować optymalną ścieżkę poruszania się.">
 <meta name="keywords" content="">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="System SLAM dla robota (ROS2)">
-  <meta name="twitter:description" content="Oprogramowanie dla robota TurtleBot, dzięki któremu potrafi on samodzielnie jeździć, tworzyć mapę otoczenia na żywo (SLAM) i decydować, gdzie chce pojechać dalej.">
+  <meta name="twitter:title" content="System SLAM dla mobilnego robota (ROS 2 &#43; TurtleBot)">
+  <meta name="twitter:description" content="Oprogramowanie dla robota TurtleBot, dzięki któremu potrafi on samodzielnie eksplorować przestrzeń, tworzyć mapę otoczenia w czasie rzeczywistym (SLAM) i planować optymalną ścieżkę poruszania się.">
 
 <meta property="og:url" content="http://localhost:1313/posts/autonomous-systems/localization_and_mapping/">
   <meta property="og:site_name" content="Szymon Derlecki">
-  <meta property="og:title" content="System SLAM dla robota (ROS2)">
-  <meta property="og:description" content="Oprogramowanie dla robota TurtleBot, dzięki któremu potrafi on samodzielnie jeździć, tworzyć mapę otoczenia na żywo (SLAM) i decydować, gdzie chce pojechać dalej.">
+  <meta property="og:title" content="System SLAM dla mobilnego robota (ROS 2 &#43; TurtleBot)">
+  <meta property="og:description" content="Oprogramowanie dla robota TurtleBot, dzięki któremu potrafi on samodzielnie eksplorować przestrzeń, tworzyć mapę otoczenia w czasie rzeczywistym (SLAM) i planować optymalną ścieżkę poruszania się.">
   <meta property="og:locale" content="pl">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -165,7 +165,7 @@
         <div class="post-title">
           <h1 class="title">
             <a class="title-link" href="http://localhost:1313/posts/autonomous-systems/localization_and_mapping/">
-              System SLAM dla robota (ROS2)
+              System SLAM dla mobilnego robota (ROS 2 &#43; TurtleBot)
             </a>
           </h1>
         </div>
@@ -179,7 +179,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              0 min czytania
+              2 min czytania
             </span>
           </div>
           
@@ -193,7 +193,74 @@
 
       <div class="post-content">
         
-        
+        <h2 id="cel-projektu">
+  Cel projektu
+  <a class="heading-link" href="#cel-projektu">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Projekt polegał na oprogramowaniu wirtualnego robota (TurtleBot) w taki sposób, aby potrafił on samodzielnie eksplorować zupełnie nowe dla siebie pomieszczenie. Jego zadaniem było płynne nawigowanie bez kolizji z przeszkodami przy jednoczesnym budowaniu użytecznej mapy przestrzeni, która posłużyłaby mu do późniejszej nawigacji. Projekt zrealizowano jako zadanie końcowe w ramach kursu „Robot Autonomy” na moich studiach magisterskich na uczelni DTU.</p>
+<p>Zamiast tworzyć podstawy sterowania od zera, wykorzystaliśmy platformę <strong>ROS 2 (Robot Operating System)</strong>. Połączyliśmy jej wbudowane funkcjonalności z naszymi autorskimi, zaawansowanymi algorytmami decyzyjnymi.</p>
+<h2 id="jak-robot-uczy-się-przestrzeni-architektura-systemu-i-podział-prac">
+  Jak robot uczy się przestrzeni? (Architektura systemu i podział prac)
+  <a class="heading-link" href="#jak-robot-uczy-si%c4%99-przestrzeni-architektura-systemu-i-podzia%c5%82-prac">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>System działa trochę jak człowiek wchodzący z latarką do ciemnego, nieznanego magazynu. Aby osiągnąć pełną autonomię robota, podzieliliśmy się zadaniami w zespole:</p>
+<h3 id="mój-wkład-gdzie-jestem-i-jak-wygląda-to-pomieszczenie-moduł-slam">
+  Mój wkład: Gdzie jestem i jak wygląda to pomieszczenie? (Moduł SLAM)
+  <a class="heading-link" href="#m%c3%b3j-wk%c5%82ad-gdzie-jestem-i-jak-wygl%c4%85da-to-pomieszczenie-modu%c5%82-slam">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Odpowiadałem za to, aby robot poprawnie orientował się w nowej przestrzeni i nie zgubił własnej pozycji na mapie. Moja część kodu realizowała następujące zadania:</p>
+<ul>
+<li><strong>Mapowanie w czasie rzeczywistym:</strong> Podczas ruchu robot na bieżąco generował siatkę zajętości pomieszczenia (Occupancy Grid).</li>
+<li><strong>Lokalizacja (Particle Filter):</strong> Opracowałem mechanizm działający jak wewnątrzbudynkowy GPS, który nieustannie szacował dokładną pozycję robota względem nowo powstającej mapy.</li>
+<li><strong>Zarządzanie drzewem TF:</strong> Skonfigurowałem logikę układów współrzędnych w tle (publikowanie statycznej transformacji między ramkami <code>map</code> a <code>odom</code>), tak aby odometria z kół była w pełni zsynchronizowana z odczytami skanera laserowego (LiDAR), który stanowił główne źródło danych o otoczeniu.</li>
+</ul>
+<h3 id="wkład-zespołu-gdzie-jedziemy-dalej-eksploracja-oparta-na-rrt">
+  Wkład zespołu: Gdzie jedziemy dalej? (Eksploracja oparta na RRT)
+  <a class="heading-link" href="#wk%c5%82ad-zespo%c5%82u-gdzie-jedziemy-dalej-eksploracja-oparta-na-rrt">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Pozostali członkowie zespołu opracowali moduł planowania eksploracji, którego zadaniem było autonomiczne wybieranie obszarów, których robot jeszcze nie odwiedził. Algorytm na bazie drzew RRT (Rapidly-exploring Random Tree) analizował dostępną mapę środowiska, identyfikował nieznane przestrzenie, a następnie generował bezpieczną, bezkolizyjną ścieżkę prowadzącą do wybranego celu. Dzięki temu robot mógł sukcesywnie i samodzielnie poszerzać swoją wiedzę o otoczeniu.</p>
+<h2 id="wykorzystany-stos-technologiczny">
+  Wykorzystany stos technologiczny
+  <a class="heading-link" href="#wykorzystany-stos-technologiczny">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li><strong>Środowisko:</strong> Platforma <strong>ROS 2</strong>, z fizyką i modelem robota symulowanymi w środowisku wirtualnym (Gazebo).</li>
+<li><strong>Wizualizacja i kontrola:</strong> Do podglądu procesu mapowania na żywo i analizy „myśli” robota wykorzystaliśmy środowisko RViz2. Parametry kinematyczne, takie jak prędkość liniowa i kątowa, były monitorowane równolegle z poziomu terminala.</li>
+</ul>
+<h2 id="efekt-końcowy">
+  Efekt końcowy
+  <a class="heading-link" href="#efekt-ko%c5%84cowy">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Opracowaliśmy system pozwalający na w pełni niezależną pracę robota. Symulowany w wirtualnym środowisku biurowym, potrafił on skutecznie i bezpiecznie eksplorować nieznaną przestrzeń aż do stworzenia kompletnej mapy pomieszczenia. Działanie poszczególnych modułów można zobaczyć na poniższym wideo:</p>
+<iframe width="100%" height="450" src="https://www.youtube.com/embed/SQNP_jh5A6o" title="Demonstracja algorytmów SLAM i RRT (TurtleBot3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<h2 id="kod-źródłowy">
+  Kod źródłowy
+  <a class="heading-link" href="#kod-%c5%bar%c3%b3d%c5%82owy">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Całość autorskiego kodu odpowiedzialnego za moduł SLAM udostępniłem w moim publicznym repozytorium:
+<a href="https://github.com/szymon-derlecki/ROS_SLAM"  class="external-link" target="_blank" rel="noopener">GitHub - ROS_SLAM</a></p>
+
       </div>
 
 
