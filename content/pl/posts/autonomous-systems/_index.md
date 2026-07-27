@@ -1,7 +1,8 @@
 ---
 title: "Systemy Autonomiczne"
-description: "Wszelkie projekty, któe wykonałem samodzielnie, a także te nad którymi współpracowałem z innymi osobami"
+description: "Zbiór projektów zrealizowanych samodzielnie oraz we współpracy z innymi osobami w ramach studiów magisterskich."
 weight: 30
 ---
 
 1. [Klasyfikacja Samolotów Wojskowych](military-aircraft)
+2. [Automatyczne Wykrywanie Statków w Rejonie Mostu nad Wielkim Bełtem](ship-detection-1)
