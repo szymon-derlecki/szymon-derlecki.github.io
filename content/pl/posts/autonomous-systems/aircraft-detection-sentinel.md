@@ -52,7 +52,7 @@ Wyraźna sylwetka samolotu z zauważalną smugą chromatyczną.
 
 ![Prawidłowa detekcja](/images/prawidlowa_detekcja.png)
 
-### Fałszywa Detekcja 
+### Błędna Detekcja 
 Obiekt na ziemi błędnie zidentyfikowany jako samolot.
 
 ![Nieprawidłowa detekcja](/images/bledna_detekcja.png)
