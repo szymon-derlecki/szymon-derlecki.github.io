@@ -179,7 +179,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              0-minute read
+              3-minute read
             </span>
           </div>
           
@@ -193,7 +193,74 @@
 
       <div class="post-content">
         
-        
+        <h2 id="project-objective">
+  Project Objective
+  <a class="heading-link" href="#project-objective">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This project is aimed to program a virtual robot (TurtleBot) in a way allowing it to autonomously explore a completely unknown environment. Its task was to navigate smoothly without colliding with obstacles while simultaneously building a useful map of the space for future navigation. The project was developed as a final assignment for the &ldquo;Robot Autonomy&rdquo; course during my master&rsquo;s studies at DTU.</p>
+<p>Instead of building the control fundamentals from scratch, we utilized the <strong>ROS 2 (Robot Operating System)</strong> framework, combining its built-in functionalities with our own advanced decision-making algorithms.</p>
+<h2 id="how-does-the-robot-learn-the-space-system-architecture-and-task-division">
+  How Does the Robot Learn the Space? (System Architecture and Task Division)
+  <a class="heading-link" href="#how-does-the-robot-learn-the-space-system-architecture-and-task-division">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The system works a bit like a person entering a dark, unknown warehouse with a flashlight. To achieve full autonomy for the robot, we divided the tasks within the team:</p>
+<h3 id="my-contribution-where-am-i-and-what-does-this-room-look-like-slam-module">
+  My Contribution: Where am I, and what does this room look like? (SLAM Module)
+  <a class="heading-link" href="#my-contribution-where-am-i-and-what-does-this-room-look-like-slam-module">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>I was responsible for ensuring the robot oriented itself correctly in the new space and didn&rsquo;t lose track of its position on the map. My part of the code handled the following tasks:</p>
+<ul>
+<li><strong>Real-time Mapping:</strong> While moving, the robot continuously generated an Occupancy Grid of the room.</li>
+<li><strong>Localization (Particle Filter):</strong> I developed a mechanism acting as an indoor GPS, which continuously estimated the robot&rsquo;s exact position relative to the newly emerging map.</li>
+<li><strong>TF Tree Management:</strong> I configured the background coordinate frame logic (publishing a static transform between the <code>map</code> and <code>odom</code> frames) so that the wheel odometry was fully synchronized with readings from the laser scanner (LiDAR), which served as the primary source of environmental data.</li>
+</ul>
+<h3 id="teams-contribution-where-do-we-go-next-rrt-based-exploration">
+  Team&rsquo;s Contribution: Where do we go next? (RRT-based Exploration)
+  <a class="heading-link" href="#teams-contribution-where-do-we-go-next-rrt-based-exploration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The other team members developed the exploration planning module, whose task was to autonomously select areas the robot had not yet visited. An algorithm based on Rapidly-exploring Random Trees (RRT) analyzed the available environment map, identified unknown spaces, and then generated a safe, collision-free path to the selected goal. This allowed the robot to successively and independently expand its knowledge of the surroundings.</p>
+<h2 id="technology-stack-used">
+  Technology Stack Used
+  <a class="heading-link" href="#technology-stack-used">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li><strong>Environment:</strong> The <strong>ROS 2</strong> framework, with the robot&rsquo;s model and physics simulated in a virtual environment (Gazebo).</li>
+<li><strong>Visualization and Control:</strong> We used RViz2 to preview the live mapping process and analyze the robot&rsquo;s &ldquo;thoughts.&rdquo; Kinematic parameters, such as linear and angular velocity, were monitored in parallel via the terminal.</li>
+</ul>
+<h2 id="final-result">
+  Final Result
+  <a class="heading-link" href="#final-result">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>We developed a system that enabled fully independent operation of the robot. Simulated in a virtual office environment, it could effectively and safely explore an unknown space until a complete map of the room was created. The operation of the individual modules can be seen in the video below:</p>
+<iframe width="100%" height="450" src="https://www.youtube.com/embed/SQNP_jh5A6o" title="SLAM and RRT algorithms demonstration (TurtleBot3)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<h2 id="source-code">
+  Source Code
+  <a class="heading-link" href="#source-code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I have shared all the custom code responsible for the SLAM module in my public repository:
+<a href="https://github.com/szymon-derlecki/ROS_SLAM"  class="external-link" target="_blank" rel="noopener">GitHub - ROS_SLAM</a></p>
+
       </div>
 
 

@@ -13,7 +13,7 @@
       <link>http://localhost:1313/en/posts/autonomous-systems/localization_and_mapping/</link>
       <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/en/posts/autonomous-systems/localization_and_mapping/</guid>
-      <description></description>
+      <description>&lt;h2 id=&#34;project-objective&#34;&gt;&#xA;  Project Objective&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-objective&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;This project is aimed to program a virtual robot (TurtleBot) in a way allowing it to autonomously explore a completely unknown environment. Its task was to navigate smoothly without colliding with obstacles while simultaneously building a useful map of the space for future navigation. The project was developed as a final assignment for the &amp;ldquo;Robot Autonomy&amp;rdquo; course during my master&amp;rsquo;s studies at DTU.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Aircraft Detection in Sentinel-2 Satellite Images</title>
