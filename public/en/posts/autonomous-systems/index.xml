@@ -13,7 +13,7 @@
       <link>http://localhost:1313/en/posts/autonomous-systems/aircraft-detection-sentinel/</link>
       <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/en/posts/autonomous-systems/aircraft-detection-sentinel/</guid>
-      <description></description>
+      <description>&lt;p&gt;&lt;strong&gt;Project Overview&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;This project focuses on the automatic detection of aircraft silhouettes in Sentinel-2 satellite images using the YOLO (You Only Look Once) architecture. The main goal is to localize small objects in relatively low spatial resolution imagery (10 m/px), which is a classic small object detection problem in the Earth Observation domain.&lt;/p&gt;&#xA;&lt;p&gt;The system was developed as a passive, image-based alternative and a complementary solution to traditional tracking systems (such as ADS-B). This is particularly important in strategically sensitive areas, like the Baltic Sea region, where aircraft transponders are sometimes intentionally turned off (e.g., during illicit activities such as smuggling or human trafficking).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Automatic Ship Detection in the Great Belt Bridge Area</title>
@@ -28,6 +28,13 @@
       <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Project Overview&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;This was one of my first major projects, serving as a crucial stepping stone during my application to DTU. It ignited my deep involvement in machine learning, particularly in defence and military applications - an area where I have always been driven to create a real impact.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Data and Challenges&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;To build this solution, I utilised the open-source &lt;a href=&#34;https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;Military Aircraft Detection Dataset&amp;rdquo;&lt;/a&gt;. Knowing that real-world problems require robust data, I expanded this dataset with my own photographs taken at various airshows across Poland and Europe over the last 15 years (full album available &lt;a href=&#34;https://www.flickr.com/photos/160419049@N02/albums/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). A portion of these photos ultimately served as my test data.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/en/posts/autonomous-systems/localization_and_mapping/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/autonomous-systems/localization_and_mapping/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>

@@ -13,7 +13,7 @@
       <link>http://localhost:1313/en/posts/autonomous-systems/aircraft-detection-sentinel/</link>
       <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/en/posts/autonomous-systems/aircraft-detection-sentinel/</guid>
-      <description></description>
+      <description>&lt;p&gt;&lt;strong&gt;Project Overview&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;This project focuses on the automatic detection of aircraft silhouettes in Sentinel-2 satellite images using the YOLO (You Only Look Once) architecture. The main goal is to localize small objects in relatively low spatial resolution imagery (10 m/px), which is a classic small object detection problem in the Earth Observation domain.&lt;/p&gt;&#xA;&lt;p&gt;The system was developed as a passive, image-based alternative and a complementary solution to traditional tracking systems (such as ADS-B). This is particularly important in strategically sensitive areas, like the Baltic Sea region, where aircraft transponders are sometimes intentionally turned off (e.g., during illicit activities such as smuggling or human trafficking).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Automatic Ship Detection in the Great Belt Bridge Area</title>

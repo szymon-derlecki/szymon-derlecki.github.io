@@ -6,8 +6,15 @@
     <description>Recent content in Systemy Autonomiczne on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>pl</language>
-    <lastBuildDate>Sun, 26 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/autonomous-systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mózg dla Robota: System SLAM i Autonomiczna Eksploracja (ROS2)</title>
+      <link>http://localhost:1313/posts/autonomous-systems/localization_and_mapping/</link>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/autonomous-systems/localization_and_mapping/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Automatyczne wykrywanie statków w rejonie mostu nad Wielkim Bełtem</title>
       <link>http://localhost:1313/posts/autonomous-systems/ship-detection-1/</link>
