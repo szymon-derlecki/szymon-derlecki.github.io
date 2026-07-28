@@ -31,6 +31,6 @@ Do wizualizacji wyników użyłem biblioteki `folium`, która generuje interakty
 
 1.  **Prawdziwa Pozycja / RINEX True Position (Czarna gwiazdka)** - Cel, w który chcemy trafić.
 2.  **Klasyczne rozwiązanie SPP (Różowe punkty)** - Zbyt daleko, by bezpiecznie wylądować.
-3.  **Rozwiązanie DGPS po korektach (Zielone znaczniki)** - Bardzo dokładna pozycja (wlaśnie w psotaci tej przyklejonej  pinezki do wymaganego punktu referencyjnego)
+3.  **Rozwiązanie DGPS po korektach (Czerwone znaczniki)** - Bardzo dokładna pozycja (wlaśnie w psotaci tej przyklejonej  pinezki do wymaganego punktu referencyjnego)
 
 <iframe src="/maps/dgps_map.html" width="100%" height="500px" frameborder="0" style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
