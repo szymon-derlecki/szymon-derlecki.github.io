@@ -230,11 +230,11 @@
   </a>
 </h2>
 <p>Cały kod źródłowy, pokazujący krok po kroku formowanie macierzy wag i przeliczanie orbit, udostępniłem w <a href="https://github.com/szymon-derlecki/DGPS_GNSS/blob/main/Assignment_5_DGPS.ipynb"  class="external-link" target="_blank" rel="noopener">moim repozytorium na GitHubie</a>, gdzie można dokładnie prześledzić wszystkie etapy przetwarzania danych.</p>
-<p>Do wizualizacji wyników użyłem biblioteki <code>folium</code>, która generuje interaktywną mapę w formacie HTML (<code>dgps_map.html</code>). Takie zobrazowanie perfekcyjnie oddaje to, dlaczego lotnictwo czy marynarka wojenna przez długi czas krozystało wyłąćznie z takich systemów, a aktualnie tworzone systemy są nadal w dużej mierze jako ich rozwinięcie. Rozstrzał zwykłego SPP zniknął, a kropka określająca pozycję praktycznie &ldquo;przykleiła się&rdquo; do właściwego punktu referencyjnego.</p>
+<p>Do wizualizacji wyników użyłem biblioteki <code>folium</code>, która generuje interaktywną mapę w formacie HTML (<code>dgps_map.html</code>). Takie zobrazowanie perfekcyjnie oddaje to, dlaczego lotnictwo czy marynarka wojenna przez długi czas korzystało wyłącznie z takich systemów, a aktualnie tworzone systemy są nadal w dużej mierze jako ich rozwinięcie. Rozstrzał zwykłego SPP zniknął, a kropka określająca pozycję praktycznie &ldquo;przykleiła się&rdquo; do właściwego punktu referencyjnego.</p>
 <ol>
-<li><strong>Prawdziwa Pozycja / RINEX True Position (Czarna gwiazdka)</strong> - Cel, w który chcemy trafić.</li>
-<li><strong>Klasyczne rozwiązanie SPP (Różowe punkty)</strong> - Zbyt daleko, by bezpiecznie wylądować.</li>
-<li><strong>Rozwiązanie DGPS po korektach (Zielone znaczniki)</strong> - Bardzo dokładna pozycja (wlaśnie w psotaci tej przyklejonej  pinezki do wymaganego punktu referencyjnego)</li>
+<li><strong>Prawdziwa Pozycja / RINEX True Position (Czarna pinezka)</strong> - Cel, w który chcemy trafić.</li>
+<li><strong>Klasyczne rozwiązanie SPP (Różowa pinezka)</strong> - Zbyt daleko, by bezpiecznie wylądować.</li>
+<li><strong>Rozwiązanie DGPS po korektach (Czerwona pinezka)</strong> - Bardzo dokładna pozycja (wlaśnie w psotaci tej przyklejonej  pinezki do wymaganego punktu referencyjnego)</li>
 </ol>
 <iframe src="/maps/dgps_map.html" width="100%" height="500px" frameborder="0" style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
 

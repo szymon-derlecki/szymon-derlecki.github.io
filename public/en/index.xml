@@ -9,6 +9,13 @@
     <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Differential GPS - What helps an F-35 pilot land safely?</title>
+      <link>http://localhost:1313/en/posts/autonomous-systems/dgps/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/autonomous-systems/dgps/</guid>
+      <description>&lt;h2 id=&#34;project-goal&#34;&gt;&#xA;  Project Goal&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-goal&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;When an F-35 Lightning II pilot (or a pilot of any ultra-expensive machine) approaches for landing in tough weather conditions, they can&amp;rsquo;t rely solely on a standard GPS signal. A typical positioning error of a few meters in aviation - especially when landing on a moving aircraft carrier - is the difference between a successful maneuver and, at best, a serious incident.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Single Point Positioning in Python</title>
       <link>http://localhost:1313/en/posts/autonomous-systems/single-point-positioning/</link>
       <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
@@ -42,13 +49,6 @@
       <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/en/posts/autonomous-systems/military-aircraft/</guid>
       <description>&lt;h2 id=&#34;project-overview&#34;&gt;&#xA;  Project Overview&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-overview&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;This was one of my first major projects, serving as a crucial stepping stone during my application to DTU. It ignited my deep involvement in machine learning, particularly in defence and military applications - an area where I have always been driven to create a real impact.&lt;/p&gt;&#xA;&lt;h2 id=&#34;data-and-challenges&#34;&gt;&#xA;  Data and Challenges&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#data-and-challenges&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;To build this solution, I utilised the open-source &lt;a href=&#34;https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset/data&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;Military Aircraft Detection Dataset&amp;rdquo;&lt;/a&gt;. Knowing that real-world problems require robust data, I expanded this dataset with my own photographs taken at various airshows across Poland and Europe over the last 15 years (full album available &lt;a href=&#34;https://www.flickr.com/photos/160419049@N02/albums/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). A portion of these photos ultimately served as my test data.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/en/posts/autonomous-systems/dgps/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/autonomous-systems/dgps/</guid>
-      <description></description>
     </item>
     <item>
       <title>About</title>
