@@ -1,5 +1,5 @@
 ---
-title: "Implementacja w Pythonie: SPP, Interpolacja SP3 oraz Filtrowanie Hatcha"
+title: "Single Point Positioning w Python'ie"
 date: 2026-07-28
 draft: false
 description: "Algorytm Single Point Positioning napisany przy użyciu Pythona oraz biblioteki georinex, obejmujący przetwarzanie surowych plików RINEX, interpolację orbit satelitów oraz wygładzanie pomiarów."
@@ -14,7 +14,7 @@ Poniższy projekt stanowi realizację jednego z podstawowych podejść systemów
 Skrypt został podzielony na kilka istotnych etapów:
 
 *   **Śledzenie satelitów (SP3):** Skrypt jest napisany tak, aby z dużą dokładnością policzyć, gdzie dokładnie w kosmosie znajdował się satelita, gdy wysyłał sygnał. Uwzględnia także fakt, że Ziemia zdążyła się obrócić przez ten ułamek sekundy, zanim sygnał do nas dotarł.
-*   **Obliczanie naszej pozycji (Algorytm SPP):** Jest to główny, a zarazem najistotniejszy fragment. Bazując na wzorach, które dla wielu osób pewnie wyglądają nieco jak czarna magia, pozwala znaleźć nasze współrzędne geograficzne na Ziemi (X, Y, Z) i przy okazji naprawić błędy taniego zegarka wbudowanego w odbiornik.
+*   **Obliczanie naszej pozycji (Algorytm SPP):** Jest to główny, a zarazem najistotniejszy fragment. Bazując na wzorach, które dla wielu osób pewnie wyglądają nieco jak czarna magia, pozwala znaleźć nasze współrzędne geograficzne na Ziemi (X, Y, Z) i przy okazji naprawić błędy zegarka wbudowanego w odbiornik.
 *   **Ocena dokładności (PDOP):** Program sprawdza, czy konstelacja satelitów dobrze "ułożyła się" na niebie. W mojej próbie geometria była niemal idealna (wskaźnik PDOP wynosił 1.379), co oznacza, że wyliczyliśmy naszą pozycję z dokładnością do około 1.38 metra.
 *   **Wygładzanie pseudoodległości (Filtr Hatcha):** Pomiary GPS potrafią mocno "wariować" z powodu zakłóceń, które pojawiają się na trasie ich przesyłu do konkretnego odbiornika. Wspomniany filtr sprytnie łączy dwa różne typy sygnałów z satelity, tak, aby odsiać szum. W efekcie nasza kropka na mapie przestaje wariować i jest bardzo stabilna.
 
