@@ -27,7 +27,7 @@ Mój skrypt przetwarza dane w kilku etapach, symulując współpracę stacji ref
 
 Cały kod źródłowy, pokazujący krok po kroku formowanie macierzy wag i przeliczanie orbit, udostępniłem w [moim repozytorium na GitHubie](https://github.com/szymon-derlecki/DGPS_GNSS/blob/main/Assignment_5_DGPS.ipynb), gdzie można dokładnie prześledzić wszystkie etapy przetwarzania danych.
 
-Do wizualizacji wyników użyłem biblioteki `folium`, która generuje interaktywną mapę w formacie HTML (`dgps_map.html`). Takie zobrazowanie perfekcyjnie oddaje to, dlaczego lotnictwo czy marynarka wojenna przez długi czas krozystało wyłąćznie z takich systemów, a aktualnie tworzone systemy są nadal w dużej mierze jako ich rozwinięcie. Rozstrzał zwykłego SPP zniknął, a kropka określająca pozycję praktycznie "przykleiła się" do właściwego punktu referencyjnego.
+Do wizualizacji wyników użyłem biblioteki `folium`, która generuje interaktywną mapę w formacie HTML (`dgps_map.html`). Takie zobrazowanie perfekcyjnie oddaje to, dlaczego lotnictwo czy marynarka wojenna przez długi czas korzystało wyłącznie z takich systemów, a aktualnie tworzone systemy są nadal w dużej mierze jako ich rozwinięcie. Rozstrzał zwykłego SPP zniknął, a kropka określająca pozycję praktycznie "przykleiła się" do właściwego punktu referencyjnego.
 
 1.  **Prawdziwa Pozycja / RINEX True Position (Czarna gwiazdka)** - Cel, w który chcemy trafić.
 2.  **Klasyczne rozwiązanie SPP (Różowe punkty)** - Zbyt daleko, by bezpiecznie wylądować.
