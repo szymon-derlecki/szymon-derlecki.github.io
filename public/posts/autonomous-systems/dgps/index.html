@@ -3,7 +3,7 @@
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
-  Single Point Positioning w Python&#39;ie · Szymon Derlecki
+  GPS Różnicowy - czyli co pomoga pilotowi myśliwca F-35 bezpiecznie wylądować? · Szymon Derlecki
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +13,19 @@
 
 
 <meta name="author" content="Szymon Derlecki">
-<meta name="description" content="Algorytm Single Point Positioning napisany przy użyciu Pythona oraz biblioteki georinex, obejmujący przetwarzanie surowych plików RINEX, interpolację orbit satelitów oraz wygładzanie pomiarów.">
+<meta name="description" content="Standardowy GPS to za mało, by bezpiecznie posadzić myśliwiec na pokładzie lotniskowca. W tym wpisie przedstawiam swoją realizację jednego z wariantów algorytmu DGPS">
 <meta name="keywords" content="">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Single Point Positioning w Python&#39;ie">
-  <meta name="twitter:description" content="Algorytm Single Point Positioning napisany przy użyciu Pythona oraz biblioteki georinex, obejmujący przetwarzanie surowych plików RINEX, interpolację orbit satelitów oraz wygładzanie pomiarów.">
+  <meta name="twitter:title" content="GPS Różnicowy - czyli co pomoga pilotowi myśliwca F-35 bezpiecznie wylądować?">
+  <meta name="twitter:description" content="Standardowy GPS to za mało, by bezpiecznie posadzić myśliwiec na pokładzie lotniskowca. W tym wpisie przedstawiam swoją realizację jednego z wariantów algorytmu DGPS">
 
-<meta property="og:url" content="http://localhost:1313/posts/autonomous-systems/single-point-positioning/">
+<meta property="og:url" content="http://localhost:1313/posts/autonomous-systems/dgps/">
   <meta property="og:site_name" content="Szymon Derlecki">
-  <meta property="og:title" content="Single Point Positioning w Python&#39;ie">
-  <meta property="og:description" content="Algorytm Single Point Positioning napisany przy użyciu Pythona oraz biblioteki georinex, obejmujący przetwarzanie surowych plików RINEX, interpolację orbit satelitów oraz wygładzanie pomiarów.">
+  <meta property="og:title" content="GPS Różnicowy - czyli co pomoga pilotowi myśliwca F-35 bezpiecznie wylądować?">
+  <meta property="og:description" content="Standardowy GPS to za mało, by bezpiecznie posadzić myśliwiec na pokładzie lotniskowca. W tym wpisie przedstawiam swoją realizację jednego z wariantów algorytmu DGPS">
   <meta property="og:locale" content="pl">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -35,7 +35,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:1313/posts/autonomous-systems/single-point-positioning/">
+<link rel="canonical" href="http://localhost:1313/posts/autonomous-systems/dgps/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -146,7 +146,7 @@
                 
               
               <li class="navigation-item">
-                <a href="/en/posts/autonomous-systems/single-point-positioning/">EN</a>
+                <a href="/en/posts/autonomous-systems/dgps/">EN</a>
               </li>
             
           
@@ -164,8 +164,8 @@
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="http://localhost:1313/posts/autonomous-systems/single-point-positioning/">
-              Single Point Positioning w Python&#39;ie
+            <a class="title-link" href="http://localhost:1313/posts/autonomous-systems/dgps/">
+              GPS Różnicowy - czyli co pomoga pilotowi myśliwca F-35 bezpiecznie wylądować?
             </a>
           </h1>
         </div>
@@ -179,7 +179,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              2 min czytania
+              3 min czytania
             </span>
           </div>
           
@@ -200,7 +200,9 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Poniższy projekt stanowi realizację jednego z podstawowych podejść systemów GNSS (Global Navigational Satellite System). Przygotowany program przetwarza surowe obserwacje w formacie RINEX (za pomocą biblioteki <code>georinex</code>) i łączy je z precyzyjnymi danymi o orbitach (zapisanymi w formacie SP3), aby samodzielnie obliczyć pozycję odbiornika - dokładnie tak jak ma to miejsce w Twoim samochodzie, telefonie czy smartwatchu.</p>
+<p>Kiedy pilot myśliwca F-35 Lightning II (tak samo jak każdej mega-drogiej maszyny) zbliża się do lądowania w trudnych warunkach atmosferycznych, nie może polegać wyłącznie na standardowym sygnale GPS. Typowy błąd pozycjonowania wynoszący kilka metrów to w lotnictwie - a zwłaszcza przy lądowaniu na poruszającym się lotniskowcu - różnica między udanym manewrem, a w najlepszym wypadku poważnym incydentem.</p>
+<p>Rozwiązaniem tego problemu są wojskowe systemy wspomagania oparte na koncepcji <strong>DGPS (Differential GPS)</strong>, takie jak amerykański JPALS (Joint Precision Approach and Landing System)[cite: 1]. W pobliżu pasa (lub na pokładzie okrętu) znajduje się stacja referencyjna, która odbiera sygnał z dokładnie tych samych satelitów co myśliwiec. Stacja na bieżąco oblicza, jak bardzo sygnał jest zniekształcany przez warunki atmosferyczne czy błędy zegarów, a następnie wysyła poprawnie przefiltrowany sygnał prosto do komputera pokładowego lądującej maszyny.</p>
+<p>W tym projekcie postanowiłem odtworzyć ten mechanizm od zera, pisząc w Pythonie autorski algorytm DGPS, który analizuje dane satelitarne i oblicza jak najdokładniejszą pozycję na mapie.</p>
 <h2 id="kluczowe-elementy-implementacji">
   Kluczowe Elementy Implementacji
   <a class="heading-link" href="#kluczowe-elementy-implementacji">
@@ -208,12 +210,17 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Skrypt został podzielony na kilka istotnych etapów:</p>
+<p>Mój skrypt przetwarza dane w kilku etapach, symulując współpracę stacji referencyjnej z odbiornikiem:</p>
 <ul>
-<li><strong>Śledzenie satelitów (SP3):</strong> Skrypt jest napisany tak, aby z dużą dokładnością policzyć, gdzie dokładnie w kosmosie znajdował się satelita, gdy wysyłał sygnał. Uwzględnia także fakt, że Ziemia zdążyła się obrócić przez ten ułamek sekundy, zanim sygnał do nas dotarł.</li>
-<li><strong>Obliczanie naszej pozycji (Algorytm SPP):</strong> Jest to główny, a zarazem najistotniejszy fragment. Bazując na wzorach, które dla wielu osób pewnie wyglądają nieco jak czarna magia, pozwala znaleźć nasze współrzędne geograficzne na Ziemi (X, Y, Z) i przy okazji naprawić błędy zegarka wbudowanego w odbiornik.</li>
-<li><strong>Ocena dokładności (PDOP):</strong> Program sprawdza, czy konstelacja satelitów dobrze &ldquo;ułożyła się&rdquo; na niebie. W mojej próbie geometria była niemal idealna (wskaźnik PDOP wynosił 1.379), co oznacza, że wyliczyliśmy naszą pozycję z dokładnością do około 1.38 metra.</li>
-<li><strong>Wygładzanie pseudoodległości (Filtr Hatcha):</strong> Pomiary GPS potrafią mocno &ldquo;wariować&rdquo; z powodu zakłóceń, które pojawiają się na trasie ich przesyłu do konkretnego odbiornika. Wspomniany filtr sprytnie łączy dwa różne typy sygnałów z satelity, tak, aby odsiać szum. W efekcie nasza kropka na mapie przestaje wariować i jest bardzo stabilna.</li>
+<li>
+<p><strong>Podwójne różnice:</strong> Zamiast opierać się na pojedynczych pomiarach GPS, algorytm porównuje sygnały odbierane jednocześnie przez stację bazową, a także drugi odbiornik (np. taki, jaki może znajdować się w samolocie). Dzięki temu większość błędów wynikających z niedokładności zegarów satelitów i odbiorników zostaje automatycznie wyeliminowana, co znacząco zwiększa dokładność wyznaczanej pozycji.</p>
+</li>
+<li>
+<p><strong>Metoda najmniejszych kwadratów:</strong> Na podstawie zebranych pomiarów program oblicza, o ile należy skorygować początkowo przyjętą pozycję odbiornika. Proces ten pozwala krok po kroku wyznaczyć współrzędne, które najlepiej odpowiadają rzeczywistym obserwacjom.</p>
+</li>
+<li>
+<p><strong>Iteracyjne wyznaczanie orbit:</strong> Jest to dodatkowy moduł, który uwzględnia fakt, że sygnał GPS potrzebuje ułamka sekundy, aby dotrzeć z satelity na Ziemię. Program wielokrotnie przelicza położenie satelity dla dokładnego momentu wysłania sygnału, dzięki czemu końcowe wyznaczenie pozycji jest jeszcze bardziej precyzyjne.</p>
+</li>
 </ul>
 <h2 id="kod-i-wizualizacja">
   Kod i Wizualizacja
@@ -222,14 +229,15 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Cały kod źródłowy tego projektu udostępniłem w <a href="https://github.com/szymon-derlecki/Single_Point_Positioning/blob/main/Final_version.ipynb"  class="external-link" target="_blank" rel="noopener">moim repozytorium na GitHubie</a>, gdzie można dokładnie prześledzić wszystkie etapy przetwarzania danych.</p>
-<p>Do wizualizacji wyników użyłem biblioteki <code>folium</code>, która generuje interaktywną mapę w formacie HTML (<code>spp_comparison.html</code>). Poniżej wrzucam rzut oka na ostateczną mapkę, która w fajny sposób obrazuje porównanie trzech kluczowych punktów:</p>
+<p>Cały kod źródłowy, pokazujący krok po kroku formowanie macierzy wag i przeliczanie orbit, udostępniłem w <a href="https://github.com/szymon-derlecki/DGPS_GNSS/blob/main/Assignment_5_DGPS.ipynb"  class="external-link" target="_blank" rel="noopener">moim repozytorium na GitHubie</a>, gdzie można dokładnie prześledzić wszystkie etapy przetwarzania danych.</p>
+<p>Do wizualizacji wyników użyłem biblioteki <code>folium</code>, która generuje interaktywną mapę w formacie HTML (<code>dgps_map.html</code>). Takie zobrazowanie perfekcyjnie oddaje to, dlaczego lotnictwo czy marynarka wojenna przez długi czas krozystało wyłąćznie z takich systemów, a aktualnie tworzone systemy są nadal w dużej mierze jako ich rozwinięcie. Rozstrzał zwykłego SPP zniknął, a kropka określająca pozycję praktycznie &ldquo;przykleiła się&rdquo; do właściwego punktu referencyjnego.</p>
 <ol>
-<li><strong>Pozycja Referencyjna (Niebieski znacznik)</strong></li>
-<li><strong>Rozwiązanie SPP bazujące na pseudoodległościach bez filtrowania (Czerwony znacznik)</strong></li>
-<li><strong>Rozwiązanie SPP bazujące na pseudoodległościach po zastosowaniu filtra Hatcha (Zielony znacznik)</strong></li>
+<li><strong>Prawdziwa Pozycja / RINEX True Position (Czarna gwiazdka)</strong> - Cel, w który chcemy trafić.</li>
+<li><strong>Klasyczne rozwiązanie SPP (Różowe punkty)</strong> - Zbyt daleko, by bezpiecznie wylądować.</li>
+<li><strong>Rozwiązanie DGPS po korektach (Zielone znaczniki)</strong> - Bardzo dokładna pozycja (wlaśnie w psotaci tej przyklejonej  pinezki do wymaganego punktu referencyjnego)</li>
 </ol>
-<iframe src="/maps/spp_comparison.html" width="100%" height="500px" frameborder="0" style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
+<iframe src="/maps/dgps_map.html" width="100%" height="500px" frameborder="0" style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
+
       </div>
 
 

@@ -8,5 +8,5 @@ weight: 30
 2. [Automatyczne Wykrywanie Statków w Rejonie Mostu nad Wielkim Bełtem](ship-detection-1)
 3. [Wykrywanie samolotów na zdjęciach satelitarnych Sentinel-2](aircraft-detection-sentinel)
 4. [Autonomiczne Mapowanie i Eksploracja (SLAM) z użyciem Robota Mobilnego](localization_and_mapping)
-5. [Single Point Positioning - czyli dokładnie taka nawigacja, jak chociażby z apki z Twojego telefonu)](single-point-positioning)
+5. [Single Point Positioning (SPP) – absolutne podstawy nawigacji, z której korzystasz każdego dnia](single-point-positioning)
 6. [GPS Różnicowy - czyli co pomoga pilotowi myśliwca F-35 bezpiecznie wylądować?](dgps)

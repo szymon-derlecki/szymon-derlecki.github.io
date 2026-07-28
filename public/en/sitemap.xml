@@ -39,19 +39,6 @@
                 href="http://localhost:1313/en/posts/hobby/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/posts/autonomous-systems/single-point-positioning/</loc>
-    <lastmod>2026-07-28T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pl"
-                href="http://localhost:1313/posts/autonomous-systems/single-point-positioning/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/posts/autonomous-systems/single-point-positioning/"
-                />
-  </url><url>
     <loc>http://localhost:1313/en/posts/</loc>
     <lastmod>2026-07-28T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -63,6 +50,19 @@
                 rel="alternate"
                 hreflang="en"
                 href="http://localhost:1313/en/posts/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/en/posts/autonomous-systems/single-point-positioning/</loc>
+    <lastmod>2026-07-28T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/autonomous-systems/single-point-positioning/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/autonomous-systems/single-point-positioning/"
                 />
   </url><url>
     <loc>http://localhost:1313/en/</loc>
@@ -128,6 +128,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="http://localhost:1313/en/posts/autonomous-systems/military-aircraft/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/en/posts/autonomous-systems/dgps/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/autonomous-systems/dgps/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/autonomous-systems/dgps/"
                 />
   </url><url>
     <loc>http://localhost:1313/en/about/</loc>
