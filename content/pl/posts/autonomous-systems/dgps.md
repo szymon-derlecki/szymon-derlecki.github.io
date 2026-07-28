@@ -9,7 +9,7 @@ description: "Standardowy GPS to za mało, by bezpiecznie posadzić myśliwiec n
 
 Kiedy pilot myśliwca F-35 Lightning II (tak samo jak każdej mega-drogiej maszyny) zbliża się do lądowania w trudnych warunkach atmosferycznych, nie może polegać wyłącznie na standardowym sygnale GPS. Typowy błąd pozycjonowania wynoszący kilka metrów to w lotnictwie - a zwłaszcza przy lądowaniu na poruszającym się lotniskowcu - różnica między udanym manewrem, a w najlepszym wypadku poważnym incydentem. 
 
-Rozwiązaniem tego problemu są wojskowe systemy wspomagania oparte na koncepcji **DGPS (Differential GPS)**, takie jak amerykański JPALS (Joint Precision Approach and Landing System)[cite: 1]. W pobliżu pasa (lub na pokładzie okrętu) znajduje się stacja referencyjna, która odbiera sygnał z dokładnie tych samych satelitów co myśliwiec. Stacja na bieżąco oblicza, jak bardzo sygnał jest zniekształcany przez warunki atmosferyczne czy błędy zegarów, a następnie wysyła poprawnie przefiltrowany sygnał prosto do komputera pokładowego lądującej maszyny.
+Rozwiązaniem tego problemu są wojskowe systemy wspomagania oparte na koncepcji **DGPS (Differential GPS)**, takie jak amerykański JPALS (Joint Precision Approach and Landing System). W pobliżu pasa (lub na pokładzie okrętu) znajduje się stacja referencyjna, która odbiera sygnał z dokładnie tych samych satelitów co myśliwiec. Stacja na bieżąco oblicza, jak bardzo sygnał jest zniekształcany przez warunki atmosferyczne czy błędy zegarów, a następnie wysyła poprawnie przefiltrowany sygnał prosto do komputera pokładowego lądującej maszyny.
 
 W tym projekcie postanowiłem odtworzyć ten mechanizm od zera, pisząc w Pythonie autorski algorytm DGPS, który analizuje dane satelitarne i oblicza jak najdokładniejszą pozycję na mapie.
 
