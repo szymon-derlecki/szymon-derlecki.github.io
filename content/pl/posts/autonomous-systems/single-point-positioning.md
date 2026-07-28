@@ -1,5 +1,5 @@
 ---
-title: "Implementacja w Pythonie: SPP, Interpolacja SP3 i oraz Filtrowanie Hatcha"
+title: "Implementacja w Pythonie: SPP, Interpolacja SP3 oraz Filtrowanie Hatcha"
 date: 2026-07-28
 draft: false
 description: "Algorytm Single Point Positioning napisany przy użyciu Pythona oraz biblioteki georinex, obejmujący przetwarzanie surowych plików RINEX, interpolację orbit satelitów oraz wygładzanie pomiarów."

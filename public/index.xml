@@ -6,8 +6,15 @@
     <description>Recent content on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>pl</language>
-    <lastBuildDate>Mon, 27 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Implementacja w Pythonie: SPP, Interpolacja SP3 oraz Filtrowanie Hatcha</title>
+      <link>http://localhost:1313/posts/autonomous-systems/single-point-positioning/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/autonomous-systems/single-point-positioning/</guid>
+      <description>&lt;h2 id=&#34;cel-projektu&#34;&gt;&#xA;  Cel Projektu&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#cel-projektu&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Poniższy projekt stanowi realizację jednego z podstawowych podejść systemów GNSS (Global Navigational Satellite System). Przygotowany program przetwarza surowe obserwacje w formacie RINEX (za pomocą biblioteki &lt;code&gt;georinex&lt;/code&gt;) i łączy je z precyzyjnymi danymi o orbitach (zapisanymi w formacie SP3), aby samodzielnie obliczyć pozycję odbiornika - dokładnie tak jak ma to miejsce w Twoim samochodzie, telefonie czy smartwatchu.&lt;/p&gt;&#xA;&lt;h2 id=&#34;kluczowe-elementy-implementacji&#34;&gt;&#xA;  Kluczowe Elementy Implementacji&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#kluczowe-elementy-implementacji&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Skrypt został podzielony na kilka istotnych etapów:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>System SLAM dla mobilnego robota (ROS 2 &#43; TurtleBot)</title>
       <link>http://localhost:1313/posts/autonomous-systems/localization_and_mapping/</link>
