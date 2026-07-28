@@ -2,7 +2,7 @@
 title: "GPS Różnicowy - czyli co pomoga pilotowi myśliwca F-35 bezpiecznie wylądować?"
 date: 2026-07-28
 draft: false
-description: "Standardowy GPS to za mało, by bezpiecznie posadzić myśliwiec na pokładzie lotniskowca. W tym wpisie przedstawiam swoją realizację jednego z wariantów algorytmu DGPS
+description: "Standardowy GPS to za mało, by bezpiecznie posadzić myśliwiec na pokładzie lotniskowca. W tym wpisie przedstawiam swoją realizację jednego z wariantów algorytmu DGPS"
 ---
 
 ## Cel Projektu 
