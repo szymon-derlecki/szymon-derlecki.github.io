@@ -29,8 +29,8 @@ Cały kod źródłowy, pokazujący krok po kroku formowanie macierzy wag i przel
 
 Do wizualizacji wyników użyłem biblioteki `folium`, która generuje interaktywną mapę w formacie HTML (`dgps_map.html`). Takie zobrazowanie perfekcyjnie oddaje to, dlaczego lotnictwo czy marynarka wojenna przez długi czas korzystało wyłącznie z takich systemów, a aktualnie tworzone systemy są nadal w dużej mierze jako ich rozwinięcie. Rozstrzał zwykłego SPP zniknął, a kropka określająca pozycję praktycznie "przykleiła się" do właściwego punktu referencyjnego.
 
-1.  **Prawdziwa Pozycja / RINEX True Position (Czarna gwiazdka)** - Cel, w który chcemy trafić.
-2.  **Klasyczne rozwiązanie SPP (Różowe punkty)** - Zbyt daleko, by bezpiecznie wylądować.
-3.  **Rozwiązanie DGPS po korektach (Czerwone znaczniki)** - Bardzo dokładna pozycja (wlaśnie w psotaci tej przyklejonej  pinezki do wymaganego punktu referencyjnego)
+1.  **Prawdziwa Pozycja / RINEX True Position (Czarna pinezka)** - Cel, w który chcemy trafić.
+2.  **Klasyczne rozwiązanie SPP (Różowa pinezka)** - Zbyt daleko, by bezpiecznie wylądować.
+3.  **Rozwiązanie DGPS po korektach (Czerwona pinezka)** - Bardzo dokładna pozycja (wlaśnie w psotaci tej przyklejonej  pinezki do wymaganego punktu referencyjnego)
 
 <iframe src="/maps/dgps_map.html" width="100%" height="500px" frameborder="0" style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
