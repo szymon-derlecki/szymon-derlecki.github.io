@@ -9,3 +9,4 @@ weight: 30
 3. [Aircraft Detection in Sentinel-2 Satellite Imagery](aircraft-detection-sentinel)
 4. [Autonomous Mapping and Exploration (SLAM) using a Mobile Robot](localization_and_mapping)
 5. [Single Point Positioning (GPS Navigation, like from your phone)](single-point-positioning)
+6. [Differential GPS - What helps an F-35 pilot land safely?](dgps)
