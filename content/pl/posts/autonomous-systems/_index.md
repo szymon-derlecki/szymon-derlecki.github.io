@@ -10,3 +10,4 @@ weight: 30
 4. [Autonomiczne Mapowanie i Eksploracja (SLAM) z użyciem Robota Mobilnego](localization_and_mapping)
 5. [Single Point Positioning (SPP) - absolutne podstawy nawigacji, z której korzystasz każdego dnia](single-point-positioning)
 6. [GPS Różnicowy - czyli co pomoga pilotowi myśliwca F-35 bezpiecznie wylądować?](dgps)
+7. [Jak przewidzieć awarię turbiny wiatrowej za pomocą sieci typu TCN?](wind-turbine-downtime-reduction)
