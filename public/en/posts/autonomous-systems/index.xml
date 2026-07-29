@@ -6,8 +6,15 @@
     <description>Recent content in Autonomous Systems on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/en/posts/autonomous-systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to predict a wind turbine failure using TCN networks?</title>
+      <link>http://localhost:1313/en/posts/autonomous-systems/wind-turbine-downtime-reduction/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/autonomous-systems/wind-turbine-downtime-reduction/</guid>
+      <description>&lt;h3 id=&#34;project-goal&#34;&gt;&#xA;  Project Goal&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#project-goal&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Wind turbine downtime severely impacts the overall efficiency of renewable energy sources. When giant turbine blades stop spinning due to a failure, it obviously leads to significant financial losses, and in worst-case scenarios, can even cause blackouts. Instead of waiting for a breakdown, a much better approach is to predict the loads acting on the turbine blades. This allows for planning maintenance well in advance, consequently leading to a massive reduction in failures.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Differential GPS - What helps an F-35 pilot land safely?</title>
       <link>http://localhost:1313/en/posts/autonomous-systems/dgps/</link>

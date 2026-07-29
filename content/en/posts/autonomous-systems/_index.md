@@ -10,3 +10,4 @@ weight: 30
 4. [Autonomous Mapping and Exploration (SLAM) using a Mobile Robot](localization_and_mapping)
 5. [Single Point Positioning (GPS Navigation, like from your phone)](single-point-positioning)
 6. [Differential GPS - What helps an F-35 pilot land safely?](dgps)
+7. [How to predict a wind turbine failure using TCN networks?](wind-turbine-downtime-reduction)
