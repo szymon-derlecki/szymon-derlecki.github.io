@@ -25,7 +25,7 @@ Ostateczne wyniki udowadniają, że tego typu sieć to świetna architektura do 
 
 Poniżej wrzucam nasz plakat projektowy z dokładniejszym podglądem na wykresy selekcji cech oraz schemat blokowy samej sieci TCN:
 
-![Plakat Projektowy - Lowering the downtime of wind turbines](/images/turbine_dt.pdf)
+![Plakat Projektowy - Lowering the downtime of wind turbines](/images/turbine_dt.jpg)
 
 Cały kod źródłowy tego projektu udostępniłem w moim repozytorium na GitHubie, gdzie można dokładnie prześledzić architekturę modelu i proces przetwarzania danych.
 [Repozytorium GitHub: Wind Turbines Project - Deep Learning](https://github.com/szymon-derlecki/Deep_Learning_Project_Wind_Turbines/blob/main/Wind_Turbines_Project_Deep_Learning.ipynb)

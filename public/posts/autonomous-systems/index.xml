@@ -6,8 +6,15 @@
     <description>Recent content in Systemy Autonomiczne on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>pl</language>
-    <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/autonomous-systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jak przewidzieć awarię turbiny wiatrowej za pomocą sieci typu TCN?</title>
+      <link>http://localhost:1313/posts/autonomous-systems/wind-turbine-downtime-reduction/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/autonomous-systems/wind-turbine-downtime-reduction/</guid>
+      <description>&lt;h3 id=&#34;cel-projektu&#34;&gt;&#xA;  Cel Projektu&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#cel-projektu&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Przestoje turbin wiatrowych znacząco uderzają w ogólną wydajność odnawialnych źródeł energii. Kiedy gigantyczne łopaty wiatraków przestają się kręcić z powodu awarii, oczywiste jest, że wystąpią istotne straty, a w skrajnym przypadku może nawet dojść do blackoutów. Zamiast czekać na usterkę, o wiele lepszym podejściem jest przewidywanie obciążeń działających na łopaty turbiny. Pozwala to zaplanować konserwację z wyprzedzeniem, a w konsekwencji doprowadzić do znacznego zmniejszenia liczby awarii.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>GPS Różnicowy - czyli co pomaga pilotowi myśliwca F-35 bezpiecznie wylądować?</title>
       <link>http://localhost:1313/posts/autonomous-systems/dgps/</link>

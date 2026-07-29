@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/posts/autonomous-systems/</loc>
-    <lastmod>2026-07-28T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -39,6 +39,35 @@
                 href="http://localhost:1313/posts/hobby/"
                 />
   </url><url>
+    <loc>http://localhost:1313/posts/autonomous-systems/wind-turbine-downtime-reduction/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/"
+                />
+  </url><url>
     <loc>http://localhost:1313/posts/autonomous-systems/dgps/</loc>
     <lastmod>2026-07-28T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -52,19 +81,6 @@
                 href="http://localhost:1313/posts/autonomous-systems/dgps/"
                 />
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-07-28T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pl"
-                href="http://localhost:1313/posts/"
-                />
-  </url><url>
     <loc>http://localhost:1313/posts/autonomous-systems/single-point-positioning/</loc>
     <lastmod>2026-07-28T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -76,19 +92,6 @@
                 rel="alternate"
                 hreflang="pl"
                 href="http://localhost:1313/posts/autonomous-systems/single-point-positioning/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-07-28T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pl"
-                href="http://localhost:1313/"
                 />
   </url><url>
     <loc>http://localhost:1313/posts/autonomous-systems/localization_and_mapping/</loc>
