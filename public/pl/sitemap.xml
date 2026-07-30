@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/posts/autonomous-systems/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-30T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -39,21 +39,8 @@
                 href="http://localhost:1313/posts/hobby/"
                 />
   </url><url>
-    <loc>http://localhost:1313/posts/autonomous-systems/wind-turbine-downtime-reduction/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/posts/autonomous-systems/wind-turbine-downtime-reduction/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pl"
-                href="http://localhost:1313/posts/autonomous-systems/wind-turbine-downtime-reduction/"
-                />
-  </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-30T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -66,7 +53,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-30T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -79,7 +66,20 @@
                 />
   </url><url>
     <loc>http://localhost:1313/posts/autonomous-systems/reid/</loc>
+    <lastmod>2026-07-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/autonomous-systems/wind-turbine-downtime-reduction/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/autonomous-systems/wind-turbine-downtime-reduction/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/autonomous-systems/wind-turbine-downtime-reduction/"
+                />
   </url><url>
     <loc>http://localhost:1313/posts/autonomous-systems/dgps/</loc>
     <lastmod>2026-07-28T00:00:00+00:00</lastmod>
