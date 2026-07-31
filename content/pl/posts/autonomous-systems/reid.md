@@ -196,7 +196,7 @@ Poniżej przedstawiono wizualizację danych akustycznych w postaci spektrogramó
 
 | Spektrogram STFT | Dane w postaci wykresu typu 'WATERFALL' |
 | :---: | :---: |
-| ![](images/Ship_FFT.png) | ![](/images/Ship_NO_FFT.png) |
+| ![](/images/Ship_FFT.png) | ![](/images/Ship_NO_FFT.png) |
 
 Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie.
 
