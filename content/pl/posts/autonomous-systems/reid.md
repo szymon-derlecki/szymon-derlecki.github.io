@@ -104,19 +104,49 @@ Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane
 
 Poniżej przedstawiono zdjęcia docelowej jednostki oraz dystraktora wykorzystanego do porównania trzech statków.
 
-| Ujęcie 1 (Cel dla T=0s) | Ujęcie 2 (Cel dla T+70s) |
-| :---: | :---: |
-| ![](/images/1763804942_220466000.jpg) | ![](/images/1763804912_220466000.jpg) |
+<div style="display: flex; gap: 30px; justify-content: center;">
+
+<div style="width: 500px; height: 350px; overflow: hidden;">
+<img src="/images/1763804942_220466000.jpg"
+     alt="Ujęcie 1 - Cel dla T=0s"
+     style="width: 100%; transform: scale(2.2); transform-origin: center;"/>
+</div>
+
+<div style="width: 500px; height: 350px; overflow: hidden;">
+<img src="/images/1763804912_220466000.jpg"
+     alt="Ujęcie 2 - Cel dla T+70s"
+     style="width: 100%; transform: scale(2.2); transform-origin: center;"/>
+</div>
+
+</div>
+
+<br>
 
 **Ujęcie 3 (Inna jednostka)**
-<br>
-![](/images/1763820365_255806370.jpg)
+
+<div style="display: flex; justify-content: center;">
+
+<div style="width: 700px; height: 450px; overflow: hidden;">
+<img src="/images/1763820365_255806370.jpg"
+     alt="Ujęcie 3 - Inna jednostka"
+     style="width: 100%; transform: scale(2.0); transform-origin: center;"/>
+</div>
+
+</div>
 
 *Zdjęcia docelowej jednostki oraz dystraktora wykorzystane do porównania trzech statków.*
 
-**Macierz podobieństwa kosinusowego (Trzy jednostki)**
 <br>
-![](/images/sim_matrix_three_vessels.png)
+
+**Macierz podobieństwa kosinusowego (Trzy jednostki)**
+
+<div style="text-align: center;">
+
+<img src="/images/sim_matrix_three_vessels.png"
+     alt="Macierz podobieństwa kosinusowego dla trzech jednostek"
+     width="900"/>
+
+</div>
 
 *Macierz podobieństwa kosinusowego dla docelowej jednostki w różnych krokach czasowych w porównaniu ze statkiem-dystraktorem.*
 
@@ -126,18 +156,39 @@ Poniżej przedstawiono zdjęcia docelowej jednostki oraz dystraktora wykorzystan
 
 Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od doby. Niski wynik podobieństwa w tym kontekście potwierdza, że model skutecznie rozróżnia tożsamości, nie dając się zmylić tym czasowym i środowiskowym zmianom.
 
-| Jednostka 305425000 | Jednostka 265079640 |
-| :---: | :---: |
-| ![](/images/1765715109_305425000.jpg) | ![](/images/1765721252_265079640.jpg) |
+<br>
+
+<div style="display: flex; gap: 30px; justify-content: center;">
+
+<div style="width: 500px; height: 350px; overflow: hidden;">
+<img src="/images/1765715109_305425000.jpg"
+     alt="Jednostka 305425000"
+     style="width: 100%; transform: scale(2.2); transform-origin: center;"/>
+</div>
+
+<div style="width: 500px; height: 350px; overflow: hidden;">
+<img src="/images/1765721252_265079640.jpg"
+     alt="Jednostka 265079640"
+     style="width: 100%; transform: scale(2.2); transform-origin: center;"/>
+</div>
+
+</div>
 
 *Dwa różne statki zarejestrowane w różnych dniach, obrazujące zmiany w warunkach środowiskowych.*
 
-**Macierz podobieństwa kosinusowego (Różne dni)**
 <br>
-![](/images/sim_matrix_different_days.png)
+
+**Macierz podobieństwa kosinusowego (Różne dni)**
+
+<div style="text-align: center;">
+
+<img src="/images/sim_matrix_different_days.png"
+     alt="Macierz podobieństwa kosinusowego dla różnych dni"
+     width="900"/>
+
+</div>
 
 *Macierz podobieństwa kosinusowego dla dwóch różnych statków zarejestrowanych w różnych dniach. Niski wynik podobieństwa potwierdza, że model potrafi skutecznie rozróżniać jednostki pomimo zmian warunków środowiskowych.*
-
 ---
 
 ## Etap 2. Re-identyfikacja akustyczna z użyciem kabla DAS (Distributed Acoustic Sensing)
