@@ -190,7 +190,15 @@ Podczas prób uczenia szybko okazało się, że trenowanie modelu z identycznymi
 
 Koniec końców okazało się, że przy poszukiwaniu konkretnych jednostek, surowy sygnał to za mało i trzeba z nim nieco więcej podziałać - mocniej pofiltrować albo dodać inne transformacje czasowo-częstotliwościowe. Zauważyłem, że świetne rezultaty dawało złożenie wykresu *waterfall* z bazowym sygnałem prezentowanym na *spektrogramie STFT*. Co ciekawe, nawet jeśli suche wartości w zbiorczej tabelce metryk nie wydawały się rewelacyjne, to przy testach przeprowadzanych na osobnych przykładach takie podejście sprawdzało się najlepiej i pozwalało w najskuteczniejszy sposób różnicować jednostki.
 
-> **[TUTAJ MIEJSCE NA SPEKTROGRAMY / WYKRESY WATERFALL]**
+### Analiza sygnału akustycznego (DAS)
+
+Poniżej przedstawiono wizualizację danych akustycznych w postaci spektrogramów (wykresów typu waterfall). Zestawienie ukazuje różnicę między surowym sygnałem a reprezentacją po zastosowaniu transformacji Fouriera.
+
+| Zastosowane FFT | Brak FFT (Surowy sygnał) |
+| :---: | :---: |
+| ![](static/images/ship_FFT.png) | ![](static/images/ship_NO_FFT.png) |
+
+*Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie*
 
 > **[TUTAJ MIEJSCE NA TABELĘ Z WYNIKAMI AKUSTYCZNYMI]**
 
