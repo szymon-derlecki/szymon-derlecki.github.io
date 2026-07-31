@@ -1,5 +1,5 @@
 ---
-title: "Śledzenie statków bez AIS: Jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?"
+title: "Bezradarowe śledzenie statków: Jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?"
 date: 2026-07-31
 draft: false
 description: "Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki, nawet gdy znikną z radarów."
