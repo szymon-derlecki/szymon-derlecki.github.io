@@ -102,7 +102,7 @@ Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane
 
 ### Wizualne porównanie kadrów i macierze dopasowań
 
-Poniżej przedstawiono zdjęcia docelowej jednostki oraz dystraktora wykorzystanego do porównania trzech statków.
+Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowo jeden kadr znacznie różniącego się statku, aby sprawdzić czy model faktycznie się sprawdza.
 
 <div style="display: flex; gap: 20px; justify-content: center;">
 
