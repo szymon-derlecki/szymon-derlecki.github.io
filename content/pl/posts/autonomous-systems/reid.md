@@ -100,7 +100,43 @@ Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane
 | **V3:** Joint Single | Sprogø Internally | 71.95 | 92.76 | 43.75 |
 | **V3:** Joint Single | Storebælt East Internally | 82.65 | 93.88 | 51.14 |
 
-> **[TUTAJ MIEJSCE NA WIZUALNE PORÓWNANIE KADRÓW I MACIERZE DOPASOWAŃ]**
+### Wizualne porównanie kadrów i macierze dopasowań
+
+Poniżej przedstawiono zdjęcia docelowej jednostki oraz dystraktora wykorzystanego do porównania trzech statków.
+
+| Ujęcie 1 (Cel dla T=0s) | Ujęcie 2 (Cel dla T+70s) |
+| :---: | :---: |
+| ![](/static/images/1763804942_220466000.jpg) | ![](/static/images/1763804912_220466000.jpg) |
+
+**Ujęcie 3 (Inna jednostka)**
+<br>
+![](/static/images/1763820365_255806370.jpg)
+
+*Zdjęcia docelowej jednostki oraz dystraktora wykorzystane do porównania trzech statków.*
+
+**Macierz podobieństwa kosinusowego (Trzy jednostki)**
+<br>
+![](/static/images/sim_matrix_three_vessels.png)
+
+*Macierz podobieństwa kosinusowego dla docelowej jednostki w różnych krokach czasowych w porównaniu ze statkiem-dystraktorem.*
+
+---
+
+#### Porównanie dwóch różnych statków z dwóch różnych dni
+
+Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od doby. Niski wynik podobieństwa w tym kontekście potwierdza, że model skutecznie rozróżnia tożsamości, nie dając się zmylić tym czasowym i środowiskowym zmianom.
+
+| Jednostka 305425000 | Jednostka 265079640 |
+| :---: | :---: |
+| ![](/static/images/1765715109_305425000.jpg) | ![](/static/images/1765721252_265079640.jpg) |
+
+*Dwa różne statki zarejestrowane w różnych dniach, obrazujące zmiany w warunkach środowiskowych.*
+
+**Macierz podobieństwa kosinusowego (Różne dni)**
+<br>
+![](/static/images/sim_matrix_different_days.png)
+
+*Macierz podobieństwa kosinusowego dla dwóch różnych statków zarejestrowanych w różnych dniach. Niski wynik podobieństwa potwierdza, że model potrafi skutecznie rozróżniać jednostki pomimo zmian warunków środowiskowych.*
 
 ---
 
