@@ -6,12 +6,12 @@
     <description>Recent content on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>pl</language>
-    <lastBuildDate>Thu, 30 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Śledzenie statków bez AIS: Jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?</title>
       <link>http://localhost:1313/posts/autonomous-systems/reid/</link>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/autonomous-systems/reid/</guid>
       <description>&lt;p&gt;Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy. Każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Etap 1: Re-identyfikacja wizualna w obrębie jednej kamery (Single-Camera Re-ID)&lt;/strong&gt;&#xA;Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie jak najbardziej prawdiłowo rozpoznawać konkretną jednostkę, skutecznie ignorując zakłócenia z zewnątrz, takie jak chociażby zmienne warunki atmosferyczne. Na tym etapie weryfikujemy, czy stworzenie takiego mechanizmu jest w ogóle wykonalne, a także czy wybrane rozwiązanie faktycznie potrafi prawidłowo dopasowywać do siebie obrazy statków - analizując dane zbierane przez każdą z kamer z osobna.&lt;/p&gt;</description>
     </item>

@@ -29,8 +29,8 @@
   <meta property="og:locale" content="pl">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-07-30T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-07-30T00:00:00+00:00">
+    <meta property="article:published_time" content="2026-07-31T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-31T00:00:00+00:00">
 
 
 
@@ -175,13 +175,13 @@
           <div class="date">
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="2026-07-30T00:00:00Z">
-                lipca 30, 2026
+              <time datetime="2026-07-31T00:00:00Z">
+                lipca 31, 2026
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              8 min czytania
+              9 min czytania
             </span>
           </div>
           
@@ -223,8 +223,53 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
 <p>Mając przygotowaną w ten sposób bazę rzetelnie utworzonych i prawidłowo opisanych danych (<em>ground truth</em>), przeszedłem do budowy zbioru treningowego. W tym etapie testowałem wyłącznie wariant, który wykorzystywał dane z każdej z kamer z osobna (<em>Single-Camera Re-ID</em>), a co za tym idzie proces dobierania w pary ograniczał się ściśle do kadrów pochodzących z jednego źródła wideo.</p>
 <p>Jak to wyglądało w praktyce? Każde bazowe zdjęcie statku poddałem zróżnicowanym augmentacjom (wykorzystałem tutaj losowe odbicia lustrzane w poziomie, modyfikacje jasności, kontrastu i nasycenia za pomocą <em>Color Jitter</em> oraz drobne transformacje afiniczne, takie jak rotacje czy skalowanie), generując na jego podstawie dwie nowe, wizualnie zmodyfikowane wersje. W ten sposób z jednego oryginalnego ujęcia uzyskiwałem parę kadrów reprezentującą tę samą jednostkę. Jest to absolutnie kluczowe podejście, aby sieć mogła skutecznie uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em>.</p>
 <p>By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogubili, poniżej wrzucam schemat prosto z mojej pracy magisterskiej. Obrazuje on dokładnie to, jak krok po kroku przebiegał proces tworzenia takich uczących par.</p>
-<blockquote>
-<p><strong>[TUTAJ MIEJSCE NA SCHEMAT AUGMENTACJI I TWORZENIA PAR]</strong></p></blockquote>
+<h3 id="przykłady-par-treningowych-single-camera-re-id">
+  Przykłady par treningowych (Single-Camera Re-ID)
+  <a class="heading-link" href="#przyk%c5%82ady-par-treningowych-single-camera-re-id">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em> niezależnie od kierunku, w którym płynie jednostka.</p>
+<h3 id="przykłady-par-treningowych-single-camera-re-id-1">
+  Przykłady par treningowych (Single-Camera Re-ID)
+  <a class="heading-link" href="#przyk%c5%82ady-par-treningowych-single-camera-re-id-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip). Dzięki temu, jeśli na oryginalnym zdjęciu statek płynie w lewo, na wygenerowanym ujęciu płynie w prawo. Pozwoliło to sieci uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em> niezależnie od rzeczywistego kierunku poruszania się jednostki.</p>
+<p><strong>Widok 1: Wysepka Sprogø</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Ujęcie oryginalne</th>
+          <th style="text-align: center">Augmentacja (Horizontal Flip)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="static/images/single_cam_cam2.jpg" alt="Statek ze Sprogø - oryginał" width="400"/></td>
+          <td style="text-align: center"><img src="static/images/single_cam_cam2_flipped.jpg" alt="Statek ze Sprogø - odwrócony" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<p><strong>Widok 2: Camera East (Pylon)</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Ujęcie oryginalne</th>
+          <th style="text-align: center">Augmentacja (Horizontal Flip)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="static/images/single_cam_cam1.jpg" alt="Statek z Camera East - oryginał" width="400"/></td>
+          <td style="text-align: center"><img src="static/images/single_cam_cam1_flipped.jpg" alt="Statek z Camera East - odwrócony" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
 <p>Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.</p>
 <blockquote>
 <p><strong>[TUTAJ MIEJSCE NA TABELĘ Z WYNIKAMI]</strong></p></blockquote>
@@ -264,9 +309,9 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
 <p>Dla ułatwienia i wizualizacji tego procesu, poniżej zamieszczam schematy obrazujące zrealizowane oraz planowane strategie próbkowania, a także macierze podobieństwa statków.</p>
 <blockquote>
 <p><strong>[TUTAJ MIEJSCE NA ZDJĘCIA STRATEGII PRÓBKOWANIA ORAZ MACIERZE PODOBIEŃSTWA]</strong></p></blockquote>
-<h3 id="wnioski-z-uczenia-krzyżowego">
-  Wnioski z uczenia krzyżowego
-  <a class="heading-link" href="#wnioski-z-uczenia-krzy%c5%bcowego">
+<h3 id="wnioski-z-uczenia-krzyżowego-między-kamerami">
+  Wnioski z uczenia krzyżowego (między kamerami)
+  <a class="heading-link" href="#wnioski-z-uczenia-krzy%c5%bcowego-mi%c4%99dzy-kamerami">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
