@@ -76,7 +76,29 @@ Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefini
 
 Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.
 
-> **[TUTAJ MIEJSCE NA TABELĘ Z WYNIKAMI]**
+### Wyniki ewaluacji: Single-Camera Re-Identification
+
+Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane i ewaluowane wyłącznie na parach z tej samej kamery (intra-camera), z wykorzystaniem trzech różnych strategii próbkowania (V1, V2, V3).
+
+**Tabela 1: Wyniki dla architektury ResNet34**
+
+| Training Strategy | Evaluation Set | Top-1 Acc (%) | Top-5 Acc (%) | mAP (%) |
+| :--- | :--- | :---: | :---: | :---: |
+| **V1:** Sprogø Only | Sprogø Internally | 72.85 | 91.86 | 41.44 |
+| **V2:** Storebælt East Only | Storebælt East Internally | 87.76 | 96.94 | 47.13 |
+| **V3:** Joint Single | Sprogø Internally | 68.78 | 90.05 | 33.01 |
+| **V3:** Joint Single | Storebælt East Internally | 80.10 | 92.86 | 50.43 |
+
+<br>
+
+**Tabela 2: Wyniki dla architektury DINOv2**
+
+| Training Strategy | Evaluation Set | Top-1 Acc (%) | Top-5 Acc (%) | mAP (%) |
+| :--- | :--- | :---: | :---: | :---: |
+| **V1:** Sprogø Only | Sprogø Internally | 75.57 | 93.21 | 44.81 |
+| **V2:** Storebælt East Only | Storebælt East Internally | 86.73 | 96.43 | 53.46 |
+| **V3:** Joint Single | Sprogø Internally | 71.95 | 92.76 | 43.75 |
+| **V3:** Joint Single | Storebælt East Internally | 82.65 | 93.88 | 51.14 |
 
 > **[TUTAJ MIEJSCE NA WIZUALNE PORÓWNANIE KADRÓW I MACIERZE DOPASOWAŃ]**
 

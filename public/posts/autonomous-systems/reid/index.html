@@ -262,8 +262,99 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
 </tr>
 </table>
 <p>Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.</p>
-<blockquote>
-<p><strong>[TUTAJ MIEJSCE NA TABELĘ Z WYNIKAMI]</strong></p></blockquote>
+<h3 id="wyniki-ewaluacji-single-camera-re-identification">
+  Wyniki ewaluacji: Single-Camera Re-Identification
+  <a class="heading-link" href="#wyniki-ewaluacji-single-camera-re-identification">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane i ewaluowane wyłącznie na parach z tej samej kamery (intra-camera), z wykorzystaniem trzech różnych strategii próbkowania (V1, V2, V3).</p>
+<p><strong>Tabela 1: Wyniki dla architektury ResNet34</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Training Strategy</th>
+          <th style="text-align: left">Evaluation Set</th>
+          <th style="text-align: center">Top-1 Acc (%)</th>
+          <th style="text-align: center">Top-5 Acc (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>V1:</strong> Sprogø Only</td>
+          <td style="text-align: left">Sprogø Internally</td>
+          <td style="text-align: center">72.85</td>
+          <td style="text-align: center">91.86</td>
+          <td style="text-align: center">41.44</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>V2:</strong> Storebælt East Only</td>
+          <td style="text-align: left">Storebælt East Internally</td>
+          <td style="text-align: center">87.76</td>
+          <td style="text-align: center">96.94</td>
+          <td style="text-align: center">47.13</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>V3:</strong> Joint Single</td>
+          <td style="text-align: left">Sprogø Internally</td>
+          <td style="text-align: center">68.78</td>
+          <td style="text-align: center">90.05</td>
+          <td style="text-align: center">33.01</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>V3:</strong> Joint Single</td>
+          <td style="text-align: left">Storebælt East Internally</td>
+          <td style="text-align: center">80.10</td>
+          <td style="text-align: center">92.86</td>
+          <td style="text-align: center">50.43</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<p><strong>Tabela 2: Wyniki dla architektury DINOv2</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Training Strategy</th>
+          <th style="text-align: left">Evaluation Set</th>
+          <th style="text-align: center">Top-1 Acc (%)</th>
+          <th style="text-align: center">Top-5 Acc (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>V1:</strong> Sprogø Only</td>
+          <td style="text-align: left">Sprogø Internally</td>
+          <td style="text-align: center">75.57</td>
+          <td style="text-align: center">93.21</td>
+          <td style="text-align: center">44.81</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>V2:</strong> Storebælt East Only</td>
+          <td style="text-align: left">Storebælt East Internally</td>
+          <td style="text-align: center">86.73</td>
+          <td style="text-align: center">96.43</td>
+          <td style="text-align: center">53.46</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>V3:</strong> Joint Single</td>
+          <td style="text-align: left">Sprogø Internally</td>
+          <td style="text-align: center">71.95</td>
+          <td style="text-align: center">92.76</td>
+          <td style="text-align: center">43.75</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>V3:</strong> Joint Single</td>
+          <td style="text-align: left">Storebælt East Internally</td>
+          <td style="text-align: center">82.65</td>
+          <td style="text-align: center">93.88</td>
+          <td style="text-align: center">51.14</td>
+      </tr>
+  </tbody>
+</table>
 <blockquote>
 <p><strong>[TUTAJ MIEJSCE NA WIZUALNE PORÓWNANIE KADRÓW I MACIERZE DOPASOWAŃ]</strong></p></blockquote>
 <hr>
