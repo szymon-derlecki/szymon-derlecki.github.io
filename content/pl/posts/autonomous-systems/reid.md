@@ -104,19 +104,15 @@ Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane
 
 Poniżej przedstawiono zdjęcia docelowej jednostki oraz dystraktora wykorzystanego do porównania trzech statków.
 
-<div style="display: flex; gap: 30px; justify-content: center;">
+<div style="display: flex; gap: 20px; justify-content: center;">
 
-<div style="width: 500px; height: 350px; overflow: hidden;">
 <img src="/images/1763804942_220466000.jpg"
      alt="Ujęcie 1 - Cel dla T=0s"
-     style="width: 100%; transform: scale(2.2); transform-origin: center;"/>
-</div>
+     width="700"/>
 
-<div style="width: 500px; height: 350px; overflow: hidden;">
 <img src="/images/1763804912_220466000.jpg"
      alt="Ujęcie 2 - Cel dla T+70s"
-     style="width: 100%; transform: scale(2.2); transform-origin: center;"/>
-</div>
+     width="700"/>
 
 </div>
 
@@ -124,13 +120,11 @@ Poniżej przedstawiono zdjęcia docelowej jednostki oraz dystraktora wykorzystan
 
 **Ujęcie 3 (Inna jednostka)**
 
-<div style="display: flex; justify-content: center;">
+<div style="text-align: center;">
 
-<div style="width: 700px; height: 450px; overflow: hidden;">
 <img src="/images/1763820365_255806370.jpg"
      alt="Ujęcie 3 - Inna jednostka"
-     style="width: 100%; transform: scale(2.0); transform-origin: center;"/>
-</div>
+     width="900"/>
 
 </div>
 
@@ -154,23 +148,17 @@ Poniżej przedstawiono zdjęcia docelowej jednostki oraz dystraktora wykorzystan
 
 #### Porównanie dwóch różnych statków z dwóch różnych dni
 
-Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od doby. Niski wynik podobieństwa w tym kontekście potwierdza, że model skutecznie rozróżnia tożsamości, nie dając się zmylić tym czasowym i środowiskowym zmianom.
+Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od doby.
 
-<br>
+<div style="display: flex; gap: 20px; justify-content: center;">
 
-<div style="display: flex; gap: 30px; justify-content: center;">
-
-<div style="width: 500px; height: 350px; overflow: hidden;">
 <img src="/images/1765715109_305425000.jpg"
      alt="Jednostka 305425000"
-     style="width: 100%; transform: scale(2.2); transform-origin: center;"/>
-</div>
+     width="700"/>
 
-<div style="width: 500px; height: 350px; overflow: hidden;">
 <img src="/images/1765721252_265079640.jpg"
      alt="Jednostka 265079640"
-     style="width: 100%; transform: scale(2.2); transform-origin: center;"/>
-</div>
+     width="700"/>
 
 </div>
 
