@@ -42,7 +42,7 @@ Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapi
 
 | Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
 | :---: | :---: |
-| <img src="static/images/single_cam_cam2.jpg" alt="Statek ze Sprogø - oryginał" width="400"/> | <img src="static/images/single_cam_cam2_flipped.jpg" alt="Statek ze Sprogø - odwrócony" width="400"/> |
+| <img src="/static/images/single_cam_cam2.jpg" alt="Statek ze Sprogø - oryginał" width="400"/> | <img src="/static/images/single_cam_cam2_flipped.jpg" alt="Statek ze Sprogø - odwrócony" width="400"/> |
 
 <br>
 
@@ -50,7 +50,7 @@ Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapi
 
 | Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
 | :---: | :---: |
-| <img src="static/images/single_cam_cam1.jpg" alt="Statek z Camera East - oryginał" width="400"/> | <img src="static/images/single_cam_cam1_flipped.jpg" alt="Statek z Camera East - odwrócony" width="400"/> |
+| <img src="/static/images/single_cam_cam1.jpg" alt="Statek z Camera East - oryginał" width="400"/> | <img src="/static/images/single_cam_cam1_flipped.jpg" alt="Statek z Camera East - odwrócony" width="400"/> |
 
 Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.
 
