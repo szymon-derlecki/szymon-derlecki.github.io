@@ -1,6 +1,6 @@
 ---
 title: "Śledzenie statków bez AIS: Jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?"
-date: 2026-07-30
+date: 2026-07-31
 draft: false
 description: "Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki, nawet gdy znikną z radarów."
 ---
@@ -30,7 +30,23 @@ Jak to wyglądało w praktyce? Każde bazowe zdjęcie statku poddałem zróżnic
 
 By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogubili, poniżej wrzucam schemat prosto z mojej pracy magisterskiej. Obrazuje on dokładnie to, jak krok po kroku przebiegał proces tworzenia takich uczących par.
 
-> **[TUTAJ MIEJSCE NA SCHEMAT AUGMENTACJI I TWORZENIA PAR]**
+### Przykłady par treningowych (Single-Camera Re-ID)
+
+Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem *supervised contrastive loss* niezależnie od kierunku, w którym płynie jednostka.
+
+**Widok 1: Wysepka Sprogø**
+
+| Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
+| :---: | :---: |
+| <img src="1763799872_232005179.jpg" alt="Statek ze Sprogø" width="400"/> | <img src="1763799872_232005179.jpg" style="transform: scaleX(-1);" alt="Statek ze Sprogø - Obrócony" width="400"/> |
+
+<br>
+
+**Widok 2: Camera East (Pylon)**
+
+| Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
+| :---: | :---: |
+| <img src="1763800062_232005179.jpg" alt="Statek z Camera East" width="400"/> | <img src="1763800062_232005179.jpg" style="transform: scaleX(-1);" alt="Statek z Camera East - Obrócony" width="400"/> |
 
 Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.
 
@@ -68,7 +84,7 @@ Dla ułatwienia i wizualizacji tego procesu, poniżej zamieszczam schematy obraz
 
 > **[TUTAJ MIEJSCE NA ZDJĘCIA STRATEGII PRÓBKOWANIA ORAZ MACIERZE PODOBIEŃSTWA]**
 
-### Wnioski z uczenia krzyżowego
+### Wnioski z uczenia krzyżowego (między kamerami)
 
 Ten etap dostarczył mi niezwykle ciekawych obserwacji. Okazało się, że o ile re-identyfikacja krzyżowa radzi sobie dość przeciętnie w ciągu dnia, o tyle **w nocy staje się zdecydowanie skuteczniejsza** i potrafi bardzo trafnie dopasować statek na obu widokach. Z czego to wynika? Model świetnie wyłapuje fakt, że jednostki pływające po zmroku mają bardzo zróżnicowane kolory świateł ostrzegawczych oraz unikalny układ oświetlenia burt czy masztów, co stanowi dla sieci doskonały punkt odniesienia.
 
