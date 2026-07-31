@@ -54,6 +54,26 @@ Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefini
 </table>
 
 
+**Widok 2: Wschodni pylon mostu**
+
+<table>
+<tr>
+<th>Ujęcie oryginalne</th>
+<th>Augmentacja (Horizontal Flip)</th>
+</tr>
+
+<tr>
+<td>
+<img src="/images/single_cam_cam1.jpg" width="400"/>
+</td>
+
+<td>
+<img src="/images/single_cam_cam1.jpg" width="400" style="transform: scaleX(-1);"/>
+</td>
+</tr>
+</table>
+
+
 Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.
 
 > **[TUTAJ MIEJSCE NA TABELĘ Z WYNIKAMI]**
