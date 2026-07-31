@@ -230,45 +230,21 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em> niezależnie od kierunku, w którym płynie jednostka.</p>
-<h3 id="przykłady-par-treningowych-single-camera-re-id-1">
-  Przykłady par treningowych (Single-Camera Re-ID)
-  <a class="heading-link" href="#przyk%c5%82ady-par-treningowych-single-camera-re-id-1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip). Dzięki temu, jeśli na oryginalnym zdjęciu statek płynie w lewo, na wygenerowanym ujęciu płynie w prawo. Pozwoliło to sieci uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em> niezależnie od rzeczywistego kierunku poruszania się jednostki.</p>
+<p>Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefiniowanych modyfikacjach zdjęć użytych w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em> niezależnie od kierunku, w którym płynie jednostka.</p>
 <p><strong>Widok 1: Wysepka Sprogø</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center">Ujęcie oryginalne</th>
-          <th style="text-align: center">Augmentacja (Horizontal Flip)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center"><img src="/static/images/single_cam_cam2.jpg" alt="Statek ze Sprogø - oryginał" width="400"/></td>
-          <td style="text-align: center"><img src="/static/images/single_cam_cam2_flipped.jpg" alt="Statek ze Sprogø - odwrócony" width="400"/></td>
-      </tr>
-  </tbody>
-</table>
-<br>
-<p><strong>Widok 2: Camera East (Pylon)</strong></p>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: center">Ujęcie oryginalne</th>
-          <th style="text-align: center">Augmentacja (Horizontal Flip)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center"><img src="/static/images/single_cam_cam1.jpg" alt="Statek z Camera East - oryginał" width="400"/></td>
-          <td style="text-align: center"><img src="/static/images/single_cam_cam1_flipped.jpg" alt="Statek z Camera East - odwrócony" width="400"/></td>
-      </tr>
-  </tbody>
+<tr>
+<th>Ujęcie oryginalne</th>
+<th>Augmentacja (Horizontal Flip)</th>
+</tr>
+<tr>
+<td>
+<img src="/images/single_cam_cam2.jpg" width="400"/>
+</td>
+<td>
+<img src="/images/single_cam_cam2.jpg" width="400" style="transform: scaleX(-1);"/>
+</td>
+</tr>
 </table>
 <p>Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.</p>
 <blockquote>

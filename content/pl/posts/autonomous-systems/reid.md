@@ -32,25 +32,27 @@ By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogub
 
 ### Przykłady par treningowych (Single-Camera Re-ID)
 
-Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem *supervised contrastive loss* niezależnie od kierunku, w którym płynie jednostka.
-
-### Przykłady par treningowych (Single-Camera Re-ID)
-
-Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip). Dzięki temu, jeśli na oryginalnym zdjęciu statek płynie w lewo, na wygenerowanym ujęciu płynie w prawo. Pozwoliło to sieci uczyć się podobieństw z wykorzystaniem *supervised contrastive loss* niezależnie od rzeczywistego kierunku poruszania się jednostki.
+Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefiniowanych modyfikacjach zdjęć użytych w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem *supervised contrastive loss* niezależnie od kierunku, w którym płynie jednostka.
 
 **Widok 1: Wysepka Sprogø**
 
-| Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
-| :---: | :---: |
-| <img src="/static/images/single_cam_cam2.jpg" alt="Statek ze Sprogø - oryginał" width="400"/> | <img src="/static/images/single_cam_cam2_flipped.jpg" alt="Statek ze Sprogø - odwrócony" width="400"/> |
+<table>
+<tr>
+<th>Ujęcie oryginalne</th>
+<th>Augmentacja (Horizontal Flip)</th>
+</tr>
 
-<br>
+<tr>
+<td>
+<img src="/images/single_cam_cam2.jpg" width="400"/>
+</td>
 
-**Widok 2: Camera East (Pylon)**
+<td>
+<img src="/images/single_cam_cam2.jpg" width="400" style="transform: scaleX(-1);"/>
+</td>
+</tr>
+</table>
 
-| Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
-| :---: | :---: |
-| <img src="/static/images/single_cam_cam1.jpg" alt="Statek z Camera East - oryginał" width="400"/> | <img src="/static/images/single_cam_cam1_flipped.jpg" alt="Statek z Camera East - odwrócony" width="400"/> |
 
 Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.
 
