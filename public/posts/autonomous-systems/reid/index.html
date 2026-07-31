@@ -512,6 +512,10 @@ width="900"/></p>
   </tbody>
 </table>
 <p>Wyniki powtórnej identyfikacji dla wszystkich konfiguracji treningowych. Modyfikacje przeprowadzone na danych w postaci wykresu waterfall: dropout, gaussian_noise, cutout, random_crop, flip_lr. Augmentacje dla danych przedstawionych w postaci spektrogramu: dropout, gaussian_noise, cutout.</p>
+<p><strong>Macierz podobieństwa dla modelu dwukanałowego (Dual)</strong>
+<br>
+<img src="/images/matrix_result_dual_temporal_2.png" alt=""></p>
+<p>Wykres podobieństwa porównujący te same dwie jednostki w kolejnych oknach czasowych, wygenerowana przez model dwukanałowy. Kontrast między statkami jest tu wyraźnie ostrzejszy niż w przypadku użycia wyłącznie surowego sygnału, co sugeruje, że dodanie kanału STFT skutecznie uwydatnia cechy dyskryminacyjne obecne już w danych przestrzennych.</p>
 <h2 id="etap-3-re-identyfikacja-krzyżowa-cross-camera-re-id">
   Etap 3. Re-identyfikacja krzyżowa (Cross-Camera Re-ID)
   <a class="heading-link" href="#etap-3-re-identyfikacja-krzy%c5%bcowa-cross-camera-re-id">

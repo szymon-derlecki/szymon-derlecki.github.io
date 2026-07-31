@@ -215,6 +215,12 @@ Poniższa tabela prezentuje zestawienie wyników dla poszczególnych architektur
 
 Wyniki powtórnej identyfikacji dla wszystkich konfiguracji treningowych. Modyfikacje przeprowadzone na danych w postaci wykresu waterfall: dropout, gaussian_noise, cutout, random_crop, flip_lr. Augmentacje dla danych przedstawionych w postaci spektrogramu: dropout, gaussian_noise, cutout.
 
+**Macierz podobieństwa dla modelu dwukanałowego (Dual)**
+<br>
+![](/images/matrix_result_dual_temporal_2.png)
+
+Wykres podobieństwa porównujący te same dwie jednostki w kolejnych oknach czasowych, wygenerowana przez model dwukanałowy. Kontrast między statkami jest tu wyraźnie ostrzejszy niż w przypadku użycia wyłącznie surowego sygnału, co sugeruje, że dodanie kanału STFT skutecznie uwydatnia cechy dyskryminacyjne obecne już w danych przestrzennych.
+
 ## Etap 3. Re-identyfikacja krzyżowa (Cross-Camera Re-ID)
 
 Dotarliśmy do ostatniego etapu, który stanowi swoistą formę wczesnej fuzji danych, ponieważ łączy ze sobą obrazy pochodzące z różnych kamer. Nie ma tu żadnej fizyki kwantowej — pod kątem architektury jest to w zasadzie kopia modelu z pierwszej sekcji. Główna różnica polega na zupełnie innym podejściu do próbkowania danych (*data sampling*) oraz na testowaniu sieci pod kątem zdolności do re-identyfikacji tych samych jednostek pomiędzy odrębnymi źródłami wideo.
