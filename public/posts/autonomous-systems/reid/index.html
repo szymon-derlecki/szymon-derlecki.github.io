@@ -271,11 +271,12 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
 </h3>
 <p>Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane i ewaluowane wyłącznie na parach z tej samej kamery (intra-camera), z wykorzystaniem trzech różnych strategii próbkowania (V1, V2, V3).</p>
 <p><strong>Tabela 1: Wyniki dla architektury ResNet34</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">Training Strategy</th>
-          <th style="text-align: left">Evaluation Set</th>
+          <th style="text-align: center">Training Strategy</th>
+          <th style="text-align: center">Evaluation Set</th>
           <th style="text-align: center">Top-1 Acc (%)</th>
           <th style="text-align: center">Top-5 Acc (%)</th>
           <th style="text-align: center">mAP (%)</th>
@@ -283,42 +284,44 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left"><strong>V1:</strong> Sprogø Only</td>
-          <td style="text-align: left">Sprogø Internally</td>
+          <td style="text-align: center"><strong>V1:</strong> Sprogø Only</td>
+          <td style="text-align: center">Sprogø Internally</td>
           <td style="text-align: center">72.85</td>
           <td style="text-align: center">91.86</td>
           <td style="text-align: center">41.44</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>V2:</strong> Storebælt East Only</td>
-          <td style="text-align: left">Storebælt East Internally</td>
+          <td style="text-align: center"><strong>V2:</strong> Storebælt East Only</td>
+          <td style="text-align: center">Storebælt East Internally</td>
           <td style="text-align: center">87.76</td>
           <td style="text-align: center">96.94</td>
           <td style="text-align: center">47.13</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>V3:</strong> Joint Single</td>
-          <td style="text-align: left">Sprogø Internally</td>
+          <td style="text-align: center"><strong>V3:</strong> Joint Single</td>
+          <td style="text-align: center">Sprogø Internally</td>
           <td style="text-align: center">68.78</td>
           <td style="text-align: center">90.05</td>
           <td style="text-align: center">33.01</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>V3:</strong> Joint Single</td>
-          <td style="text-align: left">Storebælt East Internally</td>
+          <td style="text-align: center"><strong>V3:</strong> Joint Single</td>
+          <td style="text-align: center">Storebælt East Internally</td>
           <td style="text-align: center">80.10</td>
           <td style="text-align: center">92.86</td>
           <td style="text-align: center">50.43</td>
       </tr>
   </tbody>
 </table>
+</div>
 <br>
 <p><strong>Tabela 2: Wyniki dla architektury DINOv2</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">Training Strategy</th>
-          <th style="text-align: left">Evaluation Set</th>
+          <th style="text-align: center">Training Strategy</th>
+          <th style="text-align: center">Evaluation Set</th>
           <th style="text-align: center">Top-1 Acc (%)</th>
           <th style="text-align: center">Top-5 Acc (%)</th>
           <th style="text-align: center">mAP (%)</th>
@@ -326,35 +329,36 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left"><strong>V1:</strong> Sprogø Only</td>
-          <td style="text-align: left">Sprogø Internally</td>
+          <td style="text-align: center"><strong>V1:</strong> Sprogø Only</td>
+          <td style="text-align: center">Sprogø Internally</td>
           <td style="text-align: center">75.57</td>
           <td style="text-align: center">93.21</td>
           <td style="text-align: center">44.81</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>V2:</strong> Storebælt East Only</td>
-          <td style="text-align: left">Storebælt East Internally</td>
+          <td style="text-align: center"><strong>V2:</strong> Storebælt East Only</td>
+          <td style="text-align: center">Storebælt East Internally</td>
           <td style="text-align: center">86.73</td>
           <td style="text-align: center">96.43</td>
           <td style="text-align: center">53.46</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>V3:</strong> Joint Single</td>
-          <td style="text-align: left">Sprogø Internally</td>
+          <td style="text-align: center"><strong>V3:</strong> Joint Single</td>
+          <td style="text-align: center">Sprogø Internally</td>
           <td style="text-align: center">71.95</td>
           <td style="text-align: center">92.76</td>
           <td style="text-align: center">43.75</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>V3:</strong> Joint Single</td>
-          <td style="text-align: left">Storebælt East Internally</td>
+          <td style="text-align: center"><strong>V3:</strong> Joint Single</td>
+          <td style="text-align: center">Storebælt East Internally</td>
           <td style="text-align: center">82.65</td>
           <td style="text-align: center">93.88</td>
           <td style="text-align: center">51.14</td>
       </tr>
   </tbody>
 </table>
+</div>
 <h3 id="wizualne-porównanie-kadrów-i-macierze-dopasowań">
   Wizualne porównanie kadrów i macierze dopasowań
   <a class="heading-link" href="#wizualne-por%c3%b3wnanie-kadr%c3%b3w-i-macierze-dopasowa%c5%84">
@@ -456,11 +460,12 @@ width="900"/></p>
   </a>
 </h3>
 <p>Poniższa tabela prezentuje zestawienie wyników dla poszczególnych architektur oraz trybów przetwarzania sygnału.</p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">Architektura</th>
-          <th style="text-align: left">Tryb</th>
+          <th style="text-align: center">Architektura</th>
+          <th style="text-align: center">Tryb</th>
           <th style="text-align: center">mAP (%)</th>
           <th style="text-align: center">Top-1 (%)</th>
           <th style="text-align: center">Top-5 (%)</th>
@@ -468,49 +473,50 @@ width="900"/></p>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">ResNet34</td>
-          <td style="text-align: left">RAW</td>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">RAW</td>
           <td style="text-align: center">27.37</td>
           <td style="text-align: center">22.50</td>
           <td style="text-align: center">65.00</td>
       </tr>
       <tr>
-          <td style="text-align: left">ResNet34</td>
-          <td style="text-align: left">FFT</td>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">FFT</td>
           <td style="text-align: center">29.43</td>
           <td style="text-align: center">35.00</td>
           <td style="text-align: center">70.00</td>
       </tr>
       <tr>
-          <td style="text-align: left">ResNet34</td>
-          <td style="text-align: left">Dual</td>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Dual</td>
           <td style="text-align: center">27.55</td>
           <td style="text-align: center">22.50</td>
           <td style="text-align: center">75.00</td>
       </tr>
       <tr>
-          <td style="text-align: left">DINO</td>
-          <td style="text-align: left">RAW</td>
+          <td style="text-align: center">DINO</td>
+          <td style="text-align: center">RAW</td>
           <td style="text-align: center">34.03</td>
           <td style="text-align: center">47.50</td>
           <td style="text-align: center">95.00</td>
       </tr>
       <tr>
-          <td style="text-align: left">DINO</td>
-          <td style="text-align: left">FFT</td>
+          <td style="text-align: center">DINO</td>
+          <td style="text-align: center">FFT</td>
           <td style="text-align: center">33.44</td>
           <td style="text-align: center">30.00</td>
           <td style="text-align: center">70.00</td>
       </tr>
       <tr>
-          <td style="text-align: left">DINO</td>
-          <td style="text-align: left">Dual</td>
+          <td style="text-align: center">DINO</td>
+          <td style="text-align: center">Dual</td>
           <td style="text-align: center">34.17</td>
           <td style="text-align: center">30.00</td>
           <td style="text-align: center">85.00</td>
       </tr>
   </tbody>
 </table>
+</div>
 <p>Wyniki powtórnej identyfikacji dla wszystkich konfiguracji treningowych. Modyfikacje przeprowadzone na danych w postaci wykresu waterfall: dropout, gaussian_noise, cutout, random_crop, flip_lr. Augmentacje dla danych przedstawionych w postaci spektrogramu: dropout, gaussian_noise, cutout.</p>
 <p><strong>Macierz podobieństwa dla modelu dwukanałowego (Dual)</strong>
 <br>

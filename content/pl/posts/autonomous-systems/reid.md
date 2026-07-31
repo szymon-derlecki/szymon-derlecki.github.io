@@ -82,23 +82,31 @@ Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane
 
 **Tabela 1: Wyniki dla architektury ResNet34**
 
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
 | Training Strategy | Evaluation Set | Top-1 Acc (%) | Top-5 Acc (%) | mAP (%) |
-| :--- | :--- | :---: | :---: | :---: |
+| :---: | :---: | :---: | :---: | :---: |
 | **V1:** Sprogø Only | Sprogø Internally | 72.85 | 91.86 | 41.44 |
 | **V2:** Storebælt East Only | Storebælt East Internally | 87.76 | 96.94 | 47.13 |
 | **V3:** Joint Single | Sprogø Internally | 68.78 | 90.05 | 33.01 |
 | **V3:** Joint Single | Storebælt East Internally | 80.10 | 92.86 | 50.43 |
 
+</div>
+
 <br>
 
 **Tabela 2: Wyniki dla architektury DINOv2**
 
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
 | Training Strategy | Evaluation Set | Top-1 Acc (%) | Top-5 Acc (%) | mAP (%) |
-| :--- | :--- | :---: | :---: | :---: |
+| :---: | :---: | :---: | :---: | :---: |
 | **V1:** Sprogø Only | Sprogø Internally | 75.57 | 93.21 | 44.81 |
 | **V2:** Storebælt East Only | Storebælt East Internally | 86.73 | 96.43 | 53.46 |
 | **V3:** Joint Single | Sprogø Internally | 71.95 | 92.76 | 43.75 |
 | **V3:** Joint Single | Storebælt East Internally | 82.65 | 93.88 | 51.14 |
+
+</div>
 
 ### Wizualne porównanie kadrów i macierze dopasowań
 
@@ -204,14 +212,18 @@ Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akus
 
 Poniższa tabela prezentuje zestawienie wyników dla poszczególnych architektur oraz trybów przetwarzania sygnału.
 
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
 | Architektura | Tryb | mAP (%) | Top-1 (%) | Top-5 (%) |
-| :--- | :--- | :---: | :---: | :---: |
+| :---: | :---: | :---: | :---: | :---: |
 | ResNet34 | RAW | 27.37 | 22.50 | 65.00 |
 | ResNet34 | FFT | 29.43 | 35.00 | 70.00 |
 | ResNet34 | Dual | 27.55 | 22.50 | 75.00 |
 | DINO | RAW | 34.03 | 47.50 | 95.00 |
 | DINO | FFT | 33.44 | 30.00 | 70.00 |
 | DINO | Dual | 34.17 | 30.00 | 85.00 |
+
+</div>
 
 Wyniki powtórnej identyfikacji dla wszystkich konfiguracji treningowych. Modyfikacje przeprowadzone na danych w postaci wykresu waterfall: dropout, gaussian_noise, cutout, random_crop, flip_lr. Augmentacje dla danych przedstawionych w postaci spektrogramu: dropout, gaussian_noise, cutout.
 
