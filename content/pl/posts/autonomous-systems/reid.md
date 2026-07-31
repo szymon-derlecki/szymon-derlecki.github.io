@@ -38,7 +38,7 @@ Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapi
 
 | Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
 | :---: | :---: |
-| <img src="1763799872_232005179.jpg" alt="Statek ze Sprogø" width="400"/> | <img src="1763799872_232005179.jpg" style="transform: scaleX(-1);" alt="Statek ze Sprogø - Obrócony" width="400"/> |
+| <img src="single_cam_cam2.jpg" alt="Statek ze Sprogø" width="400"/> | <img src="single_cam_cam2.jpg" style="transform: scaleX(-1);" alt="Statek ze Sprogø - Obrócony" width="400"/> |
 
 <br>
 
@@ -46,7 +46,7 @@ Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapi
 
 | Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
 | :---: | :---: |
-| <img src="1763800062_232005179.jpg" alt="Statek z Camera East" width="400"/> | <img src="1763800062_232005179.jpg" style="transform: scaleX(-1);" alt="Statek z Camera East - Obrócony" width="400"/> |
+| <img src="single_cam_cam1.jpg" alt="Statek z Camera East" width="400"/> | <img src="single_cam_cam1.jpg" style="transform: scaleX(-1);" alt="Statek z Camera East - Obrócony" width="400"/> |
 
 Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.
 
