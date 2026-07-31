@@ -34,11 +34,15 @@ By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogub
 
 Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem *supervised contrastive loss* niezależnie od kierunku, w którym płynie jednostka.
 
+### Przykłady par treningowych (Single-Camera Re-ID)
+
+Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip). Dzięki temu, jeśli na oryginalnym zdjęciu statek płynie w lewo, na wygenerowanym ujęciu płynie w prawo. Pozwoliło to sieci uczyć się podobieństw z wykorzystaniem *supervised contrastive loss* niezależnie od rzeczywistego kierunku poruszania się jednostki.
+
 **Widok 1: Wysepka Sprogø**
 
 | Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
 | :---: | :---: |
-| <img src="single_cam_cam2.jpg" alt="Statek ze Sprogø" width="400"/> | <img src="single_cam_cam2.jpg" style="transform: scaleX(-1);" alt="Statek ze Sprogø - Obrócony" width="400"/> |
+| <img src="static/images/single_cam_cam2.jpg" alt="Statek ze Sprogø - oryginał" width="400"/> | <img src="static/images/single_cam_cam2_flipped.jpg" alt="Statek ze Sprogø - odwrócony" width="400"/> |
 
 <br>
 
@@ -46,7 +50,7 @@ Poniżej znajduje się wizualizacja procesu augmentacji użyta w pierwszym etapi
 
 | Ujęcie oryginalne | Augmentacja (Horizontal Flip) |
 | :---: | :---: |
-| <img src="single_cam_cam1.jpg" alt="Statek z Camera East" width="400"/> | <img src="single_cam_cam1.jpg" style="transform: scaleX(-1);" alt="Statek z Camera East - Obrócony" width="400"/> |
+| <img src="static/images/single_cam_cam1.jpg" alt="Statek z Camera East - oryginał" width="400"/> | <img src="static/images/single_cam_cam1_flipped.jpg" alt="Statek z Camera East - odwrócony" width="400"/> |
 
 Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.
 
