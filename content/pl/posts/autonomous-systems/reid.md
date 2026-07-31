@@ -142,7 +142,8 @@ Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowo jeden ka
 
 </div>
 
-Macierz podobieństwa kosinusowego dla docelowej jednostki w przedstawionej z nieznacznym odstępem czasowym w porównaniu z kompletnie innym statkiem.
+Diagram podobieństwa dla docelowej jednostki w przedstawionej z nieznacznym odstępem czasowym w porównaniu z kompletnie innym statkiem.
+
 ---
 
 #### Porównanie dwóch różnych statków z dwóch różnych dni
@@ -175,7 +176,8 @@ Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zró�
 
 </div>
 
-Macierz podobieństwa kosinusowego dla dwóch różnych statków zarejestrowanych w różnych dniach. Niski wynik podobieństwa potwierdza, że model potrafi skutecznie rozróżniać jednostki pomimo zmian warunków środowiskowych.
+Wykres przedstawiający podobieństwo dwóch różnych statków zarejestrowanych w różnych dniach. Niski wynik podobieństwa potwierdza, że model potrafi skutecznie rozróżniać jednostki pomimo zmian warunków środowiskowych.
+
 ---
 
 ## Etap 2. Re-identyfikacja akustyczna z użyciem kabla DAS (Distributed Acoustic Sensing)
