@@ -106,17 +106,17 @@ Poniżej przedstawiono zdjęcia docelowej jednostki oraz dystraktora wykorzystan
 
 | Ujęcie 1 (Cel dla T=0s) | Ujęcie 2 (Cel dla T+70s) |
 | :---: | :---: |
-| ![](/static/images/1763804942_220466000.jpg) | ![](/static/images/1763804912_220466000.jpg) |
+| ![](/images/1763804942_220466000.jpg) | ![](/images/1763804912_220466000.jpg) |
 
 **Ujęcie 3 (Inna jednostka)**
 <br>
-![](/static/images/1763820365_255806370.jpg)
+![](/images/1763820365_255806370.jpg)
 
 *Zdjęcia docelowej jednostki oraz dystraktora wykorzystane do porównania trzech statków.*
 
 **Macierz podobieństwa kosinusowego (Trzy jednostki)**
 <br>
-![](/static/images/sim_matrix_three_vessels.png)
+![](/images/sim_matrix_three_vessels.png)
 
 *Macierz podobieństwa kosinusowego dla docelowej jednostki w różnych krokach czasowych w porównaniu ze statkiem-dystraktorem.*
 
@@ -128,13 +128,13 @@ Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zró�
 
 | Jednostka 305425000 | Jednostka 265079640 |
 | :---: | :---: |
-| ![](/static/images/1765715109_305425000.jpg) | ![](/static/images/1765721252_265079640.jpg) |
+| ![](/images/1765715109_305425000.jpg) | ![](/images/1765721252_265079640.jpg) |
 
 *Dwa różne statki zarejestrowane w różnych dniach, obrazujące zmiany w warunkach środowiskowych.*
 
 **Macierz podobieństwa kosinusowego (Różne dni)**
 <br>
-![](/static/images/sim_matrix_different_days.png)
+![](/images/sim_matrix_different_days.png)
 
 *Macierz podobieństwa kosinusowego dla dwóch różnych statków zarejestrowanych w różnych dniach. Niski wynik podobieństwa potwierdza, że model potrafi skutecznie rozróżniać jednostki pomimo zmian warunków środowiskowych.*
 
