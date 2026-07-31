@@ -194,7 +194,7 @@ Koniec końców okazało się, że przy poszukiwaniu konkretnych jednostek, suro
 
 Poniżej przedstawiono wizualizację danych akustycznych w postaci spektrogramów (wykresów typu waterfall). Zestawienie ukazuje różnicę między surowym sygnałem a reprezentacją po zastosowaniu transformacji Fouriera.
 
-| Zastosowane FFT | Brak FFT (Surowy sygnał) |
+| Spektrogram STFT | Dane w postaci wykresu typu 'WATERFALL' |
 | :---: | :---: |
 | ![](/images/ship_FFT.png) | ![](/images/ship_NO_FFT.png) |
 
