@@ -136,14 +136,13 @@ Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowo jeden ka
 
 <div style="text-align: center;">
 
-<img src="/images/sim_matrix_three_vessels.png"
+<img src="/images/similarity_matrix_same_and_different.png"
      alt="Macierz podobieństwa kosinusowego dla trzech jednostek"
      width="900"/>
 
 </div>
 
-*Macierz podobieństwa kosinusowego dla docelowej jednostki w różnych krokach czasowych w porównaniu ze statkiem-dystraktorem.*
-
+*Macierz podobieństwa kosinusowego dla docelowej jednostki w przedstawionej z nieznacznym odstępem czasowym w porównaniu z kompletnie innym statkiem*
 ---
 
 #### Porównanie dwóch różnych statków z dwóch różnych dni
