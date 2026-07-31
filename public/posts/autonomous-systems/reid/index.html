@@ -181,7 +181,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              10 min czytania
+              11 min czytania
             </span>
           </div>
           
@@ -447,9 +447,71 @@ width="900"/></p>
       </tr>
   </tbody>
 </table>
-<p><em>Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie</em></p>
-<blockquote>
-<p><strong>[TUTAJ MIEJSCE NA TABELĘ Z WYNIKAMI AKUSTYCZNYMI]</strong></p></blockquote>
+<p>Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie.</p>
+<h3 id="wyniki-identyfikacji-akustycznej-das">
+  Wyniki identyfikacji akustycznej (DAS)
+  <a class="heading-link" href="#wyniki-identyfikacji-akustycznej-das">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Poniższa tabela prezentuje zestawienie wyników dla poszczególnych architektur oraz trybów przetwarzania sygnału.</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Architektura</th>
+          <th style="text-align: left">Tryb</th>
+          <th style="text-align: center">mAP (%)</th>
+          <th style="text-align: center">Top-1 (%)</th>
+          <th style="text-align: center">Top-5 (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">ResNet34</td>
+          <td style="text-align: left">RAW</td>
+          <td style="text-align: center">27.37</td>
+          <td style="text-align: center">22.50</td>
+          <td style="text-align: center">65.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ResNet34</td>
+          <td style="text-align: left">FFT</td>
+          <td style="text-align: center">29.43</td>
+          <td style="text-align: center">35.00</td>
+          <td style="text-align: center">70.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ResNet34</td>
+          <td style="text-align: left">Dual</td>
+          <td style="text-align: center">27.55</td>
+          <td style="text-align: center">22.50</td>
+          <td style="text-align: center">75.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DINO</td>
+          <td style="text-align: left">RAW</td>
+          <td style="text-align: center">34.03</td>
+          <td style="text-align: center">47.50</td>
+          <td style="text-align: center">95.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DINO</td>
+          <td style="text-align: left">FFT</td>
+          <td style="text-align: center">33.44</td>
+          <td style="text-align: center">30.00</td>
+          <td style="text-align: center">70.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DINO</td>
+          <td style="text-align: left">Dual</td>
+          <td style="text-align: center">34.17</td>
+          <td style="text-align: center">30.00</td>
+          <td style="text-align: center">85.00</td>
+      </tr>
+  </tbody>
+</table>
+<p>Wyniki powtórnej identyfikacji dla wszystkich konfiguracji treningowych. Modyfikacje przeprowadzone na danych w postaci wykresu waterfall: dropout, gaussian_noise, cutout, random_crop, flip_lr. Augmentacje dla danych przedstawionych w postaci spektrogramu: dropout, gaussian_noise, cutout.</p>
 <h2 id="etap-3-re-identyfikacja-krzyżowa-cross-camera-re-id">
   Etap 3. Re-identyfikacja krzyżowa (Cross-Camera Re-ID)
   <a class="heading-link" href="#etap-3-re-identyfikacja-krzy%c5%bcowa-cross-camera-re-id">

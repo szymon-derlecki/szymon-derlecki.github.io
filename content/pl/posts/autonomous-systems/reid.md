@@ -198,9 +198,22 @@ Poniżej przedstawiono wizualizację danych akustycznych w postaci spektrogramó
 | :---: | :---: |
 | ![](/images/ship_FFT.png) | ![](/images/ship_NO_FFT.png) |
 
-*Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie*
+Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie.
 
-> **[TUTAJ MIEJSCE NA TABELĘ Z WYNIKAMI AKUSTYCZNYMI]**
+### Wyniki identyfikacji akustycznej (DAS)
+
+Poniższa tabela prezentuje zestawienie wyników dla poszczególnych architektur oraz trybów przetwarzania sygnału.
+
+| Architektura | Tryb | mAP (%) | Top-1 (%) | Top-5 (%) |
+| :--- | :--- | :---: | :---: | :---: |
+| ResNet34 | RAW | 27.37 | 22.50 | 65.00 |
+| ResNet34 | FFT | 29.43 | 35.00 | 70.00 |
+| ResNet34 | Dual | 27.55 | 22.50 | 75.00 |
+| DINO | RAW | 34.03 | 47.50 | 95.00 |
+| DINO | FFT | 33.44 | 30.00 | 70.00 |
+| DINO | Dual | 34.17 | 30.00 | 85.00 |
+
+Wyniki powtórnej identyfikacji dla wszystkich konfiguracji treningowych. Modyfikacje przeprowadzone na danych w postaci wykresu waterfall: dropout, gaussian_noise, cutout, random_crop, flip_lr. Augmentacje dla danych przedstawionych w postaci spektrogramu: dropout, gaussian_noise, cutout.
 
 ## Etap 3. Re-identyfikacja krzyżowa (Cross-Camera Re-ID)
 
