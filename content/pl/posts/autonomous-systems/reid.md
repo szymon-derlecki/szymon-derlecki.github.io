@@ -196,7 +196,7 @@ Poniżej przedstawiono wizualizację danych akustycznych w postaci spektrogramó
 
 | Zastosowane FFT | Brak FFT (Surowy sygnał) |
 | :---: | :---: |
-| ![](static/images/ship_FFT.png) | ![](static/images/ship_NO_FFT.png) |
+| ![](/images/ship_FFT.png) | ![](/images/ship_NO_FFT.png) |
 
 *Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie*
 

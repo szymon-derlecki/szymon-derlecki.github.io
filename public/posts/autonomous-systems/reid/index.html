@@ -425,8 +425,29 @@ width="900"/></p>
 <p>W pracy z sygnałem DAS dzieliłem go na 5 kawałków z offsetem 250 m od środka statku. Trzeba było wykonać w tym celu minimalną korektę, ale generalnie bardzo istotne jest zwrócenie uwagi na fakt, iż taka korekta nigdy nie będzie w stu procentach perfekcyjna. Ze względu na to, że warunki środowiskowe bywają różne - raz są stabilne, raz gorsze, a wiatr może zmieniać się nawet w trakcie dnia - sygnał zawsze będzie się minimalnie przemieszczał. Dlatego zastosowałem szerokie okno 250 m, aby mieć pewność, że zachowam jak najwięcej kluczowych danych akustycznych.</p>
 <p>Podczas prób uczenia szybko okazało się, że trenowanie modelu z identycznymi parametrami jak w przypadku zdjęć jest bardzo niestabilne. Konieczne było zastosowanie harmonogramowania <em>Cosine Annealing</em> i odpowiednie dostrojenie optymalizatora. Aby wyciągnąć charakterystykę sygnału i dać modelowi pole do nauki, przetestowałem spektrogramy STFT, dzieląc je na identyczne kafelki (<em>patches</em>). Podobnie jak przy kamerach, zbiory danych (przechowywane jako macierze w formacie <code>.npy</code>) poddawałem licznym augmentacjom. Wdrożyłem dedykowany system, który mógł nakładać filtry kaskadowo na cały zbiór (<em>stack</em>) lub dzielić dane na porcje otrzymujące pojedyncze modyfikacje (<em>split</em>). System ten aplikował m.in. <em>dropout</em> i <em>cutout</em> (wycinanie fragmentów sygnału), odbicia w osiach poziomej i pionowej, losowe przycinanie (<em>random crop</em>) oraz dodawanie szumu Gaussa skalowanego do odchylenia standardowego samego sygnału.</p>
 <p>Koniec końców okazało się, że przy poszukiwaniu konkretnych jednostek, surowy sygnał to za mało i trzeba z nim nieco więcej podziałać - mocniej pofiltrować albo dodać inne transformacje czasowo-częstotliwościowe. Zauważyłem, że świetne rezultaty dawało złożenie wykresu <em>waterfall</em> z bazowym sygnałem prezentowanym na <em>spektrogramie STFT</em>. Co ciekawe, nawet jeśli suche wartości w zbiorczej tabelce metryk nie wydawały się rewelacyjne, to przy testach przeprowadzanych na osobnych przykładach takie podejście sprawdzało się najlepiej i pozwalało w najskuteczniejszy sposób różnicować jednostki.</p>
-<blockquote>
-<p><strong>[TUTAJ MIEJSCE NA SPEKTROGRAMY / WYKRESY WATERFALL]</strong></p></blockquote>
+<h3 id="analiza-sygnału-akustycznego-das">
+  Analiza sygnału akustycznego (DAS)
+  <a class="heading-link" href="#analiza-sygna%c5%82u-akustycznego-das">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Poniżej przedstawiono wizualizację danych akustycznych w postaci spektrogramów (wykresów typu waterfall). Zestawienie ukazuje różnicę między surowym sygnałem a reprezentacją po zastosowaniu transformacji Fouriera.</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Zastosowane FFT</th>
+          <th style="text-align: center">Brak FFT (Surowy sygnał)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="/images/ship_FFT.png" alt=""></td>
+          <td style="text-align: center"><img src="/images/ship_NO_FFT.png" alt=""></td>
+      </tr>
+  </tbody>
+</table>
+<p><em>Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie</em></p>
 <blockquote>
 <p><strong>[TUTAJ MIEJSCE NA TABELĘ Z WYNIKAMI AKUSTYCZNYMI]</strong></p></blockquote>
 <h2 id="etap-3-re-identyfikacja-krzyżowa-cross-camera-re-id">
