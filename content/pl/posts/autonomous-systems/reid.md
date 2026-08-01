@@ -348,12 +348,11 @@ Identyfikacja jednostek w nocy stanowi szczególne wyzwanie ze względu na ogran
 
 </div>
 
-<div style="text-align: center;">
-
-<strong>Diagram podobieństwa dla dwóch jednostek widocznych nocą</strong>
-<br>
-<img src="/images/2_vessels_at_night.png" alt="Podobieństwo dla dwóch statków uchwyconych nocą" style="max-width: 100%; height: auto;"/>
-
+<div style="text-align: center; width: 100%;">
+    <strong>Diagram podobieństwa dla dwóch jednostek widocznych nocą</strong>
+    <br>
+    <br>
+    <img src="/images/2_vessels_at_night.png" alt="Podobieństwo dla dwóch statków uchwyconych nocą" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 </div>
 
 
