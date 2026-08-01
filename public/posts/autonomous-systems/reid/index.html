@@ -181,7 +181,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              11 min czytania
+              12 min czytania
             </span>
           </div>
           
@@ -538,8 +538,185 @@ width="900"/></p>
 <li><strong>Pełna fuzja (plany na przyszłość):</strong> Na sam koniec, podczas burzy mózgów z promotorem, wpadliśmy na pomysł przetrenowania całości na parach Cross-Camera z jednoczesnym uwzględnieniem par Single-Camera z obu kamer jednocześnie. Ze względu na brak czasu pozostaje to w sferze przyszłych eksperymentów, które być może kiedyś zrealizuję z czystej ciekawości.</li>
 </ul>
 <p>Dla ułatwienia i wizualizacji tego procesu, poniżej zamieszczam schematy obrazujące zrealizowane oraz planowane strategie próbkowania, a także macierze podobieństwa statków.</p>
+<h3 id="przykładowa-para-treningowa-cross-camera-re-id">
+  Przykładowa para treningowa: Cross-Camera Re-ID
+  <a class="heading-link" href="#przyk%c5%82adowa-para-treningowa-cross-camera-re-id">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>W przypadku re-identyfikacji krzyżowej, model otrzymywał w parze ujęcia tej samej jednostki pochodzące z dwóch różnych źródeł wideo. Poniżej znajduje się przykład takiej pary. Aby zwiększyć uniwersalność modelu, na zdjęcie z kamery Sprogø nałożono dodatkowe augmentacje: odbicie lustrzane w poziomie (symulujące inny kierunek ruchu) oraz modyfikację jasności.</p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Widok 1: Sprogø (Odwrócenie + Zmiana jasności)</th>
+          <th style="text-align: center">Widok 2: Camera East (Oryginał)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="/images/single_cam_cam2.jpg" style="transform: scaleX(-1); filter: brightness(0.65);" alt="Sprogø - Augmentacja" width="400"/></td>
+          <td style="text-align: center"><img src="/images/single_cam_cam1.jpg" alt="Camera East - Oryginał" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<hr>
+<h3 id="wyniki-ewaluacji-cross-camera-re-id">
+  Wyniki ewaluacji: Cross-Camera Re-ID
+  <a class="heading-link" href="#wyniki-ewaluacji-cross-camera-re-id">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Poniższe zestawienia prezentują szczegółowe wyniki dla różnych wariantów treningu krzyżowego (cross-camera). Porównano klasyczną architekturę ResNet34 z modelem DINOv2 w konfiguracji bazowej oraz w scenariuszach hybrydowych.</p>
+<p><strong>Tabela 1: Konfiguracja bazowa (Baseline Cross-Camera)</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Backbone</th>
+          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Top-1 (%)</th>
+          <th style="text-align: center">Top-5 (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">14.03</td>
+          <td style="text-align: center">33.94</td>
+          <td style="text-align: center">18.80</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">12.76</td>
+          <td style="text-align: center">52.04</td>
+          <td style="text-align: center">18.81</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">13.12</td>
+          <td style="text-align: center">36.20</td>
+          <td style="text-align: center">21.18</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">21.94</td>
+          <td style="text-align: center">45.92</td>
+          <td style="text-align: center">24.49</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p><strong>Tabela 2: Trening hybrydowy (Imbalanced Data-Sampling)</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Backbone</th>
+          <th style="text-align: center">Training Setup</th>
+          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Top-1 (%)</th>
+          <th style="text-align: center">Top-5 (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Cross + Sprogø single</td>
+          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">32.13</td>
+          <td style="text-align: center">48.42</td>
+          <td style="text-align: center">26.67</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Cross + Storebælt single</td>
+          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">14.29</td>
+          <td style="text-align: center">47.96</td>
+          <td style="text-align: center">21.11</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Cross + Sprogø single</td>
+          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">19.46</td>
+          <td style="text-align: center">36.65</td>
+          <td style="text-align: center">21.42</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Cross + Storebælt single</td>
+          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">13.27</td>
+          <td style="text-align: center">42.86</td>
+          <td style="text-align: center">23.08</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p><strong>Tabela 3: Trening hybrydowy (Balanced Data-Sampling)</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Backbone</th>
+          <th style="text-align: center">Training Setup</th>
+          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Top-1 (%)</th>
+          <th style="text-align: center">Top-5 (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Cross + Sprogø single</td>
+          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">15.84</td>
+          <td style="text-align: center">32.58</td>
+          <td style="text-align: center">24.55</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Cross + Storebælt single</td>
+          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">18.37</td>
+          <td style="text-align: center">37.24</td>
+          <td style="text-align: center">26.48</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Cross + Sprogø single</td>
+          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">32.58</td>
+          <td style="text-align: center">61.09</td>
+          <td style="text-align: center">24.39</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Cross + Storebælt single</td>
+          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">17.35</td>
+          <td style="text-align: center">48.47</td>
+          <td style="text-align: center">23.24</td>
+      </tr>
+  </tbody>
+</table>
+</div>
 <blockquote>
-<p><strong>[TUTAJ MIEJSCE NA ZDJĘCIA STRATEGII PRÓBKOWANIA ORAZ MACIERZE PODOBIEŃSTWA]</strong></p></blockquote>
+<p><strong>[TUTAJ MIEJSCE NA DIAGRAMY]</strong></p></blockquote>
 <h3 id="wnioski-z-uczenia-krzyżowego-między-kamerami">
   Wnioski z uczenia krzyżowego (między kamerami)
   <a class="heading-link" href="#wnioski-z-uczenia-krzy%c5%bcowego-mi%c4%99dzy-kamerami">

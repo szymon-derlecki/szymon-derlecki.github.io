@@ -257,9 +257,54 @@ W przypadku re-identyfikacji krzyżowej, model otrzymywał w parze ujęcia tej s
 
 </div>
 
+---
 
+### Wyniki ewaluacji: Cross-Camera Re-ID
 
-> **[MIEJSCE NA TABELE Z WYNIKAMI]**
+Poniższe zestawienia prezentują szczegółowe wyniki dla różnych wariantów treningu krzyżowego (cross-camera). Porównano klasyczną architekturę ResNet34 z modelem DINOv2 w konfiguracji bazowej oraz w scenariuszach hybrydowych.
+
+**Tabela 1: Konfiguracja bazowa (Baseline Cross-Camera)**
+
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
+| Backbone | Evaluation Protocol | Top-1 (%) | Top-5 (%) | mAP (%) |
+| :---: | :---: | :---: | :---: | :---: |
+| ResNet34 | Sprogø &rarr; Storebælt East | 14.03 | 33.94 | 18.80 |
+| ResNet34 | Storebælt East &rarr; Sprogø | 12.76 | 52.04 | 18.81 |
+| DINOv2 | Sprogø &rarr; Storebælt East | 13.12 | 36.20 | 21.18 |
+| DINOv2 | Storebælt East &rarr; Sprogø | 21.94 | 45.92 | 24.49 |
+
+</div>
+
+<br>
+
+**Tabela 2: Trening hybrydowy (Imbalanced Data-Sampling)**
+
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
+| Backbone | Training Setup | Evaluation Protocol | Top-1 (%) | Top-5 (%) | mAP (%) |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| ResNet34 | Cross + Sprogø single | Sprogø &rarr; Storebælt East | 32.13 | 48.42 | 26.67 |
+| ResNet34 | Cross + Storebælt single | Storebælt East &rarr; Sprogø | 14.29 | 47.96 | 21.11 |
+| DINOv2 | Cross + Sprogø single | Sprogø &rarr; Storebælt East | 19.46 | 36.65 | 21.42 |
+| DINOv2 | Cross + Storebælt single | Storebælt East &rarr; Sprogø | 13.27 | 42.86 | 23.08 |
+
+</div>
+
+<br>
+
+**Tabela 3: Trening hybrydowy (Balanced Data-Sampling)**
+
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
+| Backbone | Training Setup | Evaluation Protocol | Top-1 (%) | Top-5 (%) | mAP (%) |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| ResNet34 | Cross + Sprogø single | Sprogø &rarr; Storebælt East | 15.84 | 32.58 | 24.55 |
+| ResNet34 | Cross + Storebælt single | Storebælt East &rarr; Sprogø | 18.37 | 37.24 | 26.48 |
+| DINOv2 | Cross + Sprogø single | Sprogø &rarr; Storebælt East | 32.58 | 61.09 | 24.39 |
+| DINOv2 | Cross + Storebælt single | Storebælt East &rarr; Sprogø | 17.35 | 48.47 | 23.24 |
+
+</div>
 
 > **[TUTAJ MIEJSCE NA DIAGRAMY]**
 
