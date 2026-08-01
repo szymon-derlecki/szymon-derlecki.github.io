@@ -188,25 +188,25 @@ Wykres przedstawiający podobieństwo dwóch różnych statków zarejestrowanych
 
 ---
 
-## Etap 2. Re-identyfikacja akustyczna z użyciem kabla DAS (Distributed Acoustic Sensing)
+## Etap 2. Re-identyfikacja akustyczna z użyciem podmorskiego kabla światłowodowego DAS (Distributed Acoustic Sensing)
 
-Druga część tego projektu skupiła się na bardzo podobnym podejściu w kwestii konstrukcji oprogramowania, aczkolwiek warto tu wyszczególnić jedną, dość istotną różnicę, jaką są dane zbierane przez podwodny kabel światłowodowy, co w efekcie pozwoliło na przeprowadzenie dość mocno eksperymentalnego, wręcz prototypowego etapu projektu. Konkretniej w tym wypadku - podejście do identyfikacji statków bazuje na danych wibracyjnych i akustycznych (generowanych m.in. przez pracę silnika czy śruby napędowej statku). Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który w naturalny sposób pełni tutaj funkcję gigantycznego czujnika.
+Choć druga część projektu wykorzystuje niemal identyczne rozwiązania na poziomie oprogramowania, to fundamentalnie różni się sprzętem, który został użyty podczas zbierania danych. Wdrożenie podwodnego kabla światłowodowego otworzyło drogę do mocno eksperymentalnego, wręcz prototypowego etapu. W tym podejściu statki identyfikowane są wyłącznie na podstawie danych wibracyjnych i akustycznych (np. szumu silnika i śrub napędowych). Kabel biegnący po dnie cieśniny działa tu w naturalny sposób jako ogromny, bardzo czuły sensor, a co w tym najfajniejsze, nie dość, że warunki atmosferyczne nie wpływają na niego tak mocno jak na kamerę, to do tego bardzo trudno jest go uszkodzić.
 
-W pracy z sygnałem DAS dzieliłem go na 5 kawałków z offsetem 250 m od środka statku. Trzeba było wykonać w tym celu minimalną korektę, ale generalnie bardzo istotne jest zwrócenie uwagi na fakt, iż taka korekta nigdy nie będzie w stu procentach perfekcyjna. Ze względu na to, że warunki środowiskowe bywają różne - raz są stabilne, raz gorsze, a wiatr może zmieniać się nawet w trakcie dnia - sygnał zawsze będzie się minimalnie przemieszczał. Dlatego zastosowałem szerokie okno 250 m, aby mieć pewność, że zachowam jak najwięcej kluczowych danych akustycznych.
+Należy jednak pamiętać o pewnym haczyku. Mimo że sam światłowód jest w porównaniu z kamerami znacznie bardziej odporny na warunki pogodowe, nie da się całkowicie zminimalizować wpływu środowiska na docierający do niego dźwięk. Prądy wodne, falowanie czy zmieniający się w ciągu dnia wiatr sprawiają, że rejestrowany sygnał akustyczny zawsze będzie się minimalnie przemieszczał. Z tego względu wspólnie z moimi promotorami podjęliśmy decyzję o podzieleniu sygnału na 5 segmentów, przyjmując margines 250 metrów w obie strony (w lewo i w prawo) od środka statku. W efekcie uzyskaliśmy szerokie okno o całkowitej rozpiętości około 500 metrów. Wymagało to wprawdzie minimalnej korekty, ale mając świadomość, że w zmiennym środowisku morskim nigdy nie będzie ona w stu procentach perfekcyjna, zastosowanie tak obszernego przedziału dało mi pewność, że zachowam jak najwięcej kluczowych danych akustycznych.
 
-Podczas prób uczenia szybko okazało się, że trenowanie modelu z identycznymi parametrami jak w przypadku zdjęć jest bardzo niestabilne. Konieczne było zastosowanie harmonogramowania *Cosine Annealing* i odpowiednie dostrojenie optymalizatora. Aby wyciągnąć charakterystykę sygnału i dać modelowi pole do nauki, przetestowałem spektrogramy STFT, dzieląc je na identyczne kafelki (*patches*). Podobnie jak przy kamerach, zbiory danych (przechowywane jako macierze w formacie `.npy`) poddawałem licznym augmentacjom. Wdrożyłem dedykowany system, który mógł nakładać filtry kaskadowo na cały zbiór (*stack*) lub dzielić dane na porcje otrzymujące pojedyncze modyfikacje (*split*). System ten aplikował m.in. *dropout* i *cutout* (wycinanie fragmentów sygnału), odbicia w osiach poziomej i pionowej, losowe przycinanie (*random crop*) oraz dodawanie szumu Gaussa skalowanego do odchylenia standardowego samego sygnału. 
+Podczas prób uczenia modelu szybko okazało się, że trenowanie sieci z identycznymi parametrami jak w przypadku zdjęć jest bardzo niestabilne. Konieczne było zastosowanie harmonogramowania *Cosine Annealing* i odpowiednie dostrojenie optymalizatora. Aby wyciągnąć charakterystykę sygnału i dać modelowi pole do nauki, przetestowałem spektrogramy STFT, ponownie dzieląc je na 5 kafelków. Podobnie jak przy danych z kamer, zbiory danych (przechowywane jako macierze w formacie `.npy`) poddawałem licznym augmentacjom. Wdrożyłem do tego dedykowany system, który potrafił nakładać filtry kaskadowo na cały zbiór lub dzielić dane na porcje otrzymujące pojedyncze modyfikacje. System aplikował m.in. *dropout*, *cutout* (wycinanie fragmentów sygnału), odbicia w osiach poziomej i pionowej, losowe przycinanie (*random crop*) oraz dodawanie szumu Gaussa skalowanego do odchylenia standardowego samego sygnału.
 
-Koniec końców okazało się, że przy poszukiwaniu konkretnych jednostek, surowy sygnał to za mało i trzeba z nim nieco więcej podziałać - mocniej pofiltrować albo dodać inne transformacje czasowo-częstotliwościowe. Zauważyłem, że świetne rezultaty dawało złożenie wykresu *waterfall* z bazowym sygnałem prezentowanym na *spektrogramie STFT*. Co ciekawe, nawet jeśli suche wartości w zbiorczej tabelce metryk nie wydawały się rewelacyjne, to przy testach przeprowadzanych na osobnych przykładach takie podejście sprawdzało się najlepiej i pozwalało w najskuteczniejszy sposób różnicować jednostki.
+Koniec końców okazało się, że przy poszukiwaniu i identyfikacji konkretnych jednostek, "surowy" sygnał to za mało. Wymagał on mocniejszego filtrowania i dodatkowych transformacji czasowo-częstotliwościowych. Świetne rezultaty dawało złożenie wykresu *waterfall* z bazowym sygnałem prezentowanym na spektrogramie STFT. Co ciekawe, nawet jeśli dla takiego zestawienia "suche" wartości w zbiorczej tabeli metryk nie wydawały się na pierwszy rzut oka rewelacyjne, to przy testach przeprowadzanych na osobnych przykładach, to właśnie takie podejście sprawdzało się najlepiej i pozwalało w najskuteczniejszy sposób różnicować jednostki na tym etapie projektu.
 
 ### Analiza sygnału akustycznego (DAS)
 
-Poniżej przedstawiono wizualizację danych akustycznych w postaci spektrogramów (wykresów typu waterfall). Zestawienie ukazuje różnicę między surowym sygnałem a reprezentacją po zastosowaniu transformacji Fouriera.
+Poniżej przedstawiono estawienie ukazujące różnicę między surowym sygnałem (prezentowanym za pomocą wykresu typu 'waterfall') a reprezentacją po zastosowaniu transformacji Fouriera (prezentowaną za pomocą spektrogramu).
 
 | Spektrogram STFT | Dane w postaci wykresu typu 'WATERFALL' |
 | :---: | :---: |
 | ![](/images/Ship_FFT.png) | ![](/images/Ship_NO_FFT.png) |
 
-Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale  akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie.
+Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie.
 
 ### Wyniki identyfikacji akustycznej (DAS)
 
@@ -214,14 +214,14 @@ Poniższa tabela prezentuje zestawienie wyników dla poszczególnych architektur
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Architektura | Tryb | mAP (%) | Top-1 (%) | Top-5 (%) |
+| Architektura |  | mAP (%) | Top-1 (%) | Top-5 (%) |
 | :---: | :---: | :---: | :---: | :---: |
-| ResNet34 | RAW | 27.37 | 22.50 | 65.00 |
-| ResNet34 | FFT | 29.43 | 35.00 | 70.00 |
-| ResNet34 | Dual | 27.55 | 22.50 | 75.00 |
-| DINO | RAW | 34.03 | 47.50 | 95.00 |
-| DINO | FFT | 33.44 | 30.00 | 70.00 |
-| DINO | Dual | 34.17 | 30.00 | 85.00 |
+| ResNet34 | Waterfall | 27.37 | 22.50 | 65.00 |
+| ResNet34 | Spektrogram | 29.43 | 35.00 | 70.00 |
+| ResNet34 | Waterfall + Spektrogram | 27.55 | 22.50 | 75.00 |
+| DINO | Waterfall | 34.03 | 47.50 | 95.00 |
+| DINO | Spektrogram | 33.44 | 30.00 | 70.00 |
+| DINO | Waterfall + Spektrogram | 34.17 | 30.00 | 85.00 |
 
 </div>
 
@@ -231,7 +231,7 @@ Wyniki powtórnej identyfikacji dla wszystkich konfiguracji treningowych. Modyfi
 <br>
 ![](/images/matrix_result_dual_temporal_2.png)
 
-Wykres podobieństwa porównujący te same dwie jednostki w kolejnych oknach czasowych, wygenerowana przez model dwukanałowy. Kontrast między statkami jest tu wyraźnie ostrzejszy niż w przypadku użycia wyłącznie surowego sygnału, co sugeruje, że dodanie kanału STFT skutecznie uwydatnia cechy dyskryminacyjne obecne już w danych przestrzennych.
+Wykres podobieństwa porównujący te same dwie jednostki w kolejnych oknach czasowych, wygenerowana przez model wytrenowany na danych dwukanałowych (waterfall + spektrogram). Kontrast między statkami jest tu wyraźnie ostrzejszy niż w przypadku użycia wyłącznie surowego sygnału lub samego spektrogramu, co sugeruje, że dodanie kanału STFT skutecznie wzmacnia istotne cechy obecne już w danych przestrzennych.
 
 ## Etap 3. Re-identyfikacja krzyżowa (Cross-Camera Re-ID)
 
@@ -314,13 +314,16 @@ Poniżej przedstawiono widok tej samej jednostki zarejestrowanej przez dwie ró�
 
 | Widok z pierwszej kamery | Widok z drugiej kamery |
 | :---: | :---: |
-| <img src="static/images/1765704238_310816000.jpg" alt="Widok z pierwszej kamery" width="400"/> | <img src="static/images/1765704150_310816000.jpg" alt="Widok z drugiej kamery" width="400"/> |
+| <img src="/images/1765704238_310816000.jpg" alt="Widok z pierwszej kamery" width="400"/> | <img src="/images/1765704150_310816000.jpg" alt="Widok z drugiej kamery" width="400"/> |
 
 </div>
 
-**Macierz analizy krzyżowej dla powyższej jednostki**
-<br>
-<img src="static/images/Same_vessel_diff_day.png" alt="Macierz Cross-Camera" style="max-width: 100%; height: auto;"/>
+<div style="text-align: center; width: 100%;">
+    <strong>Podobieństwo między dwoma kadrami powyższej jednostki</strong>
+    <br>
+    <br>
+    <img src="/images/Same_vessel_diff_day.png" alt="Macierz Cross-Camera" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+</div>
 
 ---
 

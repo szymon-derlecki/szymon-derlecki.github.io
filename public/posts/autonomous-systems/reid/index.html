@@ -195,19 +195,19 @@
 
       <div class="post-content">
         
-        <p>Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy. Każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:</p>
+        <p>Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy, gdzie każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:</p>
 <ol>
 <li>
 <p><strong>Etap 1: Re-identyfikacja wizualna w obrębie jednej kamery (Single-Camera Re-ID)</strong>
-Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie jak najbardziej prawdiłowo rozpoznawać konkretną jednostkę, skutecznie ignorując zakłócenia z zewnątrz, takie jak chociażby zmienne warunki atmosferyczne. Na tym etapie weryfikujemy, czy stworzenie takiego mechanizmu jest w ogóle wykonalne, a także czy wybrane rozwiązanie faktycznie potrafi prawidłowo dopasowywać do siebie obrazy statków - analizując dane zbierane przez każdą z kamer z osobna.</p>
+Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie jak najpoprawniej rozpoznawać konkretną jednostkę, skutecznie ignorując zakłócenia z zewnątrz, takie jak chociażby zmienne warunki atmosferyczne. Na tym etapie weryfikujemy, czy stworzenie takiego mechanizmu jest w ogóle wykonalne, a także, jeśli tak - to czy wybrane rozwiązanie faktycznie potrafi prawidłowo dopasowywać do siebie wycinki statków - analizując dane zebrane przez każdą z kamer z osobna.</p>
 </li>
 <li>
 <p><strong>Etap 2: Re-identyfikacja akustyczna z użyciem kabla DAS (Distributed Acoustic Sensing)</strong>
-Druga część to zwrot w zupełnie inną stronę i jednocześnie dość mocno eksperymentalny, prototypowy etap projektu. Prezentuję w niej podejście do identyfikacji statków bazujące na danych wibracyjnych i akustycznych (generowanych m.in. przez pracę silnika czy śruby napędowej statku). Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który w naturalny sposób pełni tutaj funkcję gigantycznego czujnika.</p>
+Druga część to zwrot w zupełnie inną stronę i jednocześnie dość mocno eksperymentalny, wręcz prototypowy etap projektu. Na tym etapie prezentuję podejście do identyfikacji statków bazujące na danych wibracyjnych i akustycznych (generowanych m.in. przez pracę silnika czy śruby napędowej statku). Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który w naturalny sposób pełni tutaj funkcję czujnika obejmującego bardzo duży rejon okolicy, przez którą przechodzi największy duński morski korytarz.</p>
 </li>
 <li>
 <p><strong>Etap 3: Re-identyfikacja krzyżowa (Cross-Camera Re-ID)</strong>
-Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajemną identyfikacją statków na kadrach pochodzących z różnych źródeł - tym razem działając &ldquo;na krzyż&rdquo;. Oceniamy tutaj, czy model potrafi prawidłowo sparować tę samą jednostkę widoczną z dwóch drastycznie różnych perspektyw: ujęcia łapanego niemal z poziomu morza z wyspy Sprogø z widokiem rejestrowanym przez drugą z kamer, umieszczoną wysoko na pylonie mostu.</p>
+Finałowa część przedstawia architekturę, której zadaniem jest poradzenie sobie ze wzajemną identyfikacją statków na kadrach pochodzących z różnych źródeł - tym razem działając &ldquo;na krzyż&rdquo; (między obiema kamerami). Oceniamy tutaj, czy skonstruowany program potrafi prawidłowo sparować tę samą jednostkę widoczną z dwóch drastycznie różnych perspektyw: ujęcia łapanego niemal z poziomu morza z wyspy Sprogø z widokiem rejestrowanym przez drugą z kamer, umieszczoną wysoko na wschodnim pylonie mostu.</p>
 </li>
 </ol>
 <h2 id="etap-1-re-identyfikacja-wizualna-w-obrębie-jednej-kamery">
@@ -217,12 +217,12 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>W tej części projektu główną uwagę skupiłem na zdefiniowaniu docelowej architektury sieci neuronowej. Ostatecznie, chcąc sprawdzić, czy wybór podejścia robi w tym zadaniu istotną różnicę, zdecydowałem się na przetestowanie i zestawienie ze sobą dwóch zupełnie różnych rozwiązań.</p>
-<p>Pierwszym z nich jest ResNet34 - klasyczna, konwolucyjna sieć neuronowa (CNN). Działa ona na zasadzie &ldquo;prześlizgiwania się&rdquo; po obrazie oknem filtra (np. w rozmiarze 64x64 px) od lewej do prawej i z góry na dół, skanując w ten sposób płynnie całą klatkę i zbierając najważniejsze informacje dot. obrazu. Drugim wariantem jest DINOv2, czyli nieco nowsza architektura typu Vision Transformer (ViT). W jej przypadku filtr to tak naprawdę <em>patch</em> (wycinek), który nie przesuwa się płynnie, ale przeskakuje po obrazie niczym owad z miejsca na miejsce, zbierając w ten sposób najcenniejsze informacje.</p>
-<p>Ze względu na to, że proces identyfikacji bazowałem na metodzie wykorzystującej <em>supervised contrastive loss</em> (która wpisuje się w paradygmat uczenia nadzorowanego), algorytm potrzebował precyzyjnych informacji o tym, na co właściwie patrzy. Tutaj do gry wszedł system AIS, o którym można myśleć jak o morskim odpowiedniku popularnego serwisu Flightradar24. Przetworzyłem surowe dane z logów AIS w taki sposób, aby bezbłędnie przypisać unikalną rejestrację statku do konkretnego wycinka statku, na którym ta jednostka faktycznie się znajdowała.</p>
-<p>Mając przygotowaną w ten sposób bazę rzetelnie utworzonych i prawidłowo opisanych danych (<em>ground truth</em>), przeszedłem do budowy zbioru treningowego. W tym etapie testowałem wyłącznie wariant, który wykorzystywał dane z każdej z kamer z osobna (<em>Single-Camera Re-ID</em>), a co za tym idzie proces dobierania w pary ograniczał się ściśle do kadrów pochodzących z jednego źródła wideo.</p>
-<p>Jak to wyglądało w praktyce? Każde bazowe zdjęcie statku poddałem zróżnicowanym augmentacjom (wykorzystałem tutaj losowe odbicia lustrzane w poziomie, modyfikacje jasności, kontrastu i nasycenia za pomocą <em>Color Jitter</em> oraz drobne transformacje afiniczne, takie jak rotacje czy skalowanie), generując na jego podstawie dwie nowe, wizualnie zmodyfikowane wersje. W ten sposób z jednego oryginalnego ujęcia uzyskiwałem parę kadrów reprezentującą tę samą jednostkę. Jest to absolutnie kluczowe podejście, aby sieć mogła skutecznie uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em>.</p>
-<p>By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogubili, poniżej wrzucam schemat prosto z mojej pracy magisterskiej. Obrazuje on dokładnie to, jak krok po kroku przebiegał proces tworzenia takich uczących par.</p>
+<p>W tej części projektu główną uwagę skupiłem na zdefiniowaniu docelowej architektury sieci neuronowej. Ostatecznie, chcąc sprawdzić, czy wybór podejścia robi w tym zadaniu istotną różnicę. W związku z tym zdecydowałem się na przetestowanie i zestawienie ze sobą dwóch zupełnie różnych rozwiązań.</p>
+<p>Pierwszym z nich jest ResNet34 - klasyczna, konwolucyjna sieć neuronowa (CNN). Działa ona na zasadzie &ldquo;prześlizgiwania się&rdquo; po obrazie oknem filtra (np. w rozmiarze 64x64 px) od lewej do prawej i z góry na dół, skanując w ten sposób płynnie całą klatkę i zbierając najważniejsze informacje dot. obrazu i obiektów na nim się znajdujących. Drugim wariantem jest DINOv2, czyli nieco nowsza architektura typu Vision Transformer (ViT). W jej przypadku filtr to tak naprawdę nieduży wycinek, który nie przesuwa się płynnie, ale przeskakuje po obrazie niczym owad z miejsca na miejsce, zbierając w ten sposób najcenniejsze informacje z klatek video.</p>
+<p>Ze względu na to, że proces identyfikacji bazowałem na metodzie wykorzystującej <em>supervised contrastive loss</em> (która wpisuje się w paradygmat uczenia nadzorowanego), algorytm potrzebował precyzyjnych informacji o tym, na co właściwie patrzy. Tutaj do gry wszedł system AIS, o którym można myśleć jak o morskim odpowiedniku popularnego serwisu Flightradar24. Przetworzyłem surowe dane z logów AIS sposób, który umożliwia bezbłędne przypisanie unikalnej rejestracji statku do odpowiadającego mu obrazu.</p>
+<p>Mając przygotowaną w ten sposób bazę rzetelnie utworzonych i prawidłowo opisanych danych, płynnie przeszedłem do budowy zbioru treningowego. Na tym etapie testowałem wyłącznie wariant, który wykorzystywał dane z każdej z kamer z osobna (<em>Single-Camera Re-ID</em>), a co za tym idzie proces dobierania w pary ograniczał się wyłącznie do kadrów pochodzących z jednego źródła wideo.</p>
+<p>Jak wyglądało to w praktyce? Każde bazowe zdjęcie statku poddałem zróżnicowanym modyfikacjom (wykorzystałem tutaj aplikowane w losowy sposób odbicia lustrzane w poziomie, modyfikacje jasności, kontrastu i nasycenia, a także drobne transformacje geometryczne, takie jak rotacje czy skalowanie), generując na jego podstawie dwie nowe, wizualnie zmodyfikowane wersje. W ten sposób z jednego oryginalnego ujęcia uzyskiwałem parę kadrów reprezentującą tę samą jednostkę. Jest to absolutnie kluczowe podejście, aby sieć mogła skutecznie uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em>.</p>
+<p>By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogubili, poniżej wrzucam schemat prosto z mojej pracy magisterskiej. Obrazuje on dokładnie to, jak krok po kroku przebiegał proces tworzenia wyżej wymienionych par.</p>
 <h3 id="przykłady-par-treningowych-single-camera-re-id">
   Przykłady par treningowych (Single-Camera Re-ID)
   <a class="heading-link" href="#przyk%c5%82ady-par-treningowych-single-camera-re-id">
@@ -230,7 +230,7 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefiniowanych modyfikacjach zdjęć użytych w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em> niezależnie od kierunku, w którym płynie jednostka.</p>
+<p>Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefiniowanych modyfikacjach zdjęć użytych w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie, co pozwoliło sieci uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em> niezależnie od kierunku, w którym płynie jednostka.</p>
 <p><strong>Widok 1: Wysepka Sprogø</strong></p>
 <table>
 <tr>
@@ -261,7 +261,7 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
 </td>
 </tr>
 </table>
-<p>Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.</p>
+<p>Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich diagramy, obrazujące podobieństwo analizowanych kadrów oraz jednostek na nich się znajdujących.</p>
 <h3 id="wyniki-ewaluacji-single-camera-re-identification">
   Wyniki ewaluacji: Single-Camera Re-Identification
   <a class="heading-link" href="#wyniki-ewaluacji-single-camera-re-identification">
@@ -275,8 +275,8 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
 <table>
   <thead>
       <tr>
-          <th style="text-align: center">Training Strategy</th>
-          <th style="text-align: center">Evaluation Set</th>
+          <th style="text-align: center">Dane Treningowe</th>
+          <th style="text-align: center">Dane ewaluacyjne</th>
           <th style="text-align: center">Top-1 Acc (%)</th>
           <th style="text-align: center">Top-5 Acc (%)</th>
           <th style="text-align: center">mAP (%)</th>
@@ -284,29 +284,29 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: center"><strong>V1:</strong> Sprogø Only</td>
-          <td style="text-align: center">Sprogø Internally</td>
+          <td style="text-align: center"><strong>V1:</strong> Sprogø</td>
+          <td style="text-align: center">Sprogø</td>
           <td style="text-align: center">72.85</td>
           <td style="text-align: center">91.86</td>
           <td style="text-align: center">41.44</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V2:</strong> Storebælt East Only</td>
-          <td style="text-align: center">Storebælt East Internally</td>
+          <td style="text-align: center"><strong>V2:</strong> Storebælt East</td>
+          <td style="text-align: center">Storebælt East</td>
           <td style="text-align: center">87.76</td>
           <td style="text-align: center">96.94</td>
           <td style="text-align: center">47.13</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V3:</strong> Joint Single</td>
-          <td style="text-align: center">Sprogø Internally</td>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Storebælt East</td>
+          <td style="text-align: center">Sprogø</td>
           <td style="text-align: center">68.78</td>
           <td style="text-align: center">90.05</td>
           <td style="text-align: center">33.01</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V3:</strong> Joint Single</td>
-          <td style="text-align: center">Storebælt East Internally</td>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Storebælt East</td>
+          <td style="text-align: center">Storebælt East</td>
           <td style="text-align: center">80.10</td>
           <td style="text-align: center">92.86</td>
           <td style="text-align: center">50.43</td>
@@ -320,8 +320,8 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
 <table>
   <thead>
       <tr>
-          <th style="text-align: center">Training Strategy</th>
-          <th style="text-align: center">Evaluation Set</th>
+          <th style="text-align: center">Dane Treningowe</th>
+          <th style="text-align: center">Dane ewaluacyjne</th>
           <th style="text-align: center">Top-1 Acc (%)</th>
           <th style="text-align: center">Top-5 Acc (%)</th>
           <th style="text-align: center">mAP (%)</th>
@@ -329,29 +329,29 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: center"><strong>V1:</strong> Sprogø Only</td>
-          <td style="text-align: center">Sprogø Internally</td>
+          <td style="text-align: center"><strong>V1:</strong> Sprogø</td>
+          <td style="text-align: center">Sprogø</td>
           <td style="text-align: center">75.57</td>
           <td style="text-align: center">93.21</td>
           <td style="text-align: center">44.81</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V2:</strong> Storebælt East Only</td>
-          <td style="text-align: center">Storebælt East Internally</td>
+          <td style="text-align: center"><strong>V2:</strong> Storebælt East</td>
+          <td style="text-align: center">Storebælt East</td>
           <td style="text-align: center">86.73</td>
           <td style="text-align: center">96.43</td>
           <td style="text-align: center">53.46</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V3:</strong> Joint Single</td>
-          <td style="text-align: center">Sprogø Internally</td>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Storebælt East</td>
+          <td style="text-align: center">Sprogø</td>
           <td style="text-align: center">71.95</td>
           <td style="text-align: center">92.76</td>
           <td style="text-align: center">43.75</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V3:</strong> Joint Single</td>
-          <td style="text-align: center">Storebælt East Internally</td>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Storebælt East</td>
+          <td style="text-align: center">Storebælt East</td>
           <td style="text-align: center">82.65</td>
           <td style="text-align: center">93.88</td>
           <td style="text-align: center">51.14</td>
@@ -366,7 +366,7 @@ Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajem
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowo jeden kadr znacznie różniącego się statku, aby sprawdzić czy model faktycznie się sprawdza.</p>
+<p>Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowy kadr znacznie odbiegającego od nich statku, aby sprawdzić czy skonstruowane rozwiązanie faktycznie jest skuteczne.</p>
 <div style="display: flex; gap: 20px; justify-content: center;">
 <p><img src="/images/1763804942_220466000.jpg"
 alt="Ujęcie 1 - Cel dla T=0s"
@@ -382,15 +382,15 @@ width="700"/></p>
 alt="Ujęcie 3 - Inna jednostka"
 width="900"/></p>
 </div>
-<p><em>Zdjęcia docelowej jednostki oraz dystraktora wykorzystane do porównania trzech statków.</em></p>
+<p><em>Zdjęcia docelowej jednostki oraz dodatkowego statku wykorzystane do porównania trzech statków.</em></p>
 <br>
 <p><strong>Macierz podobieństwa kosinusowego (Trzy jednostki)</strong></p>
 <div style="text-align: center;">
 <p><img src="/images/similarity_matrix_same_and_different.png"
-alt="Macierz podobieństwa kosinusowego dla trzech jednostek"
+alt="Schemat podobieństwa dla trzech jednostek"
 width="900"/></p>
 </div>
-<p>Diagram podobieństwa dla docelowej jednostki w przedstawionej z nieznacznym odstępem czasowym w porównaniu z kompletnie innym statkiem.</p>
+<p>Diagram podobieństwa dla jednostki docelowej oraz przykładowego statku o odmiennej tożsamości.</p>
 <hr>
 <h4 id="porównanie-dwóch-różnych-statków-z-dwóch-różnych-dni">
   Porównanie dwóch różnych statków z dwóch różnych dni
@@ -399,7 +399,7 @@ width="900"/></p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<p>Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od doby.</p>
+<p>Aby ocenić odporność modelu zarówno na różnice statkami, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od momentu, w którym wykonano zdjęcie.</p>
 <div style="display: flex; gap: 20px; justify-content: center;">
 <p><img src="/images/1765715109_305425000.jpg"
 alt="Jednostka 305425000"
@@ -413,7 +413,7 @@ width="700"/></p>
 <p><strong>Macierz podobieństwa kosinusowego (Różne dni)</strong></p>
 <div style="text-align: center;">
 <p><img src="/images/sim_matrix_different_days.png"
-alt="Macierz podobieństwa kosinusowego dla różnych dni"
+alt="Schemat podobieństwa dla różnych dni"
 width="900"/></p>
 </div>
 <p>Wykres przedstawiający podobieństwo dwóch różnych statków zarejestrowanych w różnych dniach. Niski wynik podobieństwa potwierdza, że model potrafi skutecznie rozróżniać jednostki pomimo zmian warunków środowiskowych.</p>
@@ -733,15 +733,18 @@ width="900"/></p>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: center"><img src="static/images/1765704238_310816000.jpg" alt="Widok z pierwszej kamery" width="400"/></td>
-          <td style="text-align: center"><img src="static/images/1765704150_310816000.jpg" alt="Widok z drugiej kamery" width="400"/></td>
+          <td style="text-align: center"><img src="/images/1765704238_310816000.jpg" alt="Widok z pierwszej kamery" width="400"/></td>
+          <td style="text-align: center"><img src="/images/1765704150_310816000.jpg" alt="Widok z drugiej kamery" width="400"/></td>
       </tr>
   </tbody>
 </table>
 </div>
-<p><strong>Macierz analizy krzyżowej dla powyższej jednostki</strong>
-<br>
-<img src="static/images/Same_vessel_diff_day.png" alt="Macierz Cross-Camera" style="max-width: 100%; height: auto;"/></p>
+<div style="text-align: center; width: 100%;">
+    <strong>Podobieństwo między dwoma kadrami powyższej jednostki</strong>
+    <br>
+    <br>
+    <img src="/images/Same_vessel_diff_day.png" alt="Macierz Cross-Camera" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+</div>
 <hr>
 <h3 id="re-identyfikacja-krzyżowa-w-warunkach-nocnych">
   Re-identyfikacja krzyżowa w warunkach nocnych
