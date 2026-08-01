@@ -5,34 +5,34 @@ draft: false
 description: "Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki, nawet gdy znikną z radarów."
 ---
 
-Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy. Każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:
+Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy, gdzie każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:
 
 1. **Etap 1: Re-identyfikacja wizualna w obrębie jednej kamery (Single-Camera Re-ID)**
-Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie jak najbardziej prawdiłowo rozpoznawać konkretną jednostkę, skutecznie ignorując zakłócenia z zewnątrz, takie jak chociażby zmienne warunki atmosferyczne. Na tym etapie weryfikujemy, czy stworzenie takiego mechanizmu jest w ogóle wykonalne, a także czy wybrane rozwiązanie faktycznie potrafi prawidłowo dopasowywać do siebie obrazy statków - analizując dane zbierane przez każdą z kamer z osobna.
+Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie jak najpoprawniej rozpoznawać konkretną jednostkę, skutecznie ignorując zakłócenia z zewnątrz, takie jak chociażby zmienne warunki atmosferyczne. Na tym etapie weryfikujemy, czy stworzenie takiego mechanizmu jest w ogóle wykonalne, a także, jeśli tak - to czy wybrane rozwiązanie faktycznie potrafi prawidłowo dopasowywać do siebie wycinki statków - analizując dane zebrane przez każdą z kamer z osobna.
 
 2. **Etap 2: Re-identyfikacja akustyczna z użyciem kabla DAS (Distributed Acoustic Sensing)**
-Druga część to zwrot w zupełnie inną stronę i jednocześnie dość mocno eksperymentalny, prototypowy etap projektu. Prezentuję w niej podejście do identyfikacji statków bazujące na danych wibracyjnych i akustycznych (generowanych m.in. przez pracę silnika czy śruby napędowej statku). Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który w naturalny sposób pełni tutaj funkcję gigantycznego czujnika.
+Druga część to zwrot w zupełnie inną stronę i jednocześnie dość mocno eksperymentalny, wręcz prototypowy etap projektu. Na tym etapie prezentuję podejście do identyfikacji statków bazujące na danych wibracyjnych i akustycznych (generowanych m.in. przez pracę silnika czy śruby napędowej statku). Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który w naturalny sposób pełni tutaj funkcję czujnika obejmującego bardzo duży rejon okolicy, przez którą przechodzi największy duński morski korytarz.
 
 3. **Etap 3: Re-identyfikacja krzyżowa (Cross-Camera Re-ID)**
-Finałowa część prezentuje architekturę, która ma poradzić sobie ze wzajemną identyfikacją statków na kadrach pochodzących z różnych źródeł - tym razem działając "na krzyż". Oceniamy tutaj, czy model potrafi prawidłowo sparować tę samą jednostkę widoczną z dwóch drastycznie różnych perspektyw: ujęcia łapanego niemal z poziomu morza z wyspy Sprogø z widokiem rejestrowanym przez drugą z kamer, umieszczoną wysoko na pylonie mostu.
+Finałowa część przedstawia architekturę, której zadaniem jest poradzenie sobie ze wzajemną identyfikacją statków na kadrach pochodzących z różnych źródeł - tym razem działając "na krzyż" (między obiema kamerami). Oceniamy tutaj, czy skonstruowany program potrafi prawidłowo sparować tę samą jednostkę widoczną z dwóch drastycznie różnych perspektyw: ujęcia łapanego niemal z poziomu morza z wyspy Sprogø z widokiem rejestrowanym przez drugą z kamer, umieszczoną wysoko na wschodnim pylonie mostu.
 
 ## Etap 1. Re-identyfikacja wizualna w obrębie jednej kamery
 
-W tej części projektu główną uwagę skupiłem na zdefiniowaniu docelowej architektury sieci neuronowej. Ostatecznie, chcąc sprawdzić, czy wybór podejścia robi w tym zadaniu istotną różnicę, zdecydowałem się na przetestowanie i zestawienie ze sobą dwóch zupełnie różnych rozwiązań. 
+W tej części projektu główną uwagę skupiłem na zdefiniowaniu docelowej architektury sieci neuronowej. Ostatecznie, chcąc sprawdzić, czy wybór podejścia robi w tym zadaniu istotną różnicę. W związku z tym zdecydowałem się na przetestowanie i zestawienie ze sobą dwóch zupełnie różnych rozwiązań. 
 
-Pierwszym z nich jest ResNet34 - klasyczna, konwolucyjna sieć neuronowa (CNN). Działa ona na zasadzie "prześlizgiwania się" po obrazie oknem filtra (np. w rozmiarze 64x64 px) od lewej do prawej i z góry na dół, skanując w ten sposób płynnie całą klatkę i zbierając najważniejsze informacje dot. obrazu. Drugim wariantem jest DINOv2, czyli nieco nowsza architektura typu Vision Transformer (ViT). W jej przypadku filtr to tak naprawdę *patch* (wycinek), który nie przesuwa się płynnie, ale przeskakuje po obrazie niczym owad z miejsca na miejsce, zbierając w ten sposób najcenniejsze informacje. 
+Pierwszym z nich jest ResNet34 - klasyczna, konwolucyjna sieć neuronowa (CNN). Działa ona na zasadzie "prześlizgiwania się" po obrazie oknem filtra (np. w rozmiarze 64x64 px) od lewej do prawej i z góry na dół, skanując w ten sposób płynnie całą klatkę i zbierając najważniejsze informacje dot. obrazu i obiektów na nim się znajdujących. Drugim wariantem jest DINOv2, czyli nieco nowsza architektura typu Vision Transformer (ViT). W jej przypadku filtr to tak naprawdę nieduży wycinek, który nie przesuwa się płynnie, ale przeskakuje po obrazie niczym owad z miejsca na miejsce, zbierając w ten sposób najcenniejsze informacje z klatek video. 
 
-Ze względu na to, że proces identyfikacji bazowałem na metodzie wykorzystującej *supervised contrastive loss* (która wpisuje się w paradygmat uczenia nadzorowanego), algorytm potrzebował precyzyjnych informacji o tym, na co właściwie patrzy. Tutaj do gry wszedł system AIS, o którym można myśleć jak o morskim odpowiedniku popularnego serwisu Flightradar24. Przetworzyłem surowe dane z logów AIS w taki sposób, aby bezbłędnie przypisać unikalną rejestrację statku do konkretnego wycinka statku, na którym ta jednostka faktycznie się znajdowała. 
+Ze względu na to, że proces identyfikacji bazowałem na metodzie wykorzystującej *supervised contrastive loss* (która wpisuje się w paradygmat uczenia nadzorowanego), algorytm potrzebował precyzyjnych informacji o tym, na co właściwie patrzy. Tutaj do gry wszedł system AIS, o którym można myśleć jak o morskim odpowiedniku popularnego serwisu Flightradar24. Przetworzyłem surowe dane z logów AIS sposób, który umożliwia bezbłędne przypisanie unikalnej rejestracji statku do odpowiadającego mu obrazu.
 
-Mając przygotowaną w ten sposób bazę rzetelnie utworzonych i prawidłowo opisanych danych (*ground truth*), przeszedłem do budowy zbioru treningowego. W tym etapie testowałem wyłącznie wariant, który wykorzystywał dane z każdej z kamer z osobna (*Single-Camera Re-ID*), a co za tym idzie proces dobierania w pary ograniczał się ściśle do kadrów pochodzących z jednego źródła wideo. 
+Mając przygotowaną w ten sposób bazę rzetelnie utworzonych i prawidłowo opisanych danych, płynnie przeszedłem do budowy zbioru treningowego. Na tym etapie testowałem wyłącznie wariant, który wykorzystywał dane z każdej z kamer z osobna (*Single-Camera Re-ID*), a co za tym idzie proces dobierania w pary ograniczał się wyłącznie do kadrów pochodzących z jednego źródła wideo. 
 
-Jak to wyglądało w praktyce? Każde bazowe zdjęcie statku poddałem zróżnicowanym augmentacjom (wykorzystałem tutaj losowe odbicia lustrzane w poziomie, modyfikacje jasności, kontrastu i nasycenia za pomocą *Color Jitter* oraz drobne transformacje afiniczne, takie jak rotacje czy skalowanie), generując na jego podstawie dwie nowe, wizualnie zmodyfikowane wersje. W ten sposób z jednego oryginalnego ujęcia uzyskiwałem parę kadrów reprezentującą tę samą jednostkę. Jest to absolutnie kluczowe podejście, aby sieć mogła skutecznie uczyć się podobieństw z wykorzystaniem *supervised contrastive loss*. 
+Jak wyglądało to w praktyce? Każde bazowe zdjęcie statku poddałem zróżnicowanym modyfikacjom (wykorzystałem tutaj aplikowane w losowy sposób odbicia lustrzane w poziomie, modyfikacje jasności, kontrastu i nasycenia, a także drobne transformacje geometryczne, takie jak rotacje czy skalowanie), generując na jego podstawie dwie nowe, wizualnie zmodyfikowane wersje. W ten sposób z jednego oryginalnego ujęcia uzyskiwałem parę kadrów reprezentującą tę samą jednostkę. Jest to absolutnie kluczowe podejście, aby sieć mogła skutecznie uczyć się podobieństw z wykorzystaniem *supervised contrastive loss*. 
 
-By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogubili, poniżej wrzucam schemat prosto z mojej pracy magisterskiej. Obrazuje on dokładnie to, jak krok po kroku przebiegał proces tworzenia takich uczących par.
+By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogubili, poniżej wrzucam schemat prosto z mojej pracy magisterskiej. Obrazuje on dokładnie to, jak krok po kroku przebiegał proces tworzenia wyżej wymienionych par.
 
 ### Przykłady par treningowych (Single-Camera Re-ID)
 
-Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefiniowanych modyfikacjach zdjęć użytych w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie (horizontal flip), co pozwoliło sieci uczyć się podobieństw z wykorzystaniem *supervised contrastive loss* niezależnie od kierunku, w którym płynie jednostka.
+Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefiniowanych modyfikacjach zdjęć użytych w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie, co pozwoliło sieci uczyć się podobieństw z wykorzystaniem *supervised contrastive loss* niezależnie od kierunku, w którym płynie jednostka.
 
 **Widok 1: Wysepka Sprogø**
 
@@ -74,7 +74,7 @@ Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefini
 </table>
 
 
-Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich macierze, obrazujące prawdopodobieństwo ich poprawnego dopasowania.
+Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich diagramy, obrazujące podobieństwo analizowanych kadrów oraz jednostek na nich się znajdujących.
 
 ### Wyniki ewaluacji: Single-Camera Re-Identification
 
@@ -84,12 +84,12 @@ Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Training Strategy | Evaluation Set | Top-1 Acc (%) | Top-5 Acc (%) | mAP (%) |
+| Dane Treningowe | Dane ewaluacyjne | Top-1 Acc (%) | Top-5 Acc (%) | mAP (%) |
 | :---: | :---: | :---: | :---: | :---: |
-| **V1:** Sprogø Only | Sprogø Internally | 72.85 | 91.86 | 41.44 |
-| **V2:** Storebælt East Only | Storebælt East Internally | 87.76 | 96.94 | 47.13 |
-| **V3:** Joint Single | Sprogø Internally | 68.78 | 90.05 | 33.01 |
-| **V3:** Joint Single | Storebælt East Internally | 80.10 | 92.86 | 50.43 |
+| **V1:** Sprogø | Sprogø | 72.85 | 91.86 | 41.44 |
+| **V2:** Storebælt East | Storebælt East | 87.76 | 96.94 | 47.13 |
+| **V3:** Sprogø + Storebælt East| Sprogø | 68.78 | 90.05 | 33.01 |
+| **V3:** Sprogø + Storebælt East | Storebælt East | 80.10 | 92.86 | 50.43 |
 
 </div>
 
@@ -99,18 +99,18 @@ Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Training Strategy | Evaluation Set | Top-1 Acc (%) | Top-5 Acc (%) | mAP (%) |
+| Dane Treningowe | Dane ewaluacyjne | Top-1 Acc (%) | Top-5 Acc (%) | mAP (%) |
 | :---: | :---: | :---: | :---: | :---: |
-| **V1:** Sprogø Only | Sprogø Internally | 75.57 | 93.21 | 44.81 |
-| **V2:** Storebælt East Only | Storebælt East Internally | 86.73 | 96.43 | 53.46 |
-| **V3:** Joint Single | Sprogø Internally | 71.95 | 92.76 | 43.75 |
-| **V3:** Joint Single | Storebælt East Internally | 82.65 | 93.88 | 51.14 |
+| **V1:** Sprogø | Sprogø | 75.57 | 93.21 | 44.81 |
+| **V2:** Storebælt East | Storebælt East | 86.73 | 96.43 | 53.46 |
+| **V3:** Sprogø + Storebælt East| Sprogø | 71.95 | 92.76 | 43.75 |
+| **V3:** Sprogø + Storebælt East | Storebælt East | 82.65 | 93.88 | 51.14 |
 
 </div>
 
 ### Wizualne porównanie kadrów i macierze dopasowań
 
-Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowo jeden kadr znacznie różniącego się statku, aby sprawdzić czy model faktycznie się sprawdza.
+Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowy kadr znacznie odbiegającego od nich statku, aby sprawdzić czy skonstruowane rozwiązanie faktycznie jest skuteczne.
 
 <div style="display: flex; gap: 20px; justify-content: center;">
 
@@ -136,7 +136,7 @@ Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowo jeden ka
 
 </div>
 
-*Zdjęcia docelowej jednostki oraz dystraktora wykorzystane do porównania trzech statków.*
+*Zdjęcia docelowej jednostki oraz dodatkowego statku wykorzystane do porównania trzech statków.*
 
 <br>
 
@@ -145,18 +145,18 @@ Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowo jeden ka
 <div style="text-align: center;">
 
 <img src="/images/similarity_matrix_same_and_different.png"
-     alt="Macierz podobieństwa kosinusowego dla trzech jednostek"
+     alt="Schemat podobieństwa dla trzech jednostek"
      width="900"/>
 
 </div>
 
-Diagram podobieństwa dla docelowej jednostki w przedstawionej z nieznacznym odstępem czasowym w porównaniu z kompletnie innym statkiem.
+Diagram podobieństwa dla jednostki docelowej oraz przykładowego statku o odmiennej tożsamości.
 
 ---
 
 #### Porównanie dwóch różnych statków z dwóch różnych dni
 
-Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od doby.
+Aby ocenić odporność modelu zarówno na różnice statkami, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od momentu, w którym wykonano zdjęcie.
 
 <div style="display: flex; gap: 20px; justify-content: center;">
 
@@ -179,7 +179,7 @@ Aby ocenić odporność modelu zarówno na różnice międzyklasowe, jak i zró�
 <div style="text-align: center;">
 
 <img src="/images/sim_matrix_different_days.png"
-     alt="Macierz podobieństwa kosinusowego dla różnych dni"
+     alt="Schemat podobieństwa dla różnych dni"
      width="900"/>
 
 </div>
