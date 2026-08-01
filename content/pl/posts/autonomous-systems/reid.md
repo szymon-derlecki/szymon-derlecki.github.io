@@ -200,13 +200,14 @@ Koniec końców okazało się, że przy poszukiwaniu i identyfikacji konkretnych
 
 ### Analiza sygnału akustycznego (DAS)
 
-Poniżej przedstawiono estawienie ukazujące różnicę między surowym sygnałem (prezentowanym za pomocą wykresu typu 'waterfall') a reprezentacją po zastosowaniu transformacji Fouriera (prezentowaną za pomocą spektrogramu).
+Poniżej przedstawiono zestawienie ukazujące różnicę między surowym sygnałem (prezentowanym za pomocą wykresu typu 'waterfall') a reprezentacją po zastosowaniu transformacji Fouriera (prezentowaną za pomocą spektrogramu).
 
 | Spektrogram STFT | Dane w postaci wykresu typu 'WATERFALL' |
 | :---: | :---: |
 | ![](/images/Ship_FFT.png) | ![](/images/Ship_NO_FFT.png) |
 
-Zestawienie spektrogramu oraz wykresu typu waterfall bazującyh na sygnale akustycznego zarejestrowaną przez system DAS dla tego samego statku w identycznym czasie.
+Zestawienie spektrogramu STFT oraz wykresu typu waterfall, bazujących na sygnale akustycznym zarejestrowanym przez system DAS dla tego samego statku w identycznym przedziale czasu.
+W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla światłowodowego, natomiast oś pionowa określa czas rejestracji sygnału (widoczna na nim wyraźna, czerwona linia wskazuje bezpośrednią lokalizację i trajektorię statku). Z kolei spektrogram STFT to klasyczna reprezentacja czasowo-częstotliwościowa – ukazuje rozkład częstotliwości (oś pionowa) w czasie (oś pozioma), co pozwala na szczegółową analizę unikalnej sygnatury akustycznej jednostki.
 
 ### Wyniki identyfikacji akustycznej (DAS)
 
