@@ -348,9 +348,13 @@ Identyfikacja jednostek w nocy stanowi szczególne wyzwanie ze względu na ogran
 
 </div>
 
+<div style="text-align: center;">
+
 **Macierz analizy krzyżowej dla obu jednostek (Noc)**
 <br>
 <img src="/images/2_vessels_at_night.png" alt="Podobieństwo dla dwóch statków uchwyconych nocą" style="max-width: 100%; height: auto;"/>
+
+</div>
 
 
 ### Wnioski z uczenia krzyżowego (między kamerami)
