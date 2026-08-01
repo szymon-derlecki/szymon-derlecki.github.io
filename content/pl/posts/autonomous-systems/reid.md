@@ -39,7 +39,7 @@ Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefini
 <table>
 <tr>
 <th>Ujęcie oryginalne</th>
-<th>Augmentacja (Horizontal Flip)</th>
+<th>Zmodyfikowane ujęcie</th>
 </tr>
 
 <tr>
@@ -59,7 +59,7 @@ Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefini
 <table>
 <tr>
 <th>Ujęcie oryginalne</th>
-<th>Augmentacja (Horizontal Flip)</th>
+<th>Zmodyfikowane ujęcie</th>
 </tr>
 
 <tr>
