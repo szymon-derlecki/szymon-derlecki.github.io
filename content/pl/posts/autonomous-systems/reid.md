@@ -245,7 +245,24 @@ W ramach tego etapu przetestowałem kilka różnych strategii budowania zbiorów
 
 Dla ułatwienia i wizualizacji tego procesu, poniżej zamieszczam schematy obrazujące zrealizowane oraz planowane strategie próbkowania, a także macierze podobieństwa statków.
 
-> **[TUTAJ MIEJSCE NA ZDJĘCIA STRATEGII PRÓBKOWANIA ORAZ MACIERZE PODOBIEŃSTWA]**
+### Przykładowa para treningowa: Cross-Camera Re-ID
+
+W przypadku re-identyfikacji krzyżowej, model otrzymywał w parze ujęcia tej samej jednostki pochodzące z dwóch różnych źródeł wideo. Poniżej znajduje się przykład takiej pary. Aby zwiększyć uniwersalność modelu, na zdjęcie z kamery Sprogø nałożono dodatkowe augmentacje: odbicie lustrzane w poziomie (symulujące inny kierunek ruchu) oraz modyfikację jasności.
+
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
+| Widok 1: Sprogø (Odwrócenie + Zmiana jasności) | Widok 2: Camera East (Oryginał) |
+| :---: | :---: |
+| <img src="/images/single_cam_cam2.jpg" style="transform: scaleX(-1); filter: brightness(0.65);" alt="Sprogø - Augmentacja" width="400"/> | <img src="/images/single_cam_cam1.jpg" alt="Camera East - Oryginał" width="400"/> |
+
+</div>
+
+
+
+> **[MIEJSCE NA TABELE Z WYNIKAMI]**
+
+> **[TUTAJ MIEJSCE NA DIAGRAMY]**
+
 
 ### Wnioski z uczenia krzyżowego (między kamerami)
 
