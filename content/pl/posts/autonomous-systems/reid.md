@@ -306,7 +306,51 @@ Poniższe zestawienia prezentują szczegółowe wyniki dla różnych wariantów 
 
 </div>
 
-> **[TUTAJ MIEJSCE NA DIAGRAMY]**
+### Analiza Cross-Camera: Weryfikacja tożsamości statku
+
+Poniżej przedstawiono widok tej samej jednostki zarejestrowanej przez dwie różne kamery (widok z pierwszej i drugiej kamery), wraz z odpowiadającym jej wykresem demonstrującym podobieństwo jednostek.
+
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
+| Widok z pierwszej kamery | Widok z drugiej kamery |
+| :---: | :---: |
+| <img src="static/images/1765704238_310816000.jpg" alt="Widok z pierwszej kamery" width="400"/> | <img src="static/images/1765704150_310816000.jpg" alt="Widok z drugiej kamery" width="400"/> |
+
+</div>
+
+**Macierz analizy krzyżowej dla powyższej jednostki**
+<br>
+<img src="static/images/Same_vessel_diff_day.png" alt="Macierz Cross-Camera" style="max-width: 100%; height: auto;"/>
+
+---
+
+### Re-identyfikacja krzyżowa w warunkach nocnych
+
+Identyfikacja jednostek w nocy stanowi szczególne wyzwanie ze względu na ograniczone oświetlenie. Poniżej zestawiono dwie różne jednostki (MMSI 259222000 oraz 209184000) uchwycone jednocześnie przez sąsiadujące kamery, a także wspólną macierz oceniającą skuteczność dopasowań w warunkach nocnych.
+
+**Jednostka 259222000**
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
+| Kamera 1 | Kamera 2 |
+| :---: | :---: |
+| <img src="/images/1763828275_259222000.jpg" alt="Jednostka 259222000 - Kamera 1" width="400"/> | <img src="/images/1763828342_259222000.jpg" alt="Jednostka 259222000 - Kamera 2" width="400"/> |
+
+</div>
+
+<br>
+
+**Jednostka 209184000**
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+
+| Kamera 1 | Kamera 2 |
+| :---: | :---: |
+| <img src="/images/1763824375_209184000.jpg" alt="Jednostka 209184000 - Kamera 1" width="400"/> | <img src="/images/1763824492_209184000.jpg" alt="Jednostka 209184000 - Kamera 2" width="400"/> |
+
+</div>
+
+**Macierz analizy krzyżowej dla obu jednostek (Noc)**
+<br>
+<img src="/images/2_vessels_at_night.png" alt="Podobieństwo dla dwóch statków uchwyconych nocą" style="max-width: 100%; height: auto;"/>
 
 
 ### Wnioski z uczenia krzyżowego (między kamerami)

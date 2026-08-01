@@ -181,7 +181,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              12 min czytania
+              13 min czytania
             </span>
           </div>
           
@@ -715,8 +715,80 @@ width="900"/></p>
   </tbody>
 </table>
 </div>
-<blockquote>
-<p><strong>[TUTAJ MIEJSCE NA DIAGRAMY]</strong></p></blockquote>
+<h3 id="analiza-cross-camera-weryfikacja-tożsamości-statku">
+  Analiza Cross-Camera: Weryfikacja tożsamości statku
+  <a class="heading-link" href="#analiza-cross-camera-weryfikacja-to%c5%bcsamo%c5%9bci-statku">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Poniżej przedstawiono widok tej samej jednostki zarejestrowanej przez dwie różne kamery (widok z pierwszej i drugiej kamery), wraz z odpowiadającym jej wykresem demonstrującym podobieństwo jednostek.</p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Widok z pierwszej kamery</th>
+          <th style="text-align: center">Widok z drugiej kamery</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="static/images/1765704238_310816000.jpg" alt="Widok z pierwszej kamery" width="400"/></td>
+          <td style="text-align: center"><img src="static/images/1765704150_310816000.jpg" alt="Widok z drugiej kamery" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<p><strong>Macierz analizy krzyżowej dla powyższej jednostki</strong>
+<br>
+<img src="static/images/Same_vessel_diff_day.png" alt="Macierz Cross-Camera" style="max-width: 100%; height: auto;"/></p>
+<hr>
+<h3 id="re-identyfikacja-krzyżowa-w-warunkach-nocnych">
+  Re-identyfikacja krzyżowa w warunkach nocnych
+  <a class="heading-link" href="#re-identyfikacja-krzy%c5%bcowa-w-warunkach-nocnych">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Identyfikacja jednostek w nocy stanowi szczególne wyzwanie ze względu na ograniczone oświetlenie. Poniżej zestawiono dwie różne jednostki (MMSI 259222000 oraz 209184000) uchwycone jednocześnie przez sąsiadujące kamery, a także wspólną macierz oceniającą skuteczność dopasowań w warunkach nocnych.</p>
+<p><strong>Jednostka 259222000</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Kamera 1</th>
+          <th style="text-align: center">Kamera 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="/images/1763828275_259222000.jpg" alt="Jednostka 259222000 - Kamera 1" width="400"/></td>
+          <td style="text-align: center"><img src="/images/1763828342_259222000.jpg" alt="Jednostka 259222000 - Kamera 2" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p><strong>Jednostka 209184000</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Kamera 1</th>
+          <th style="text-align: center">Kamera 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="static/images/1763824375_209184000.jpg" alt="Jednostka 209184000 - Kamera 1" width="400"/></td>
+          <td style="text-align: center"><img src="static/images/1763824492_209184000.jpg" alt="Jednostka 209184000 - Kamera 2" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<p><strong>Macierz analizy krzyżowej dla obu jednostek (Noc)</strong>
+<br>
+<img src="/images/2_vessels_at_night.png" alt="Podobieństwo dla dwóch statków uchwyconych nocą" style="max-width: 100%; height: auto;"/></p>
 <h3 id="wnioski-z-uczenia-krzyżowego-między-kamerami">
   Wnioski z uczenia krzyżowego (między kamerami)
   <a class="heading-link" href="#wnioski-z-uczenia-krzy%c5%bcowego-mi%c4%99dzy-kamerami">
