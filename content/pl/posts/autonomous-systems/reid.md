@@ -215,7 +215,7 @@ Poniższa tabela prezentuje zestawienie wyników dla poszczególnych architektur
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Architektura |  | mAP (%) | Top-1 (%) | Top-5 (%) |
+| Architektura | Rodzaj danych | mAP (%) | Top-1 (%) | Top-5 (%) |
 | :---: | :---: | :---: | :---: | :---: |
 | ResNet34 | Waterfall | 27.37 | 22.50 | 65.00 |
 | ResNet34 | Spektrogram | 29.43 | 35.00 | 70.00 |
