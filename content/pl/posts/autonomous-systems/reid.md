@@ -268,7 +268,7 @@ Poniższe zestawienia prezentują szczegółowe wyniki dla różnych wariantów 
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Backbone | Evaluation Protocol | Top-1 (%) | Top-5 (%) | mAP (%) |
+| Architektura Modelu | Metoda Ewaluacji | Top-1 (%) | Top-5 (%) | mAP (%) |
 | :---: | :---: | :---: | :---: | :---: |
 | ResNet34 | Sprogø &rarr; Storebælt East | 14.03 | 33.94 | 18.80 |
 | ResNet34 | Storebælt East &rarr; Sprogø | 12.76 | 52.04 | 18.81 |
@@ -283,12 +283,12 @@ Poniższe zestawienia prezentują szczegółowe wyniki dla różnych wariantów 
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Backbone | Training Setup | Evaluation Protocol | Top-1 (%) | Top-5 (%) | mAP (%) |
+| Architektura Modelu | Sposób próbkowania | Metoda Ewaluacji | Top-1 (%) | Top-5 (%) | mAP (%) |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| ResNet34 | Cross + Sprogø single | Sprogø &rarr; Storebælt East | 32.13 | 48.42 | 26.67 |
-| ResNet34 | Cross + Storebælt single | Storebælt East &rarr; Sprogø | 14.29 | 47.96 | 21.11 |
-| DINOv2 | Cross + Sprogø single | Sprogø &rarr; Storebælt East | 19.46 | 36.65 | 21.42 |
-| DINOv2 | Cross + Storebælt single | Storebælt East &rarr; Sprogø | 13.27 | 42.86 | 23.08 |
+| ResNet34 | Cross + Sprogø | Sprogø &rarr; Storebælt East | 32.13 | 48.42 | 26.67 |
+| ResNet34 | Cross + Storebælt | Storebælt East &rarr; Sprogø | 14.29 | 47.96 | 21.11 |
+| DINOv2 | Cross + Sprogø | Sprogø &rarr; Storebælt East | 19.46 | 36.65 | 21.42 |
+| DINOv2 | Cross + Storebælt | Storebælt East &rarr; Sprogø | 13.27 | 42.86 | 23.08 |
 
 </div>
 
@@ -298,12 +298,12 @@ Poniższe zestawienia prezentują szczegółowe wyniki dla różnych wariantów 
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Backbone | Training Setup | Evaluation Protocol | Top-1 (%) | Top-5 (%) | mAP (%) |
+| Architektura Modelu | Sposób próbkowania | Metoda ewaluacji | Top-1 (%) | Top-5 (%) | mAP (%) |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| ResNet34 | Cross + Sprogø single | Sprogø &rarr; Storebælt East | 15.84 | 32.58 | 24.55 |
-| ResNet34 | Cross + Storebælt single | Storebælt East &rarr; Sprogø | 18.37 | 37.24 | 26.48 |
-| DINOv2 | Cross + Sprogø single | Sprogø &rarr; Storebælt East | 32.58 | 61.09 | 24.39 |
-| DINOv2 | Cross + Storebælt single | Storebælt East &rarr; Sprogø | 17.35 | 48.47 | 23.24 |
+| ResNet34 | Cross + Sprogø | Sprogø &rarr; Storebælt East | 15.84 | 32.58 | 24.55 |
+| ResNet34 | Cross + Storebælt | Storebælt East &rarr; Sprogø | 18.37 | 37.24 | 26.48 |
+| DINOv2 | Cross + Sprogø | Sprogø &rarr; Storebælt East | 32.58 | 61.09 | 24.39 |
+| DINOv2 | Cross + Storebælt | Storebælt East &rarr; Sprogø | 17.35 | 48.47 | 23.24 |
 
 </div>
 
