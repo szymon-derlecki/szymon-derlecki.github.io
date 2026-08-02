@@ -2,7 +2,7 @@
 title: "Bezradarowe śledzenie statków, czyli jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?"
 date: 2026-08-02
 draft: false
-description: "Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki bez mrugnięcia okiem, nawet gdy znikną z radaru."
+description: "Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby nie tracić statków z oczu, nawet gdy znikną z radaru."
 ---
 
 Zjawisko tzw. "floty cieni" - statków, które celowo wyłączają transpondery systemu AIS, by zniknąć z radarów - to rosnące wyzwanie dla bezpieczeństwa na morzu. Kiedy jednostka wyłącza AIS, tradycyjne systemy nadzoru tracą ją z oczu. Jak w takiej sytuacji utrzymać ciągłość śledzenia? Odpowiedzią może być wielomodalna fuzja danych sensorowych.
@@ -12,33 +12,34 @@ Sercem takiego systemu jest mechanizm **re-identyfikacji (Re-ID)**. Mówiąc naj
 Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy, gdzie każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:
 
 1. **Etap 1: Re-identyfikacja wizualna w obrębie jednej kamery (Single-Camera Re-ID)**
-Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie rozpoznawać konkretną jednostkę, ignorując zakłócenia, takie jak zmienne warunki atmosferyczne. Analizujemy tu dane zebrane przez każdą z kamer z osobna.
+Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie rozpoznawać konkretną jednostkę, ignorując zakłócenia, takie jak zmienne warunki atmosferyczne. Analizuję tu dane zebrane przez każdą z kamer z osobna.
 
 2. **Etap 2: Re-identyfikacja akustyczna z użyciem kabla DAS (Distributed Acoustic Sensing)**
-Druga część to zwrot w zupełnie inną stronę i jednocześnie dość mocno eksperymentalny etap projektu. Identyfikujemy tu statki bazując na danych wibracyjnych i akustycznych. Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który pełni funkcję czujnika obejmującego bardzo duży rejon morskiego korytarza.
+Druga część to zwrot w zupełnie inną stronę i jednocześnie dość mocno eksperymentalny etap projektu. Identyfikuję tu statki bazując na danych wibracyjnych i akustycznych. Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który pełni funkcję czujnika obejmującego bardzo duży rejon morskiego korytarza.
 
 3. **Etap 3: Re-identyfikacja krzyżowa (Cross-Camera Re-ID)**
-Finałowa część przedstawia architekturę, której zadaniem jest wzajemna identyfikacja statków na kadrach pochodzących z różnych źródeł - działając "na krzyż". Oceniamy, czy program potrafi sparować tę samą jednostkę widoczną z dwóch drastycznie różnych perspektyw.
+Finałowa część przedstawia architekturę, której zadaniem jest wzajemna identyfikacja statków na kadrach pochodzących z różnych źródeł - działając "na krzyż". Oceniam, czy program potrafi sparować tę samą jednostkę widoczną z dwóch drastycznie różnych perspektyw.
 
 ## Etap 1. Re-identyfikacja wizualna w obrębie jednej kamery
 
-W tej części projektu porównałem dwie zupełnie różne architektury sieci neuronowych, aby sprawdzić, czy wybór podejścia robi tu istotną różnicę. 
+W tej części projektu porównałem dwie zupełnie różne architektury sieci neuronowych, aby sprawdzić, czy wybór podejścia robi tu istotną różnicę.
 
-Pierwszym z nich jest ResNet34 - klasyczna, konwolucyjna sieć neuronowa (CNN). Analizuje ona obraz lokalnie, "prześlizgiwując się" po nim niewielkim filtrem (np. 3x3 lub 7x7 px) i budując kontekst warstwa po warstwie. Drugim wariantem jest DINOv2, czyli architektura typu Vision Transformer (ViT). W jej przypadku obraz dzielony jest na mniejsze fragmenty (tzw. patche), które sieć przetwarza równolegle, od razu porównując każdy fragment z każdym za pomocą mechanizmu globalnej uwagi.
+Pierwszym z nich jest ResNet34 - klasyczna, konwolucyjna sieć neuronowa (CNN). Analizuje ona obraz lokalnie, przesuwając po nim niewielki filtr (np. 3x3 lub 7x7 px) i budując kontekst warstwa po warstwie. Drugim wariantem jest DINOv2, czyli architektura typu Vision Transformer (ViT). W jej przypadku obraz dzielony jest na mniejsze fragmenty (tzw. patche), które sieć przetwarza równolegle, od razu porównując każdy fragment z każdym za pomocą mechanizmu globalnej uwagi.
 
 Proces uczyłem bazując na metodzie *supervised contrastive loss*, algorytm potrzebował więc precyzyjnych etykiet. Użyłem do tego danych z systemu AIS (morski odpowiednik Flightradar24). Oczywiście przypisanie logów AIS do obrazu rzadko jest absolutnie bezbłędne (np. gdy statki nakładają się w kadrze), dlatego zastosowałem filtry przestrzenne i ręczną weryfikację, aby rzetelnie opisać zbiór.
 
-Nasz zbiór danych wizualnych obejmował okres od grudnia 2025 do stycznia 2026 roku. Zebraliśmy łącznie **2842 kadry dla 50 unikalnych tożsamości statków**. Zdefiniujmy od razu nasze dwa źródła obrazu:
-*   **Kamera A (Sprogø):** umieszczona na wysepce, nisko, blisko poziomu wody.
-*   **Kamera B (Camera East):** umieszczona wysoko na wschodnim pylonie mostu, oferująca perspektywę z góry.
+Zbiór danych wizualnych obejmował okres od grudnia 2025 do stycznia 2026 roku. Zebrałem łącznie **2842 kadry dla 50 unikalnych tożsamości statków**. Zdefiniujmy od razu dwa źródła obrazu, które będą przewijać się przez cały post:
+
+*   **Sprogø:** kamera umieszczona na wysepce, nisko, blisko poziomu wody.
+*   **Camera East:** kamera umieszczona wysoko na wschodnim pylonie mostu, oferująca perspektywę z góry.
 
 Podczas budowy zbioru treningowego dla pojedynczej kamery, każde bazowe zdjęcie statku poddałem augmentacjom (m.in. odbicia lustrzane w poziomie, modyfikacje jasności). Z jednego ujęcia robiłem sztuczną parę, wymuszając na sieci naukę cech statku niezależnie od kierunku, w którym płynie.
 
 ### Przykłady par treningowych (Single-Camera Re-ID)
 
-Poniżej znajduje się wizualizacja procesu tworzenia par. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie.
+Poniżej znajduje się wizualizacja procesu tworzenia par. Z każdego bazowego ujęcia wygenerowałem sztuczną parę poprzez odbicie lustrzane w poziomie.
 
-**Widok 1: Kamera Sprogø**
+**Widok 1: Sprogø**
 
 <table>
 <tr>
@@ -55,7 +56,7 @@ Poniżej znajduje się wizualizacja procesu tworzenia par. Z każdego bazowego u
 </tr>
 </table>
 
-**Widok 2: Kamera East (pylon)**
+**Widok 2: Camera East (pylon)**
 
 <table>
 <tr>
@@ -71,6 +72,8 @@ Poniżej znajduje się wizualizacja procesu tworzenia par. Z każdego bazowego u
 </td>
 </tr>
 </table>
+
+*Odbicie lustrzane pokazane tu poglądowo, wygenerowane w przeglądarce.*
 
 Po 80 epokach treningu osiągnąłem satysfakcjonujące wyniki. Zanim jednak przejdziemy do tabel, krótkie wyjaśnienie metryk. **Top-1** oznacza procent sytuacji, w których algorytm podał bezbłędny wynik od razu na pierwszym miejscu. **Top-5** to odsetek sytuacji, gdzie poprawny statek był w czołowej piątce. Z kolei **mAP** (mean Average Precision) ocenia ogólną jakość wygenerowanego przez model rankingu.
 
@@ -110,9 +113,9 @@ Z tabel płynie bardzo konkretny wniosek: wyżej zamontowana kamera na pylonie (
 
 Poniżej wrzucam macierze dopasowań. Traktujmy to raczej jako wizualny *sanity check* (ilustrację, że model faktycznie widzi różnice), a nie ostateczny dowód.
 
-<div style="display: flex; gap: 20px; justify-content: center;">
-<img src="/images/1763804942_220466000.jpg" alt="Ujęcie 1 - Cel dla T=0s" width="700"/>
-<img src="/images/1763804912_220466000.jpg" alt="Ujęcie 2 - Cel dla T+70s" width="700"/>
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+<img src="/images/1763804942_220466000.jpg" alt="Ujęcie 1 - Cel dla T=0s" style="max-width: 48%; height: auto;"/>
+<img src="/images/1763804912_220466000.jpg" alt="Ujęcie 2 - Cel dla T+70s" style="max-width: 48%; height: auto;"/>
 </div>
 
 <br>
@@ -120,7 +123,7 @@ Poniżej wrzucam macierze dopasowań. Traktujmy to raczej jako wizualny *sanity 
 **Ujęcie 3 (Inna jednostka)**
 
 <div style="text-align: center;">
-<img src="/images/1763820365_255806370.jpg" alt="Ujęcie 3 - Inna jednostka" width="900"/>
+<img src="/images/1763820365_255806370.jpg" alt="Ujęcie 3 - Inna jednostka" style="max-width: 100%; height: auto;"/>
 </div>
 
 *Zdjęcia docelowej jednostki oraz dodatkowego statku wykorzystane do porównania.*
@@ -130,18 +133,20 @@ Poniżej wrzucam macierze dopasowań. Traktujmy to raczej jako wizualny *sanity 
 **Macierz podobieństwa kosinusowego (Trzy jednostki)**
 
 <div style="text-align: center;">
-<img src="/images/similarity_matrix_same_and_different.png" alt="Schemat podobieństwa dla trzech jednostek" width="900"/>
+<img src="/images/similarity_matrix_same_and_different.png" alt="Schemat podobieństwa dla trzech jednostek" style="max-width: 100%; height: auto;"/>
 </div>
+
+Dwa ujęcia tej samej jednostki uzyskują wysokie podobieństwo, a trzeci, obcy kadr wyraźnie odstaje - dokładnie tego oczekujemy.
 
 ---
 
 #### Porównanie dwóch różnych statków z dwóch różnych dni
 
-Aby ocenić odporność modelu na zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. 
+Aby ocenić odporność modelu na zróżnicowane warunki środowiskowe, porównałem dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach.
 
-<div style="display: flex; gap: 20px; justify-content: center;">
-<img src="/images/1765715109_305425000.jpg" alt="Jednostka 305425000" width="700"/>
-<img src="/images/1765721252_265079640.jpg" alt="Jednostka 265079640" width="700"/>
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+<img src="/images/1765715109_305425000.jpg" alt="Jednostka 305425000" style="max-width: 48%; height: auto;"/>
+<img src="/images/1765721252_265079640.jpg" alt="Jednostka 265079640" style="max-width: 48%; height: auto;"/>
 </div>
 
 <br>
@@ -149,8 +154,10 @@ Aby ocenić odporność modelu na zróżnicowane warunki środowiskowe, porówna
 **Macierz podobieństwa kosinusowego (Różne dni)**
 
 <div style="text-align: center;">
-<img src="/images/sim_matrix_different_days.png" alt="Schemat podobieństwa dla różnych dni" width="900"/>
+<img src="/images/sim_matrix_different_days.png" alt="Schemat podobieństwa dla różnych dni" style="max-width: 100%; height: auto;"/>
 </div>
+
+Niskie podobieństwo potwierdza, że model rozróżnia same jednostki, a nie tylko tło i warunki oświetleniowe, w jakich zostały uchwycone.
 
 ---
 
@@ -158,9 +165,9 @@ Aby ocenić odporność modelu na zróżnicowane warunki środowiskowe, porówna
 
 Druga część różni się fundamentalnie sprzętem. Kabel biegnący po dnie cieśniny działa tu jako ogromny sensor akustyczny. Zaletą jest to, że warunki atmosferyczne nie wpływają na niego tak jak na kamerę, a fizyczne uszkodzenie go na dnie morza jest niezwykle trudne.
 
-Aby zachować jak najwięcej kluczowych danych akustycznych (dźwięk pod wodą faluje i przemieszcza się), podzieliłem sygnał na 5 segmentów, przyjmując margines 250 metrów z każdej strony od środka statku. Skala tego prototypowego zbioru wyniosła **545 próbek dla 22 unikalnych tożsamości statków**. Trzeba pamiętać, że przy tak wąskiej puli statków testowych, metryka Top-5 z natury będzie bardzo wysoka (bo wybór potencjalnych "pomyłek" jest mały).
+Odporność na pogodę nie znaczy jednak odporności na samo środowisko. Prądy morskie i falowanie powodują, że sygnał zawsze trochę "pływa" względem pozycji statku wyliczonej z AIS. Aby nie utracić kluczowych danych akustycznych, przyjąłem margines 250 metrów z każdej strony od środka jednostki i podzieliłem to okno na 5 segmentów. Skala tego prototypowego zbioru wyniosła **545 próbek dla 22 unikalnych tożsamości statków**. Trzeba pamiętać, że przy tak wąskiej puli statków testowych metryka Top-5 z natury będzie bardzo wysoka (bo wybór potencjalnych "pomyłek" jest mały).
 
-Przetestowałem surowe dane przestrzenno-czasowe (wykres typu *waterfall*) oraz spektrogramy częstotliwościowe (STFT). 
+Przetestowałem surowe dane przestrzenno-czasowe (wykres typu *waterfall*) oraz spektrogramy częstotliwościowe (STFT).
 
 ### Analiza sygnału akustycznego (DAS)
 
@@ -185,11 +192,15 @@ Przetestowałem surowe dane przestrzenno-czasowe (wykres typu *waterfall*) oraz 
 
 </div>
 
-Architektura DINOv2 na złożeniu surowego sygnału oraz spektrogramu generalnie poradziła sobie najlepiej, nawet jeśli metryka mAP wskazuje na co innego. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe - statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do "nakładania spektralnego". Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie i właśnie dlatego wyniki metryki mAP w tabeli były tutaj najlepsze.
+DINOv2 wypadło lepiej od ResNet34 w każdym trybie. Najwyższy mAP osiągnęło złożenie surowego sygnału ze spektrogramem (34.17%), ale najlepszy wynik Top-1 dał sam waterfall (47.50%) - przy tak małym zbiorze te różnice trzeba jednak traktować jako trend, a nie twardy ranking. Ciekawsze jest to, że opieranie się na samych spektrogramach bywa zdradliwe: statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do "nakładania spektralnego". Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie.
 
 **Macierz podobieństwa dla modelu dwukanałowego (Dual)**
-<br>
-<img src="/images/matrix_result_dual_temporal_2.png" alt="Dual Matrix"/>
+
+<div style="text-align: center;">
+<img src="/images/matrix_result_dual_temporal_2.png" alt="Dual Matrix" style="max-width: 100%; height: auto;"/>
+</div>
+
+Wykres porównuje te same dwie jednostki w kolejnych oknach czasowych. Kontrast między nimi jest tu wyraźniejszy niż przy użyciu wyłącznie surowego sygnału albo wyłącznie spektrogramu, co sugeruje, że dodanie kanału STFT wzmacnia cechy obecne już w danych przestrzennych.
 
 ---
 
@@ -197,7 +208,7 @@ Architektura DINOv2 na złożeniu surowego sygnału oraz spektrogramu generalnie
 
 Dotarliśmy do ostatniego etapu, stanowiącego wczesną fuzję danych - re-identyfikacji tej samej jednostki na ujęciach z obu kamer naraz. Pod kątem samej sieci jest to kopia modelu z pierwszej sekcji, główna różnica polega na podejściu do próbkowania danych.
 
-Największym problemem okazał się brak balansu w zbiorze - na 60 par z jednej kamery przypadała tylko 1 para krzyżowa. Bez interwencji, sieć optymalizowała się łatwiejszymi obrazami, niemal ignorując pary z dwóch różnych perspektyw. Zdecydowałem się na ścisłe zbalansowanie proporcji (np. na 2 pary Cross-Camera przypadały 2 pary Single-Camera).
+Największym problemem okazał się brak balansu w zbiorze - na 60 par z jednej kamery przypadała tylko 1 para krzyżowa. Bez interwencji sieć optymalizowała się łatwiejszymi obrazami, niemal ignorując pary z dwóch różnych perspektyw. Przetestowałem więc dwa warianty: trening hybrydowy na naturalnych, niezbalansowanych proporcjach oraz ścisłe zbalansowanie zbioru (na 2 pary Cross-Camera przypadały 2 pary Single-Camera).
 
 ### Przykładowa para treningowa: Cross-Camera Re-ID
 
@@ -212,6 +223,8 @@ Największym problemem okazał się brak balansu w zbiorze - na 60 par z jednej 
 ---
 
 ### Wyniki ewaluacji: Cross-Camera Re-ID
+
+Zapis "Sprogø → Camera East" oznacza, że model otrzymuje zapytanie z kamery Sprogø i szuka dopasowania w zbiorze kadrów z Camera East.
 
 **Tabela 1: Konfiguracja bazowa (Baseline Cross-Camera)**
 
@@ -256,64 +269,66 @@ Największym problemem okazał się brak balansu w zbiorze - na 60 par z jednej 
 
 </div>
 
+Porównanie Tabeli 1 z pozostałymi pokazuje najważniejszą rzecz z tego etapu: **dorzucenie par single-camera do zbioru krzyżowego potrafi ponad dwukrotnie podnieść Top-1** (14.03% → 32.13% dla ResNet34 oraz 13.12% → 32.58% dla DINOv2 w wariancie zbalansowanym). Model musi się najpierw nauczyć, jak wygląda "ten sam statek" w łatwiejszym scenariuszu, aby mieć czym operować w trudniejszym.
+
+Ciekawie wypada też samo zbalansowanie zbioru - nie działa ono jednakowo dla obu architektur. ResNet34 osiągnął lepszy wynik na naturalnych, niezbalansowanych proporcjach (32.13% vs 15.84%), natomiast DINOv2 skorzystał ze ścisłego balansu (32.58% vs 19.46%). Poziom bezwzględny pozostaje jednak niski i to zadanie wciąż jest otwarte.
+
 ### Analiza Cross-Camera: Weryfikacja tożsamości statku
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Widok z pierwszej kamery | Widok z drugiej kamery |
+| Sprogø | Camera East |
 | :---: | :---: |
-| <img src="/images/1765704238_310816000.jpg" alt="Widok z pierwszej kamery" width="400"/> | <img src="/images/1765704150_310816000.jpg" alt="Widok z drugiej kamery" width="400"/> |
+| <img src="/images/1765704238_310816000.jpg" alt="Widok ze Sprogø" width="400"/> | <img src="/images/1765704150_310816000.jpg" alt="Widok z Camera East" width="400"/> |
 
 </div>
 
 <div style="text-align: center; width: 100%;">
-    <strong>Podobieństwo między dwoma kadrami powyższej jednostki</strong>
-    <br>
-    <br>
     <img src="/images/Same_vessel_diff_day.png" alt="Macierz Cross-Camera" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 </div>
+
+Podobieństwo między dwoma kadrami powyższej jednostki, zarejestrowanymi przez obie kamery.
 
 ---
 
 ### Re-identyfikacja krzyżowa w warunkach nocnych
 
-Ten etap dostarczył mi niezwykle ciekawych obserwacji. Okazało się, że o ile re-identyfikacja krzyżowa radzi sobie dość przeciętnie w ciągu dnia, o tyle **w nocy staje się zdecydowanie skuteczniejsza**. 
+Ten etap dostarczył mi najciekawszej obserwacji całego projektu. Okazało się, że o ile re-identyfikacja krzyżowa radzi sobie dość przeciętnie w ciągu dnia, o tyle **w nocy staje się zdecydowanie skuteczniejsza**.
 
 Z czego to wynika? W nocy znikają mylące, bardzo podobne do siebie tekstury kadłubów statków handlowych. Zamiast nich na pierwszy plan wysuwają się unikalne układy świateł ostrzegawczych i oświetlenia burt, które stanowią dla sieci świetny, niezależny od kąta patrzenia punkt odniesienia.
 
 **Jednostka 259222000**
+
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Kamera 1 | Kamera 2 |
+| Sprogø | Camera East |
 | :---: | :---: |
-| <img src="/images/1763828275_259222000.jpg" alt="Jednostka 259222000 - Kamera 1" width="400"/> | <img src="/images/1763828342_259222000.jpg" alt="Jednostka 259222000 - Kamera 2" width="400"/> |
+| <img src="/images/1763828275_259222000.jpg" alt="Jednostka 259222000 - Sprogø" width="400"/> | <img src="/images/1763828342_259222000.jpg" alt="Jednostka 259222000 - Camera East" width="400"/> |
 
 </div>
 
 <br>
 
 **Jednostka 209184000**
+
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Kamera 1 | Kamera 2 |
+| Sprogø | Camera East |
 | :---: | :---: |
-| <img src="/images/1763824375_209184000.jpg" alt="Jednostka 209184000 - Kamera 1" width="400"/> | <img src="/images/1763824492_209184000.jpg" alt="Jednostka 209184000 - Kamera 2" width="400"/> |
+| <img src="/images/1763824375_209184000.jpg" alt="Jednostka 209184000 - Sprogø" width="400"/> | <img src="/images/1763824492_209184000.jpg" alt="Jednostka 209184000 - Camera East" width="400"/> |
 
 </div>
 
 <div style="text-align: center; width: 100%;">
-    <strong>Diagram podobieństwa dla dwóch jednostek widocznych nocą</strong>
-    <br>
-    <br>
     <img src="/images/2_vessels_at_night.png" alt="Podobieństwo dla dwóch statków uchwyconych nocą" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 </div>
 
-### Co dalej? 
+Diagram podobieństwa dla dwóch jednostek widocznych nocą.
 
-Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzenie złożonego "mega-modelu". Mógłby on składać się z kilku mniejszych sieci (wizualnych i akustycznych), które na samym końcu łączyłyby swoje predykcje w ramach tzw. *late fusion*.
+### Co dalej?
+
+Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzenie złożonego "mega-modelu". Mógłby on składać się z kilku mniejszych sieci (wizualnych i akustycznych), które na samym końcu łączyłyby swoje predykcje w ramach tzw. *late fusion*. Każdy z tych czujników z osobna jest przeciętny, ale każdy zawodzi w innych warunkach - i właśnie na tym polega sens fuzji.
 
 Kolejnym potężnym krokiem byłoby włączenie cech z systemu AIS (typ statku, długość, prędkość, kurs) jako dodatkowej modalności uczącej. Nawet jeśli statek wyłączyłby nadajnik tuż przed wpłynięciem w kontrolowaną strefę, model zasilony taką "historyczną" wiedzą wciąż potrafiłby zawęzić poszukiwania i podjąć trafną decyzję.
 
-Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych - opartego o relatywnie tanie, pasywne sensory - mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom. 
-
-Ponadto sprawdzony algorytm re-identyfikacji, a także wchodzące w jego skład modele możnaby spróbować zintegrować z uzbrojeniem operującym we wszelkich możliwych środowiskach (marynarka + wojska lądowe + siły powietrzne oraz kosmiczne), tak by stworzyć jeden wielki system śledzenia pozwalający prowadzić konflikty w jeszcze bardziej dokładny sposób.
+Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych - opartego o relatywnie tanie, pasywne i trudne do zakłócenia sensory - mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom. Ten projekt dotyczył statków w duńskiej cieśninie, ale sama zasada przenosi się poza domenę morską bez zmian: **kilka niedoskonałych czujników, zawodzących w różnych momentach, razem daje coś znacznie lepszego niż każdy z nich osobno.**
