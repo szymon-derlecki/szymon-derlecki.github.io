@@ -181,7 +181,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              14 min czytania
+              8 min czytania
             </span>
           </div>
           
@@ -195,19 +195,21 @@
 
       <div class="post-content">
         
-        <p>Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy, gdzie każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:</p>
+        <p>Zjawisko tzw. &ldquo;floty cieni&rdquo; – statków, które celowo wyłączają transpondery systemu AIS, by zniknąć z radarów – to rosnące wyzwanie dla bezpieczeństwa na morzu. Kiedy jednostka wyłącza AIS, tradycyjne systemy nadzoru tracą ją z oczu. Jak w takiej sytuacji utrzymać ciągłość śledzenia? Odpowiedzią może być wielomodalna fuzja danych sensorowych.</p>
+<p>Sercem takiego systemu jest mechanizm <strong>re-identyfikacji (Re-ID)</strong>. Mówiąc najprościej, jest to zdolność algorytmu do odpowiedzi na pytanie: <em>&ldquo;Czy ten wycinek obrazu lub sygnał, który widzę teraz, to dokładnie ten sam obiekt, który przed chwilą minął inną kamerę?&rdquo;</em>.</p>
+<p>Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy, gdzie każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:</p>
 <ol>
 <li>
 <p><strong>Etap 1: Re-identyfikacja wizualna w obrębie jednej kamery (Single-Camera Re-ID)</strong>
-Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie jak najpoprawniej rozpoznawać konkretną jednostkę, skutecznie ignorując zakłócenia z zewnątrz, takie jak chociażby zmienne warunki atmosferyczne. Na tym etapie weryfikujemy, czy stworzenie takiego mechanizmu jest w ogóle wykonalne, a także, jeśli tak - to czy wybrane rozwiązanie faktycznie potrafi prawidłowo dopasowywać do siebie wycinki statków - analizując dane zebrane przez każdą z kamer z osobna.</p>
+Pierwsza część skupia się na śledzeniu tego samego statku wyłącznie na kadrach pochodzących z jednego, konkretnego źródła wideo. Algorytm ma za zadanie rozpoznawać konkretną jednostkę, ignorując zakłócenia, takie jak zmienne warunki atmosferyczne. Analizujemy tu dane zebrane przez każdą z kamer z osobna.</p>
 </li>
 <li>
 <p><strong>Etap 2: Re-identyfikacja akustyczna z użyciem kabla DAS (Distributed Acoustic Sensing)</strong>
-Druga część to zwrot w zupełnie inną stronę i jednocześnie dość mocno eksperymentalny, wręcz prototypowy etap projektu. Na tym etapie prezentuję podejście do identyfikacji statków bazujące na danych wibracyjnych i akustycznych (generowanych m.in. przez pracę silnika czy śruby napędowej statku). Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który w naturalny sposób pełni tutaj funkcję czujnika obejmującego bardzo duży rejon okolicy, przez którą przechodzi największy duński morski korytarz.</p>
+Druga część to zwrot w zupełnie inną stronę i jednocześnie dość mocno eksperymentalny etap projektu. Identyfikujemy tu statki bazując na danych wibracyjnych i akustycznych. Sygnały te są rejestrowane przez podwodny kabel światłowodowy biegnący po dnie cieśniny, który pełni funkcję czujnika obejmującego bardzo duży rejon morskiego korytarza.</p>
 </li>
 <li>
 <p><strong>Etap 3: Re-identyfikacja krzyżowa (Cross-Camera Re-ID)</strong>
-Finałowa część przedstawia architekturę, której zadaniem jest poradzenie sobie ze wzajemną identyfikacją statków na kadrach pochodzących z różnych źródeł - tym razem działając &ldquo;na krzyż&rdquo; (między obiema kamerami). Oceniamy tutaj, czy skonstruowany program potrafi prawidłowo sparować tę samą jednostkę widoczną z dwóch drastycznie różnych perspektyw: ujęcia łapanego niemal z poziomu morza z wyspy Sprogø z widokiem rejestrowanym przez drugą z kamer, umieszczoną wysoko na wschodnim pylonie mostu.</p>
+Finałowa część przedstawia architekturę, której zadaniem jest wzajemna identyfikacja statków na kadrach pochodzących z różnych źródeł - działając &ldquo;na krzyż&rdquo;. Oceniamy, czy program potrafi sparować tę samą jednostkę widoczną z dwóch drastycznie różnych perspektyw.</p>
 </li>
 </ol>
 <h2 id="etap-1-re-identyfikacja-wizualna-w-obrębie-jednej-kamery">
@@ -217,12 +219,15 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>W tej części projektu główną uwagę skupiłem na zdefiniowaniu docelowej architektury sieci neuronowej. Ostatecznie, chcąc sprawdzić, czy wybór podejścia robi w tym zadaniu istotną różnicę. W związku z tym zdecydowałem się na przetestowanie i zestawienie ze sobą dwóch zupełnie różnych rozwiązań.</p>
-<p>Pierwszym z nich jest ResNet34 - klasyczna, konwolucyjna sieć neuronowa (CNN). Działa ona na zasadzie &ldquo;prześlizgiwania się&rdquo; po obrazie oknem filtra (np. w rozmiarze 64x64 px) od lewej do prawej i z góry na dół, skanując w ten sposób płynnie całą klatkę i zbierając najważniejsze informacje dot. obrazu i obiektów na nim się znajdujących. Drugim wariantem jest DINOv2, czyli nieco nowsza architektura typu Vision Transformer (ViT). W jej przypadku filtr to tak naprawdę nieduży wycinek, który nie przesuwa się płynnie, ale przeskakuje po obrazie niczym owad z miejsca na miejsce, zbierając w ten sposób najcenniejsze informacje z klatek video.</p>
-<p>Ze względu na to, że proces identyfikacji bazowałem na metodzie wykorzystującej <em>supervised contrastive loss</em> (która wpisuje się w paradygmat uczenia nadzorowanego), algorytm potrzebował precyzyjnych informacji o tym, na co właściwie patrzy. Tutaj do gry wszedł system AIS, o którym można myśleć jak o morskim odpowiedniku popularnego serwisu Flightradar24. Przetworzyłem surowe dane z logów AIS sposób, który umożliwia bezbłędne przypisanie unikalnej rejestracji statku do odpowiadającego mu obrazu.</p>
-<p>Mając przygotowaną w ten sposób bazę rzetelnie utworzonych i prawidłowo opisanych danych, płynnie przeszedłem do budowy zbioru treningowego. Na tym etapie testowałem wyłącznie wariant, który wykorzystywał dane z każdej z kamer z osobna (<em>Single-Camera Re-ID</em>), a co za tym idzie proces dobierania w pary ograniczał się wyłącznie do kadrów pochodzących z jednego źródła wideo.</p>
-<p>Jak wyglądało to w praktyce? Każde bazowe zdjęcie statku poddałem zróżnicowanym modyfikacjom (wykorzystałem tutaj aplikowane w losowy sposób odbicia lustrzane w poziomie, modyfikacje jasności, kontrastu i nasycenia, a także drobne transformacje geometryczne, takie jak rotacje czy skalowanie), generując na jego podstawie dwie nowe, wizualnie zmodyfikowane wersje. W ten sposób z jednego oryginalnego ujęcia uzyskiwałem parę kadrów reprezentującą tę samą jednostkę. Jest to absolutnie kluczowe podejście, aby sieć mogła skutecznie uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em>.</p>
-<p>By łatwiej było to sobie wyobrazić i żebyśmy się w tym wszystkim nie pogubili, poniżej wrzucam schemat prosto z mojej pracy magisterskiej. Obrazuje on dokładnie to, jak krok po kroku przebiegał proces tworzenia wyżej wymienionych par.</p>
+<p>W tej części projektu porównałem dwie zupełnie różne architektury sieci neuronowych, aby sprawdzić, czy wybór podejścia robi tu istotną różnicę.</p>
+<p>Pierwszym z nich jest ResNet34 - klasyczna, konwolucyjna sieć neuronowa (CNN). Analizuje ona obraz lokalnie, &ldquo;prześlizgiwując się&rdquo; po nim niewielkim filtrem (np. 3x3 lub 7x7 px) i budując kontekst warstwa po warstwie. Drugim wariantem jest DINOv2, czyli architektura typu Vision Transformer (ViT). W jej przypadku obraz dzielony jest na mniejsze fragmenty (tzw. patche), które sieć przetwarza równolegle, od razu porównując każdy fragment z każdym za pomocą mechanizmu globalnej uwagi.</p>
+<p>Proces uczyłem bazując na metodzie <em>supervised contrastive loss</em>, algorytm potrzebował więc precyzyjnych etykiet. Użyłem do tego danych z systemu AIS (morski odpowiednik Flightradar24). Oczywiście przypisanie logów AIS do obrazu rzadko jest absolutnie bezbłędne (np. gdy statki nakładają się w kadrze), dlatego zastosowałem filtry przestrzenne i ręczną weryfikację, aby rzetelnie opisać zbiór.</p>
+<p>Nasz zbiór danych wizualnych obejmował okres od grudnia 2025 do stycznia 2026 roku. Zebraliśmy łącznie <strong>2842 kadry dla 50 unikalnych tożsamości statków</strong>. Zdefiniujmy od razu nasze dwa źródła obrazu:</p>
+<ul>
+<li><strong>Kamera A (Sprogø):</strong> umieszczona na wysepce, nisko, blisko poziomu wody.</li>
+<li><strong>Kamera B (Camera East):</strong> umieszczona wysoko na wschodnim pylonie mostu, oferująca perspektywę z góry.</li>
+</ul>
+<p>Podczas budowy zbioru treningowego dla pojedynczej kamery, każde bazowe zdjęcie statku poddałem augmentacjom (m.in. odbicia lustrzane w poziomie, modyfikacje jasności). Z jednego ujęcia robiłem sztuczną parę, wymuszając na sieci naukę cech statku niezależnie od kierunku, w którym płynie.</p>
 <h3 id="przykłady-par-treningowych-single-camera-re-id">
   Przykłady par treningowych (Single-Camera Re-ID)
   <a class="heading-link" href="#przyk%c5%82ady-par-treningowych-single-camera-re-id">
@@ -230,8 +235,8 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniżej znajduje się wizualizacja procesu tworzenia par bazujących na zdefiniowanych modyfikacjach zdjęć użytych w pierwszym etapie. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie, co pozwoliło sieci uczyć się podobieństw z wykorzystaniem <em>supervised contrastive loss</em> niezależnie od kierunku, w którym płynie jednostka.</p>
-<p><strong>Widok 1: Wysepka Sprogø</strong></p>
+<p>Poniżej znajduje się wizualizacja procesu tworzenia par. Z każdego bazowego ujęcia wygenerowano sztuczną parę poprzez odbicie lustrzane w poziomie.</p>
+<p><strong>Widok 1: Kamera Sprogø</strong></p>
 <table>
 <tr>
 <th>Ujęcie oryginalne</th>
@@ -246,7 +251,7 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
 </td>
 </tr>
 </table>
-<p><strong>Widok 2: Wschodni pylon mostu</strong></p>
+<p><strong>Widok 2: Kamera East (pylon)</strong></p>
 <table>
 <tr>
 <th>Ujęcie oryginalne</th>
@@ -261,7 +266,7 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
 </td>
 </tr>
 </table>
-<p>Po treningu trwającym 80 epok i ustaleniu najbardziej sensownych hiperparametrów, osiągnąłem w miarę satysfakcjonujące wyniki, które zestawiłem w poniższej tabeli. Z kolei na samym dole sekcji wrzuciłem wizualne porównanie kadrów ze statkami oraz wygenerowane dla nich diagramy, obrazujące podobieństwo analizowanych kadrów oraz jednostek na nich się znajdujących.</p>
+<p>Po 80 epokach treningu osiągnąłem satysfakcjonujące wyniki. Zanim jednak przejdziemy do tabel, krótkie wyjaśnienie metryk. <strong>Top-1</strong> oznacza procent sytuacji, w których algorytm podał bezbłędny wynik od razu na pierwszym miejscu. <strong>Top-5</strong> to odsetek sytuacji, gdzie poprawny statek był w czołowej piątce. Z kolei <strong>mAP</strong> (mean Average Precision) ocenia ogólną jakość wygenerowanego przez model rankingu.</p>
 <h3 id="wyniki-ewaluacji-single-camera-re-identification">
   Wyniki ewaluacji: Single-Camera Re-Identification
   <a class="heading-link" href="#wyniki-ewaluacji-single-camera-re-identification">
@@ -269,7 +274,6 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniższe tabele prezentują bazowe możliwości modeli, gdy były one trenowane i ewaluowane wyłącznie na parach z tej samej kamery (intra-camera), z wykorzystaniem trzech różnych strategii próbkowania (V1, V2, V3).</p>
 <p><strong>Tabela 1: Wyniki dla architektury ResNet34</strong></p>
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
@@ -291,22 +295,22 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
           <td style="text-align: center">41.44</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V2:</strong> Storebælt East</td>
-          <td style="text-align: center">Storebælt East</td>
+          <td style="text-align: center"><strong>V2:</strong> Camera East</td>
+          <td style="text-align: center">Camera East</td>
           <td style="text-align: center">87.76</td>
           <td style="text-align: center">96.94</td>
           <td style="text-align: center">47.13</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V3:</strong> Sprogø + Storebælt East</td>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Camera East</td>
           <td style="text-align: center">Sprogø</td>
           <td style="text-align: center">68.78</td>
           <td style="text-align: center">90.05</td>
           <td style="text-align: center">33.01</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V3:</strong> Sprogø + Storebælt East</td>
-          <td style="text-align: center">Storebælt East</td>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Camera East</td>
+          <td style="text-align: center">Camera East</td>
           <td style="text-align: center">80.10</td>
           <td style="text-align: center">92.86</td>
           <td style="text-align: center">50.43</td>
@@ -336,22 +340,22 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
           <td style="text-align: center">44.81</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V2:</strong> Storebælt East</td>
-          <td style="text-align: center">Storebælt East</td>
+          <td style="text-align: center"><strong>V2:</strong> Camera East</td>
+          <td style="text-align: center">Camera East</td>
           <td style="text-align: center">86.73</td>
           <td style="text-align: center">96.43</td>
           <td style="text-align: center">53.46</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V3:</strong> Sprogø + Storebælt East</td>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Camera East</td>
           <td style="text-align: center">Sprogø</td>
           <td style="text-align: center">71.95</td>
           <td style="text-align: center">92.76</td>
           <td style="text-align: center">43.75</td>
       </tr>
       <tr>
-          <td style="text-align: center"><strong>V3:</strong> Sprogø + Storebælt East</td>
-          <td style="text-align: center">Storebælt East</td>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Camera East</td>
+          <td style="text-align: center">Camera East</td>
           <td style="text-align: center">82.65</td>
           <td style="text-align: center">93.88</td>
           <td style="text-align: center">51.14</td>
@@ -359,6 +363,7 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
   </tbody>
 </table>
 </div>
+<p>Z tabel płynie bardzo konkretny wniosek: wyżej zamontowana kamera na pylonie (Camera East) bije Sprogø o niemal 15 punktów procentowych. To bezpośredni efekt mniejszej liczby zasłaniających fal i lepszej perspektywy. Warto też zauważyć, że trening łączony (V3) pogarszał wyniki dla ewaluacji na obu kamerach – sieć po prostu gubiła się, próbując uogólniać dwa tak drastycznie różne środowiska wizualne w jednym podejściu.</p>
 <h3 id="wizualne-porównanie-kadrów-i-macierze-dopasowań">
   Wizualne porównanie kadrów i macierze dopasowań
   <a class="heading-link" href="#wizualne-por%c3%b3wnanie-kadr%c3%b3w-i-macierze-dopasowa%c5%84">
@@ -366,31 +371,22 @@ Finałowa część przedstawia architekturę, której zadaniem jest poradzenie s
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniżej przedstawiono dwa zdjęcia jednakowej jednostki oraz dodatkowy kadr znacznie odbiegającego od nich statku, aby sprawdzić czy skonstruowane rozwiązanie faktycznie jest skuteczne.</p>
+<p>Poniżej wrzucam macierze dopasowań. Traktujmy to raczej jako wizualny <em>sanity check</em> (ilustrację, że model faktycznie widzi różnice), a nie ostateczny dowód.</p>
 <div style="display: flex; gap: 20px; justify-content: center;">
-<p><img src="/images/1763804942_220466000.jpg"
-alt="Ujęcie 1 - Cel dla T=0s"
-width="700"/></p>
-<p><img src="/images/1763804912_220466000.jpg"
-alt="Ujęcie 2 - Cel dla T+70s"
-width="700"/></p>
+<img src="/images/1763804942_220466000.jpg" alt="Ujęcie 1 - Cel dla T=0s" width="700"/>
+<img src="/images/1763804912_220466000.jpg" alt="Ujęcie 2 - Cel dla T+70s" width="700"/>
 </div>
 <br>
 <p><strong>Ujęcie 3 (Inna jednostka)</strong></p>
 <div style="text-align: center;">
-<p><img src="/images/1763820365_255806370.jpg"
-alt="Ujęcie 3 - Inna jednostka"
-width="900"/></p>
+<img src="/images/1763820365_255806370.jpg" alt="Ujęcie 3 - Inna jednostka" width="900"/>
 </div>
-<p><em>Zdjęcia docelowej jednostki oraz dodatkowego statku wykorzystane do porównania trzech statków.</em></p>
+<p><em>Zdjęcia docelowej jednostki oraz dodatkowego statku wykorzystane do porównania.</em></p>
 <br>
 <p><strong>Macierz podobieństwa kosinusowego (Trzy jednostki)</strong></p>
 <div style="text-align: center;">
-<p><img src="/images/similarity_matrix_same_and_different.png"
-alt="Schemat podobieństwa dla trzech jednostek"
-width="900"/></p>
+<img src="/images/similarity_matrix_same_and_different.png" alt="Schemat podobieństwa dla trzech jednostek" width="900"/>
 </div>
-<p>Diagram podobieństwa dla jednostki docelowej oraz przykładowego statku o odmiennej tożsamości.</p>
 <hr>
 <h4 id="porównanie-dwóch-różnych-statków-z-dwóch-różnych-dni">
   Porównanie dwóch różnych statków z dwóch różnych dni
@@ -399,36 +395,27 @@ width="900"/></p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<p>Aby ocenić odporność modelu zarówno na różnice statkami, jak i zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach. W przeciwieństwie do scenariusza z tego samego dnia, oświetlenie, warunki atmosferyczne i elementy tła naturalnie różnią się w zależności od momentu, w którym wykonano zdjęcie.</p>
+<p>Aby ocenić odporność modelu na zróżnicowane warunki środowiskowe, porównano dwie odrębne jednostki zarejestrowane w zupełnie różnych dniach.</p>
 <div style="display: flex; gap: 20px; justify-content: center;">
-<p><img src="/images/1765715109_305425000.jpg"
-alt="Jednostka 305425000"
-width="700"/></p>
-<p><img src="/images/1765721252_265079640.jpg"
-alt="Jednostka 265079640"
-width="700"/></p>
+<img src="/images/1765715109_305425000.jpg" alt="Jednostka 305425000" width="700"/>
+<img src="/images/1765721252_265079640.jpg" alt="Jednostka 265079640" width="700"/>
 </div>
-<p><em>Dwa różne statki zarejestrowane w różnych dniach, obrazujące zmiany w warunkach środowiskowych.</em></p>
 <br>
 <p><strong>Macierz podobieństwa kosinusowego (Różne dni)</strong></p>
 <div style="text-align: center;">
-<p><img src="/images/sim_matrix_different_days.png"
-alt="Schemat podobieństwa dla różnych dni"
-width="900"/></p>
+<img src="/images/sim_matrix_different_days.png" alt="Schemat podobieństwa dla różnych dni" width="900"/>
 </div>
-<p>Wykres przedstawiający podobieństwo dwóch różnych statków zarejestrowanych w różnych dniach. Niski wynik podobieństwa potwierdza, że model potrafi skutecznie rozróżniać jednostki pomimo zmian warunków środowiskowych.</p>
 <hr>
-<h2 id="etap-2-re-identyfikacja-akustyczna-z-użyciem-podmorskiego-kabla-światłowodowego-das-distributed-acoustic-sensing">
-  Etap 2. Re-identyfikacja akustyczna z użyciem podmorskiego kabla światłowodowego DAS (Distributed Acoustic Sensing)
-  <a class="heading-link" href="#etap-2-re-identyfikacja-akustyczna-z-u%c5%bcyciem-podmorskiego-kabla-%c5%9bwiat%c5%82owodowego-das-distributed-acoustic-sensing">
+<h2 id="etap-2-re-identyfikacja-akustyczna-z-użyciem-podmorskiego-kabla-światłowodowego-das">
+  Etap 2. Re-identyfikacja akustyczna z użyciem podmorskiego kabla światłowodowego DAS
+  <a class="heading-link" href="#etap-2-re-identyfikacja-akustyczna-z-u%c5%bcyciem-podmorskiego-kabla-%c5%9bwiat%c5%82owodowego-das">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Choć druga część projektu wykorzystuje niemal identyczne rozwiązania na poziomie oprogramowania, to fundamentalnie różni się sprzętem, który został użyty podczas zbierania danych. Wdrożenie podwodnego kabla światłowodowego otworzyło drogę do mocno eksperymentalnego, wręcz prototypowego etapu. W tym podejściu statki identyfikowane są wyłącznie na podstawie danych wibracyjnych i akustycznych (np. szumu silnika i śrub napędowych). Kabel biegnący po dnie cieśniny działa tu w naturalny sposób jako ogromny, bardzo czuły sensor, a co w tym najfajniejsze, nie dość, że warunki atmosferyczne nie wpływają na niego tak mocno jak na kamerę, to do tego bardzo trudno jest go uszkodzić.</p>
-<p>Należy jednak pamiętać o pewnym haczyku. Mimo że sam światłowód jest w porównaniu z kamerami znacznie bardziej odporny na warunki pogodowe, nie da się całkowicie zminimalizować wpływu środowiska na docierający do niego dźwięk. Prądy wodne, falowanie czy zmieniający się w ciągu dnia wiatr sprawiają, że rejestrowany sygnał akustyczny zawsze będzie się minimalnie przemieszczał. Z tego względu wspólnie z moimi promotorami podjęliśmy decyzję o podzieleniu sygnału na 5 segmentów, przyjmując margines 250 metrów w obie strony (w lewo i w prawo) od środka statku. W efekcie uzyskaliśmy szerokie okno o całkowitej rozpiętości około 500 metrów. Wymagało to wprawdzie minimalnej korekty, ale mając świadomość, że w zmiennym środowisku morskim nigdy nie będzie ona w stu procentach perfekcyjna, zastosowanie tak obszernego przedziału dało mi pewność, że zachowam jak najwięcej kluczowych danych akustycznych.</p>
-<p>Podczas prób uczenia modelu szybko okazało się, że trenowanie sieci z identycznymi parametrami jak w przypadku zdjęć jest bardzo niestabilne. Konieczne było zastosowanie harmonogramowania <em>Cosine Annealing</em> i odpowiednie dostrojenie optymalizatora. Aby wyciągnąć charakterystykę sygnału i dać modelowi pole do nauki, przetestowałem spektrogramy STFT, ponownie dzieląc je na 5 kafelków. Podobnie jak przy danych z kamer, zbiory danych (przechowywane jako macierze w formacie <code>.npy</code>) poddawałem licznym augmentacjom. Wdrożyłem do tego dedykowany system, który potrafił nakładać filtry kaskadowo na cały zbiór lub dzielić dane na porcje otrzymujące pojedyncze modyfikacje. System aplikował m.in. <em>dropout</em>, <em>cutout</em> (wycinanie fragmentów sygnału), odbicia w osiach poziomej i pionowej, losowe przycinanie (<em>random crop</em>) oraz dodawanie szumu Gaussa skalowanego do odchylenia standardowego samego sygnału.</p>
-<p>Koniec końców okazało się, że przy poszukiwaniu i identyfikacji konkretnych jednostek, &ldquo;surowy&rdquo; sygnał to za mało. Wymagał on mocniejszego filtrowania i dodatkowych transformacji czasowo-częstotliwościowych. Świetne rezultaty dawało złożenie wykresu <em>waterfall</em> z bazowym sygnałem prezentowanym na spektrogramie STFT. Co ciekawe, nawet jeśli dla takiego zestawienia &ldquo;suche&rdquo; wartości w zbiorczej tabeli metryk nie wydawały się na pierwszy rzut oka rewelacyjne, to przy testach przeprowadzanych na osobnych przykładach, to właśnie takie podejście sprawdzało się najlepiej i pozwalało w najskuteczniejszy sposób różnicować jednostki na tym etapie projektu.</p>
+<p>Druga część różni się fundamentalnie sprzętem. Kabel biegnący po dnie cieśniny działa tu jako ogromny sensor akustyczny. Zaletą jest to, że warunki atmosferyczne nie wpływają na niego tak jak na kamerę, a fizyczne uszkodzenie go na dnie morza jest niezwykle trudne.</p>
+<p>Aby zachować jak najwięcej kluczowych danych akustycznych (dźwięk pod wodą faluje i przemieszcza się), podzieliłem sygnał na 5 segmentów, przyjmując margines 250 metrów z każdej strony od środka statku. Skala tego prototypowego zbioru wyniosła <strong>545 próbek dla 22 unikalnych tożsamości statków</strong>. Trzeba pamiętać, że przy tak wąskiej puli statków testowych, metryka Top-5 z natury będzie bardzo wysoka (bo wybór potencjalnych &ldquo;pomyłek&rdquo; jest mały).</p>
+<p>Przetestowałem surowe dane przestrzenno-czasowe (wykres typu <em>waterfall</em>) oraz spektrogramy częstotliwościowe (STFT).</p>
 <h3 id="analiza-sygnału-akustycznego-das">
   Analiza sygnału akustycznego (DAS)
   <a class="heading-link" href="#analiza-sygna%c5%82u-akustycznego-das">
@@ -436,7 +423,6 @@ width="900"/></p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniżej przedstawiono zestawienie ukazujące różnicę między surowym sygnałem (prezentowanym za pomocą wykresu typu &lsquo;waterfall&rsquo;) a reprezentacją po zastosowaniu transformacji Fouriera (prezentowaną za pomocą spektrogramu).</p>
 <table>
   <thead>
       <tr>
@@ -446,13 +432,12 @@ width="900"/></p>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: center"><img src="/images/Ship_FFT.png" alt=""></td>
-          <td style="text-align: center"><img src="/images/Ship_NO_FFT.png" alt=""></td>
+          <td style="text-align: center"><img src="/images/Ship_FFT.png" width="400"/></td>
+          <td style="text-align: center"><img src="/images/Ship_NO_FFT.png" width="400"/></td>
       </tr>
   </tbody>
 </table>
-<p>Zestawienie spektrogramu STFT oraz wykresu typu waterfall, bazujących na sygnale akustycznym zarejestrowanym przez system DAS dla tego samego statku w identycznym przedziale czasu.
-W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla światłowodowego, natomiast oś pionowa określa czas rejestracji sygnału (widoczna na nim wyraźna, czerwona linia wskazuje bezpośrednią lokalizację i trajektorię statku). Z kolei spektrogram STFT to klasyczna reprezentacja czasowo-częstotliwościowa – ukazuje rozkład częstotliwości (oś pionowa) w czasie (oś pozioma), co pozwala na szczegółową analizę unikalnej sygnatury akustycznej jednostki.</p>
+<p><em>W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla, a pionowa czas. Spektrogram STFT ukazuje rozkład częstotliwości w czasie.</em></p>
 <h3 id="wyniki-identyfikacji-akustycznej-das">
   Wyniki identyfikacji akustycznej (DAS)
   <a class="heading-link" href="#wyniki-identyfikacji-akustycznej-das">
@@ -460,7 +445,6 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniższa tabela prezentuje zestawienie wyników dla poszczególnych architektur oraz trybów przetwarzania sygnału.</p>
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
   <thead>
@@ -495,21 +479,21 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
           <td style="text-align: center">75.00</td>
       </tr>
       <tr>
-          <td style="text-align: center">DINO</td>
+          <td style="text-align: center">DINOv2</td>
           <td style="text-align: center">Waterfall</td>
           <td style="text-align: center">34.03</td>
           <td style="text-align: center">47.50</td>
           <td style="text-align: center">95.00</td>
       </tr>
       <tr>
-          <td style="text-align: center">DINO</td>
+          <td style="text-align: center">DINOv2</td>
           <td style="text-align: center">Spektrogram</td>
           <td style="text-align: center">33.44</td>
           <td style="text-align: center">30.00</td>
           <td style="text-align: center">70.00</td>
       </tr>
       <tr>
-          <td style="text-align: center">DINO</td>
+          <td style="text-align: center">DINOv2</td>
           <td style="text-align: center">Waterfall + Spektrogram</td>
           <td style="text-align: center">34.17</td>
           <td style="text-align: center">30.00</td>
@@ -518,11 +502,11 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
   </tbody>
 </table>
 </div>
-<p>Wyniki powtórnej identyfikacji dla wszystkich konfiguracji treningowych. Modyfikacje przeprowadzone na danych w postaci wykresu waterfall: dropout, gaussian_noise, cutout, random_crop, flip_lr. Augmentacje dla danych przedstawionych w postaci spektrogramu: dropout, gaussian_noise, cutout.</p>
+<p>Architektura DINOv2 na surowym sygnale (<em>waterfall</em>) poradziła sobie najlepiej. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe – statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do &ldquo;nakładania spektralnego&rdquo;. Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie.</p>
 <p><strong>Macierz podobieństwa dla modelu dwukanałowego (Dual)</strong>
 <br>
-<img src="/images/matrix_result_dual_temporal_2.png" alt=""></p>
-<p>Wykres podobieństwa porównujący te same dwie jednostki w kolejnych oknach czasowych, wygenerowana przez model wytrenowany na danych dwukanałowych (waterfall + spektrogram). Kontrast między statkami jest tu wyraźnie ostrzejszy niż w przypadku użycia wyłącznie surowego sygnału lub samego spektrogramu, co sugeruje, że dodanie kanału STFT skutecznie wzmacnia istotne cechy obecne już w danych przestrzennych.</p>
+<img src="/images/matrix_result_dual_temporal_2.png" alt="Dual Matrix"/></p>
+<hr>
 <h2 id="etap-3-re-identyfikacja-krzyżowa-cross-camera-re-id">
   Etap 3. Re-identyfikacja krzyżowa (Cross-Camera Re-ID)
   <a class="heading-link" href="#etap-3-re-identyfikacja-krzy%c5%bcowa-cross-camera-re-id">
@@ -530,15 +514,8 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>No i w końcu dotarliśmy do ostatniego etapu, który stanowi swoistą formę wczesnej fuzji danych, ponieważ łączy ze sobą obrazy pochodzące z różnych kamer. Nie ma tu żadnej fizyki kwantowej, gdyż pod kątem architektury jest to w zasadzie kopia modelu z pierwszej sekcji, gdzie działaliśmy z każdą ze zdjęciami pochodzącymi z każdej z kamer z osobna. Główna różnica polega na zupełnie innym podejściu do próbkowania danych oraz na testowaniu sieci pod kątem zdolności do re-identyfikacji tych samych jednostek na obu źródłamch wideo jednocześnie.</p>
-<p>W ramach tego etapu przetestowałem kilka różnych strategii budowania zbiorów:</p>
-<ul>
-<li><strong>Podstawowe Cross-Camera:</strong> Pary treningowe składały się ze zdjęcia statku z pierwszej kamery oraz zdjęcia tej samej jednostki z drugiej. Niestety, to podejście sprawdziło się w praktyce nienajlepiej.</li>
-<li><strong>Podejście hybrydowe (Cross-Camera + Single-Camera):</strong> Dostrzegając niezbyt satysfakcjonujące rezultaty pierwszej metody, spróbowałem wzbogacić zbiór, dorzucając do niego wcześniej stworzone pary z jednej kamery (Single-Camera). W tym wypadku wyniki osiągnęły pewną poprawę.</li>
-<li><strong>Zbalansowane próbkowanie:</strong> Ostatnim wdrożonym przeze mnie konceptem, na który pozwoliły ramy czasowe projektu, było ścisłe zbalansowanie proporcji. W tym wariancie na np. 2 pary z wariantu Cross-Camera przypadały 2 pary danej jednostki z wybranej kamery (co przetestowałem dla obu widoków).</li>
-<li><strong>Pełna fuzja (plany na przyszłość):</strong> Na sam koniec, podczas burzy mózgów z promotorem, wpadliśmy na pomysł przetrenowania całości na parach Cross-Camera z jednoczesnym uwzględnieniem par Single-Camera z obu kamer jednocześnie. Ze względu na brak czasu pozostaje to w sferze przyszłych eksperymentów, które być może kiedyś zrealizuję z czystej ciekawości.</li>
-</ul>
-<p>Dla ułatwienia i wizualizacji tego procesu, poniżej zamieszczam schematy obrazujące zrealizowane oraz planowane strategie próbkowania, a także macierze podobieństwa statków.</p>
+<p>Dotarliśmy do ostatniego etapu, stanowiącego wczesną fuzję danych – re-identyfikacji tej samej jednostki na ujęciach z obu kamer naraz. Pod kątem samej sieci jest to kopia modelu z pierwszej sekcji, główna różnica polega na podejściu do próbkowania danych.</p>
+<p>Największym problemem okazał się brak balansu w zbiorze – na 60 par z jednej kamery przypadała tylko 1 para krzyżowa. Bez interwencji, sieć optymalizowała się łatwiejszymi obrazami, niemal ignorując pary z dwóch różnych perspektyw. Zdecydowałem się na ścisłe zbalansowanie proporcji (np. na 2 pary Cross-Camera przypadały 2 pary Single-Camera).</p>
 <h3 id="przykładowa-para-treningowa-cross-camera-re-id">
   Przykładowa para treningowa: Cross-Camera Re-ID
   <a class="heading-link" href="#przyk%c5%82adowa-para-treningowa-cross-camera-re-id">
@@ -546,7 +523,6 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>W przypadku re-identyfikacji krzyżowej, model otrzymywał w parze ujęcia tej samej jednostki pochodzące z dwóch różnych źródeł wideo. Poniżej znajduje się przykład takiej pary. Aby zwiększyć uniwersalność modelu, na zdjęcie z kamery Sprogø nałożono dodatkowe augmentacje: odbicie lustrzane w poziomie (symulujące inny kierunek ruchu) oraz modyfikację jasności.</p>
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
   <thead>
@@ -571,7 +547,6 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniższe zestawienia prezentują szczegółowe wyniki dla różnych wariantów treningu krzyżowego (cross-camera). Porównano klasyczną architekturę ResNet34 z modelem DINOv2 w konfiguracji bazowej oraz w scenariuszach hybrydowych.</p>
 <p><strong>Tabela 1: Konfiguracja bazowa (Baseline Cross-Camera)</strong></p>
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
@@ -587,28 +562,28 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
   <tbody>
       <tr>
           <td style="text-align: center">ResNet34</td>
-          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
           <td style="text-align: center">14.03</td>
           <td style="text-align: center">33.94</td>
           <td style="text-align: center">18.80</td>
       </tr>
       <tr>
           <td style="text-align: center">ResNet34</td>
-          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
           <td style="text-align: center">12.76</td>
           <td style="text-align: center">52.04</td>
           <td style="text-align: center">18.81</td>
       </tr>
       <tr>
           <td style="text-align: center">DINOv2</td>
-          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
           <td style="text-align: center">13.12</td>
           <td style="text-align: center">36.20</td>
           <td style="text-align: center">21.18</td>
       </tr>
       <tr>
           <td style="text-align: center">DINOv2</td>
-          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
           <td style="text-align: center">21.94</td>
           <td style="text-align: center">45.92</td>
           <td style="text-align: center">24.49</td>
@@ -634,15 +609,15 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       <tr>
           <td style="text-align: center">ResNet34</td>
           <td style="text-align: center">Cross + Sprogø</td>
-          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
           <td style="text-align: center">32.13</td>
           <td style="text-align: center">48.42</td>
           <td style="text-align: center">26.67</td>
       </tr>
       <tr>
           <td style="text-align: center">ResNet34</td>
-          <td style="text-align: center">Cross + Storebælt</td>
-          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">Cross + Camera East</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
           <td style="text-align: center">14.29</td>
           <td style="text-align: center">47.96</td>
           <td style="text-align: center">21.11</td>
@@ -650,15 +625,15 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       <tr>
           <td style="text-align: center">DINOv2</td>
           <td style="text-align: center">Cross + Sprogø</td>
-          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
           <td style="text-align: center">19.46</td>
           <td style="text-align: center">36.65</td>
           <td style="text-align: center">21.42</td>
       </tr>
       <tr>
           <td style="text-align: center">DINOv2</td>
-          <td style="text-align: center">Cross + Storebælt</td>
-          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">Cross + Camera East</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
           <td style="text-align: center">13.27</td>
           <td style="text-align: center">42.86</td>
           <td style="text-align: center">23.08</td>
@@ -684,15 +659,15 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       <tr>
           <td style="text-align: center">ResNet34</td>
           <td style="text-align: center">Cross + Sprogø</td>
-          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
           <td style="text-align: center">15.84</td>
           <td style="text-align: center">32.58</td>
           <td style="text-align: center">24.55</td>
       </tr>
       <tr>
           <td style="text-align: center">ResNet34</td>
-          <td style="text-align: center">Cross + Storebælt</td>
-          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">Cross + Camera East</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
           <td style="text-align: center">18.37</td>
           <td style="text-align: center">37.24</td>
           <td style="text-align: center">26.48</td>
@@ -700,15 +675,15 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       <tr>
           <td style="text-align: center">DINOv2</td>
           <td style="text-align: center">Cross + Sprogø</td>
-          <td style="text-align: center">Sprogø → Storebælt East</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
           <td style="text-align: center">32.58</td>
           <td style="text-align: center">61.09</td>
           <td style="text-align: center">24.39</td>
       </tr>
       <tr>
           <td style="text-align: center">DINOv2</td>
-          <td style="text-align: center">Cross + Storebælt</td>
-          <td style="text-align: center">Storebælt East → Sprogø</td>
+          <td style="text-align: center">Cross + Camera East</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
           <td style="text-align: center">17.35</td>
           <td style="text-align: center">48.47</td>
           <td style="text-align: center">23.24</td>
@@ -723,7 +698,6 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Poniżej przedstawiono widok tej samej jednostki zarejestrowanej przez dwie różne kamery (widok z pierwszej i drugiej kamery), wraz z odpowiadającym jej wykresem demonstrującym podobieństwo jednostek.</p>
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
   <thead>
@@ -754,7 +728,8 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Identyfikacja jednostek w nocy stanowi szczególne wyzwanie ze względu na ograniczone oświetlenie. Poniżej zestawiono dwie różne jednostki (MMSI 259222000 oraz 209184000) uchwycone jednocześnie przez sąsiadujące kamery, a także wspólną macierz oceniającą skuteczność dopasowań w warunkach nocnych.</p>
+<p>Ten etap dostarczył mi niezwykle ciekawych obserwacji. Okazało się, że o ile re-identyfikacja krzyżowa radzi sobie dość przeciętnie w ciągu dnia, o tyle <strong>w nocy staje się zdecydowanie skuteczniejsza</strong>.</p>
+<p>Z czego to wynika? W nocy znikają mylące, bardzo podobne do siebie tekstury kadłubów statków handlowych. Zamiast nich na pierwszy plan wysuwają się unikalne układy świateł ostrzegawczych i oświetlenia burt, które stanowią dla sieci świetny, niezależny od kąta patrzenia punkt odniesienia.</p>
 <p><strong>Jednostka 259222000</strong></p>
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 <table>
@@ -796,15 +771,6 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <br>
     <img src="/images/2_vessels_at_night.png" alt="Podobieństwo dla dwóch statków uchwyconych nocą" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 </div>
-<h3 id="wnioski-z-uczenia-krzyżowego-między-kamerami">
-  Wnioski z uczenia krzyżowego (między kamerami)
-  <a class="heading-link" href="#wnioski-z-uczenia-krzy%c5%bcowego-mi%c4%99dzy-kamerami">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Ten etap dostarczył mi niezwykle ciekawych obserwacji. Okazało się, że o ile re-identyfikacja krzyżowa radzi sobie dość przeciętnie w ciągu dnia, o tyle <strong>w nocy staje się zdecydowanie skuteczniejsza</strong> i potrafi bardzo trafnie dopasować statek na obu widokach. Z czego to wynika? Model świetnie wyłapuje fakt, że jednostki pływające po zmroku mają bardzo zróżnicowane kolory świateł ostrzegawczych oraz unikalny układ oświetlenia burt czy masztów, co stanowi dla sieci doskonały punkt odniesienia.
-Z kolei warunki dzienne stanowią znacznie większe wyzwanie, ponieważ wiele charakterystycznych elementów wizualnych obecnych w nocy nie jest zazwyczaj wykorzystywanych przez kapitanów jednostek w ciągu dnia. W rezultacie dopasowanie miniatury statku wykonanej z kamery zlokalizowanej na wysepce Sprogø, gdzie jednostka jest znacznie oddalona, a obraz ulega degradacji wskutek zjawisk atmosferycznych, do obrazu statku uchwyconego z kamery skierowanej na pylon (Camera East) nadal należy postrzegać jako bardzo skomplikowany problem re-identyfikacji. Uzyskane wyniki sugerują, że dalsza poprawa skuteczności może wymagać wzbogacenia procesu identyfikacji o dodatkowe źródła informacji, takie jak dane satelitarne, obrazy z bezzałogowych statków powietrznych lub informacje pochodzące z jeszcze innych czujników.</p>
 <h3 id="co-dalej">
   Co dalej?
   <a class="heading-link" href="#co-dalej">
@@ -812,9 +778,9 @@ Z kolei warunki dzienne stanowią znacznie większe wyzwanie, ponieważ wiele ch
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzenie potężnego, złożonego &ldquo;mega-modelu&rdquo;. Mógłby on składać się z kilku mniejszych, wyspecjalizowanych sieci, które na samym końcu łączyłyby swoje predykcje za pomocą odpowiednich wag (w ramach tzw. <em>late fusion</em>). Wydaje się, że takie podejście wspólnie z dołączeniem dodatkowych danych niesie potencjał by dostarczyć świetne rezultaty.</p>
-<p>Kolejnym krokiem, na który zabrakło już czasu, byłoby wyciąganie wektorów cech bezpośrednio z systemu AIS, który przecież niesie ze sobą ogromną dawkę precyzyjnych informacji o statku. Nawet jeśli dane z jednej z kamer lub kabla uległyby zniekształceniu, model wytrenowany na tak bogatym zbiorze informacji wciąż potrafiłby podjąć trafną decyzję. W mojej ocenie takie rozwiązanie miałoby szansę zadziałać wręcz perfekcyjnie.</p>
-<p>Na sam koniec, co z mojego punktu widzenia jest niezwykle istotne. warto przenieść te wnioski na nieco szerszy grunt. Obecnie wiele państw boryka się z brakiem skutecznych rozwiązań do zwalczania niewielkich celów, takich jak drony czy pociski. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych mogłoby stanowić przełomowe wsparcie dla różnego rodzaju wojsk (od marynarki, przez siły lądowe i powietrzne, aż po siły operujące w kosmosie, a nawet dla wszystkich typów uzbrojenia operujących jednocześnie). Byłaby to doskonała odpowiedź na problemy, z którymi wciąż sobie nie radzimy, ponieważ obecne środki reagowania są często zbyt drogie w użyciu lub stwarzają bezpośrednie zagrożenie dla przecietnego obywatela i jego dobytku.</p>
+<p>Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzenie złożonego &ldquo;mega-modelu&rdquo;. Mógłby on składać się z kilku mniejszych sieci (wizualnych i akustycznych), które na samym końcu łączyłyby swoje predykcje w ramach tzw. <em>late fusion</em>.</p>
+<p>Kolejnym potężnym krokiem byłoby włączenie cech z systemu AIS (typ statku, długość, prędkość, kurs) jako dodatkowej modalności uczącej. Nawet jeśli statek wyłączyłby nadajnik tuż przed wpłynięciem w kontrolowaną strefę, model zasilony taką &ldquo;historyczną&rdquo; wiedzą wciąż potrafiłby zawęzić poszukiwania i podjąć trafną decyzję.</p>
+<p>Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych – opartego o relatywnie tanie, pasywne sensory – mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom.</p>
 
       </div>
 
