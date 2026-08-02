@@ -5,7 +5,7 @@ draft: false
 description: "Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki bez mrugnięcia okiem, nawet gdy znikną z radaru."
 ---
 
-Zjawisko tzw. "floty cieni" – statków, które celowo wyłączają transpondery systemu AIS, by zniknąć z radarów – to rosnące wyzwanie dla bezpieczeństwa na morzu. Kiedy jednostka wyłącza AIS, tradycyjne systemy nadzoru tracą ją z oczu. Jak w takiej sytuacji utrzymać ciągłość śledzenia? Odpowiedzią może być wielomodalna fuzja danych sensorowych.
+Zjawisko tzw. "floty cieni" - statków, które celowo wyłączają transpondery systemu AIS, by zniknąć z radarów - to rosnące wyzwanie dla bezpieczeństwa na morzu. Kiedy jednostka wyłącza AIS, tradycyjne systemy nadzoru tracą ją z oczu. Jak w takiej sytuacji utrzymać ciągłość śledzenia? Odpowiedzią może być wielomodalna fuzja danych sensorowych.
 
 Sercem takiego systemu jest mechanizm **re-identyfikacji (Re-ID)**. Mówiąc najprościej, jest to zdolność algorytmu do odpowiedzi na pytanie: *"Czy ten wycinek obrazu lub sygnał, który widzę teraz, to dokładnie ten sam obiekt, który przed chwilą minął inną kamerę?"*.
 
@@ -104,7 +104,7 @@ Po 80 epokach treningu osiągnąłem satysfakcjonujące wyniki. Zanim jednak prz
 
 </div>
 
-Z tabel płynie bardzo konkretny wniosek: wyżej zamontowana kamera na pylonie (Camera East) bije Sprogø o niemal 15 punktów procentowych. To bezpośredni efekt mniejszej liczby zasłaniających fal i lepszej perspektywy. Warto też zauważyć, że trening łączony (V3) pogarszał wyniki dla ewaluacji na obu kamerach – sieć po prostu gubiła się, próbując uogólniać dwa tak drastycznie różne środowiska wizualne w jednym podejściu.
+Z tabel płynie bardzo konkretny wniosek: wyżej zamontowana kamera na pylonie (Camera East) bije Sprogø o niemal 15 punktów procentowych. To bezpośredni efekt mniejszej liczby zasłaniających fal i lepszej perspektywy. Warto też zauważyć, że trening łączony (V3) pogarszał wyniki dla ewaluacji na obu kamerach - sieć po prostu gubiła się, próbując uogólniać dwa tak drastycznie różne środowiska wizualne w jednym podejściu.
 
 ### Wizualne porównanie kadrów i macierze dopasowań
 
@@ -185,7 +185,7 @@ Przetestowałem surowe dane przestrzenno-czasowe (wykres typu *waterfall*) oraz 
 
 </div>
 
-Architektura DINOv2 na surowym sygnale (*waterfall*) poradziła sobie najlepiej. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe – statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do "nakładania spektralnego". Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie.
+Architektura DINOv2 na surowym sygnale (*waterfall*) poradziła sobie najlepiej. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe - statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do "nakładania spektralnego". Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie.
 
 **Macierz podobieństwa dla modelu dwukanałowego (Dual)**
 <br>
@@ -195,9 +195,9 @@ Architektura DINOv2 na surowym sygnale (*waterfall*) poradziła sobie najlepiej.
 
 ## Etap 3. Re-identyfikacja krzyżowa (Cross-Camera Re-ID)
 
-Dotarliśmy do ostatniego etapu, stanowiącego wczesną fuzję danych – re-identyfikacji tej samej jednostki na ujęciach z obu kamer naraz. Pod kątem samej sieci jest to kopia modelu z pierwszej sekcji, główna różnica polega na podejściu do próbkowania danych.
+Dotarliśmy do ostatniego etapu, stanowiącego wczesną fuzję danych - re-identyfikacji tej samej jednostki na ujęciach z obu kamer naraz. Pod kątem samej sieci jest to kopia modelu z pierwszej sekcji, główna różnica polega na podejściu do próbkowania danych.
 
-Największym problemem okazał się brak balansu w zbiorze – na 60 par z jednej kamery przypadała tylko 1 para krzyżowa. Bez interwencji, sieć optymalizowała się łatwiejszymi obrazami, niemal ignorując pary z dwóch różnych perspektyw. Zdecydowałem się na ścisłe zbalansowanie proporcji (np. na 2 pary Cross-Camera przypadały 2 pary Single-Camera).
+Największym problemem okazał się brak balansu w zbiorze - na 60 par z jednej kamery przypadała tylko 1 para krzyżowa. Bez interwencji, sieć optymalizowała się łatwiejszymi obrazami, niemal ignorując pary z dwóch różnych perspektyw. Zdecydowałem się na ścisłe zbalansowanie proporcji (np. na 2 pary Cross-Camera przypadały 2 pary Single-Camera).
 
 ### Przykładowa para treningowa: Cross-Camera Re-ID
 
@@ -314,4 +314,4 @@ Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzen
 
 Kolejnym potężnym krokiem byłoby włączenie cech z systemu AIS (typ statku, długość, prędkość, kurs) jako dodatkowej modalności uczącej. Nawet jeśli statek wyłączyłby nadajnik tuż przed wpłynięciem w kontrolowaną strefę, model zasilony taką "historyczną" wiedzą wciąż potrafiłby zawęzić poszukiwania i podjąć trafną decyzję.
 
-Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych – opartego o relatywnie tanie, pasywne sensory – mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom.
+Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych - opartego o relatywnie tanie, pasywne sensory - mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom.

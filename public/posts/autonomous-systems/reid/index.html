@@ -195,7 +195,7 @@
 
       <div class="post-content">
         
-        <p>Zjawisko tzw. &ldquo;floty cieni&rdquo; – statków, które celowo wyłączają transpondery systemu AIS, by zniknąć z radarów – to rosnące wyzwanie dla bezpieczeństwa na morzu. Kiedy jednostka wyłącza AIS, tradycyjne systemy nadzoru tracą ją z oczu. Jak w takiej sytuacji utrzymać ciągłość śledzenia? Odpowiedzią może być wielomodalna fuzja danych sensorowych.</p>
+        <p>Zjawisko tzw. &ldquo;floty cieni&rdquo; - statków, które celowo wyłączają transpondery systemu AIS, by zniknąć z radarów - to rosnące wyzwanie dla bezpieczeństwa na morzu. Kiedy jednostka wyłącza AIS, tradycyjne systemy nadzoru tracą ją z oczu. Jak w takiej sytuacji utrzymać ciągłość śledzenia? Odpowiedzią może być wielomodalna fuzja danych sensorowych.</p>
 <p>Sercem takiego systemu jest mechanizm <strong>re-identyfikacji (Re-ID)</strong>. Mówiąc najprościej, jest to zdolność algorytmu do odpowiedzi na pytanie: <em>&ldquo;Czy ten wycinek obrazu lub sygnał, który widzę teraz, to dokładnie ten sam obiekt, który przed chwilą minął inną kamerę?&rdquo;</em>.</p>
 <p>Ze względu na to, że projekt ten był bardzo złożony, zdecydowałem się podzielić jego opis na trzy kolejne etapy, gdzie każdy z nich stanowi osobny krok w budowie zaawansowanego systemu śledzenia jednostek morskich:</p>
 <ol>
@@ -363,7 +363,7 @@ Finałowa część przedstawia architekturę, której zadaniem jest wzajemna ide
   </tbody>
 </table>
 </div>
-<p>Z tabel płynie bardzo konkretny wniosek: wyżej zamontowana kamera na pylonie (Camera East) bije Sprogø o niemal 15 punktów procentowych. To bezpośredni efekt mniejszej liczby zasłaniających fal i lepszej perspektywy. Warto też zauważyć, że trening łączony (V3) pogarszał wyniki dla ewaluacji na obu kamerach – sieć po prostu gubiła się, próbując uogólniać dwa tak drastycznie różne środowiska wizualne w jednym podejściu.</p>
+<p>Z tabel płynie bardzo konkretny wniosek: wyżej zamontowana kamera na pylonie (Camera East) bije Sprogø o niemal 15 punktów procentowych. To bezpośredni efekt mniejszej liczby zasłaniających fal i lepszej perspektywy. Warto też zauważyć, że trening łączony (V3) pogarszał wyniki dla ewaluacji na obu kamerach - sieć po prostu gubiła się, próbując uogólniać dwa tak drastycznie różne środowiska wizualne w jednym podejściu.</p>
 <h3 id="wizualne-porównanie-kadrów-i-macierze-dopasowań">
   Wizualne porównanie kadrów i macierze dopasowań
   <a class="heading-link" href="#wizualne-por%c3%b3wnanie-kadr%c3%b3w-i-macierze-dopasowa%c5%84">
@@ -502,7 +502,7 @@ Finałowa część przedstawia architekturę, której zadaniem jest wzajemna ide
   </tbody>
 </table>
 </div>
-<p>Architektura DINOv2 na surowym sygnale (<em>waterfall</em>) poradziła sobie najlepiej. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe – statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do &ldquo;nakładania spektralnego&rdquo;. Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie.</p>
+<p>Architektura DINOv2 na surowym sygnale (<em>waterfall</em>) poradziła sobie najlepiej. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe - statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do &ldquo;nakładania spektralnego&rdquo;. Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie.</p>
 <p><strong>Macierz podobieństwa dla modelu dwukanałowego (Dual)</strong>
 <br>
 <img src="/images/matrix_result_dual_temporal_2.png" alt="Dual Matrix"/></p>
@@ -514,8 +514,8 @@ Finałowa część przedstawia architekturę, której zadaniem jest wzajemna ide
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Dotarliśmy do ostatniego etapu, stanowiącego wczesną fuzję danych – re-identyfikacji tej samej jednostki na ujęciach z obu kamer naraz. Pod kątem samej sieci jest to kopia modelu z pierwszej sekcji, główna różnica polega na podejściu do próbkowania danych.</p>
-<p>Największym problemem okazał się brak balansu w zbiorze – na 60 par z jednej kamery przypadała tylko 1 para krzyżowa. Bez interwencji, sieć optymalizowała się łatwiejszymi obrazami, niemal ignorując pary z dwóch różnych perspektyw. Zdecydowałem się na ścisłe zbalansowanie proporcji (np. na 2 pary Cross-Camera przypadały 2 pary Single-Camera).</p>
+<p>Dotarliśmy do ostatniego etapu, stanowiącego wczesną fuzję danych - re-identyfikacji tej samej jednostki na ujęciach z obu kamer naraz. Pod kątem samej sieci jest to kopia modelu z pierwszej sekcji, główna różnica polega na podejściu do próbkowania danych.</p>
+<p>Największym problemem okazał się brak balansu w zbiorze - na 60 par z jednej kamery przypadała tylko 1 para krzyżowa. Bez interwencji, sieć optymalizowała się łatwiejszymi obrazami, niemal ignorując pary z dwóch różnych perspektyw. Zdecydowałem się na ścisłe zbalansowanie proporcji (np. na 2 pary Cross-Camera przypadały 2 pary Single-Camera).</p>
 <h3 id="przykładowa-para-treningowa-cross-camera-re-id">
   Przykładowa para treningowa: Cross-Camera Re-ID
   <a class="heading-link" href="#przyk%c5%82adowa-para-treningowa-cross-camera-re-id">
@@ -780,7 +780,7 @@ Finałowa część przedstawia architekturę, której zadaniem jest wzajemna ide
 </h3>
 <p>Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzenie złożonego &ldquo;mega-modelu&rdquo;. Mógłby on składać się z kilku mniejszych sieci (wizualnych i akustycznych), które na samym końcu łączyłyby swoje predykcje w ramach tzw. <em>late fusion</em>.</p>
 <p>Kolejnym potężnym krokiem byłoby włączenie cech z systemu AIS (typ statku, długość, prędkość, kurs) jako dodatkowej modalności uczącej. Nawet jeśli statek wyłączyłby nadajnik tuż przed wpłynięciem w kontrolowaną strefę, model zasilony taką &ldquo;historyczną&rdquo; wiedzą wciąż potrafiłby zawęzić poszukiwania i podjąć trafną decyzję.</p>
-<p>Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych – opartego o relatywnie tanie, pasywne sensory – mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom.</p>
+<p>Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych - opartego o relatywnie tanie, pasywne sensory - mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom.</p>
 
       </div>
 
