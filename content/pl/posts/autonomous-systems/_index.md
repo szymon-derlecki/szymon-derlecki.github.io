@@ -11,4 +11,4 @@ weight: 30
 5. [Single Point Positioning (SPP) - absolutne podstawy nawigacji, z której korzystasz każdego dnia](single-point-positioning)
 6. [GPS Różnicowy - czyli co pomoga pilotowi myśliwca F-35 bezpiecznie wylądować?](dgps)
 7. [Jak przewidzieć awarię turbiny wiatrowej za pomocą sieci typu TCN?](wind-turbine-downtime-reduction)
-8. [Post_testowy](reid)
+8. [Bezradarowe śledzenie statków, czyli jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?](reid)

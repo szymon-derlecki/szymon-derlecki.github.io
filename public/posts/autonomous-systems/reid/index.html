@@ -3,7 +3,7 @@
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
-  Bezradarowe śledzenie statków: Jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni? · Szymon Derlecki
+  Bezradarowe śledzenie statków, czyli jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni? · Szymon Derlecki
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,24 +13,24 @@
 
 
 <meta name="author" content="Szymon Derlecki">
-<meta name="description" content="Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki, nawet gdy znikną z radarów.">
+<meta name="description" content="Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki bez mrugnięcia okiem, nawet gdy znikną z radaru.">
 <meta name="keywords" content="">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Bezradarowe śledzenie statków: Jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?">
-  <meta name="twitter:description" content="Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki, nawet gdy znikną z radarów.">
+  <meta name="twitter:title" content="Bezradarowe śledzenie statków, czyli jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?">
+  <meta name="twitter:description" content="Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki bez mrugnięcia okiem, nawet gdy znikną z radaru.">
 
 <meta property="og:url" content="http://localhost:1313/posts/autonomous-systems/reid/">
   <meta property="og:site_name" content="Szymon Derlecki">
-  <meta property="og:title" content="Bezradarowe śledzenie statków: Jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?">
-  <meta property="og:description" content="Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki, nawet gdy znikną z radarów.">
+  <meta property="og:title" content="Bezradarowe śledzenie statków, czyli jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?">
+  <meta property="og:description" content="Moja praca magisterska z DTU. Pokazuję w niej, jak wykorzystywać dane z podwodnych kabli światłowodowych (DAS), kamer umieszczonych w okolicy mostu oraz systemu AIS, aby skutecznie śledzić statki bez mrugnięcia okiem, nawet gdy znikną z radaru.">
   <meta property="og:locale" content="pl">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-07-31T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-07-31T00:00:00+00:00">
+    <meta property="article:published_time" content="2026-08-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-08-02T00:00:00+00:00">
 
 
 
@@ -167,7 +167,7 @@
         <div class="post-title">
           <h1 class="title">
             <a class="title-link" href="http://localhost:1313/posts/autonomous-systems/reid/">
-              Bezradarowe śledzenie statków: Jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?
+              Bezradarowe śledzenie statków, czyli jak podwodny światłowód i zwykłe kamery pomagają zwalczać flotę cieni?
             </a>
           </h1>
         </div>
@@ -175,13 +175,13 @@
           <div class="date">
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="2026-07-31T00:00:00Z">
-                lipca 31, 2026
+              <time datetime="2026-08-02T00:00:00Z">
+                sierpnia 2, 2026
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              13 min czytania
+              14 min czytania
             </span>
           </div>
           
@@ -530,11 +530,11 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Dotarliśmy do ostatniego etapu, który stanowi swoistą formę wczesnej fuzji danych, ponieważ łączy ze sobą obrazy pochodzące z różnych kamer. Nie ma tu żadnej fizyki kwantowej - pod kątem architektury jest to w zasadzie kopia modelu z pierwszej sekcji. Główna różnica polega na zupełnie innym podejściu do próbkowania danych (<em>data sampling</em>) oraz na testowaniu sieci pod kątem zdolności do re-identyfikacji tych samych jednostek pomiędzy odrębnymi źródłami wideo.</p>
+<p>No i w końcu dotarliśmy do ostatniego etapu, który stanowi swoistą formę wczesnej fuzji danych, ponieważ łączy ze sobą obrazy pochodzące z różnych kamer. Nie ma tu żadnej fizyki kwantowej, gdyż pod kątem architektury jest to w zasadzie kopia modelu z pierwszej sekcji, gdzie działaliśmy z każdą ze zdjęciami pochodzącymi z każdej z kamer z osobna. Główna różnica polega na zupełnie innym podejściu do próbkowania danych oraz na testowaniu sieci pod kątem zdolności do re-identyfikacji tych samych jednostek na obu źródłamch wideo jednocześnie.</p>
 <p>W ramach tego etapu przetestowałem kilka różnych strategii budowania zbiorów:</p>
 <ul>
-<li><strong>Podstawowe Cross-Camera:</strong> Pary uczące składały się ze zdjęcia statku z pierwszej kamery oraz zdjęcia tej samej jednostki z drugiej. Niestety, to podejście sprawdziło się w praktyce mocno średnio.</li>
-<li><strong>Podejście hybrydowe (Cross-Camera + Single-Camera):</strong> Widząc przeciętne rezultaty pierwszej metody, spróbowałem wzbogacić zbiór, dorzucając do niego wcześniej stworzone pary z jednej kamery (Single-Camera). Wyniki uległy pewnej poprawie, ale wciąż dalekie były od ideału.</li>
+<li><strong>Podstawowe Cross-Camera:</strong> Pary treningowe składały się ze zdjęcia statku z pierwszej kamery oraz zdjęcia tej samej jednostki z drugiej. Niestety, to podejście sprawdziło się w praktyce nienajlepiej.</li>
+<li><strong>Podejście hybrydowe (Cross-Camera + Single-Camera):</strong> Dostrzegając niezbyt satysfakcjonujące rezultaty pierwszej metody, spróbowałem wzbogacić zbiór, dorzucając do niego wcześniej stworzone pary z jednej kamery (Single-Camera). W tym wypadku wyniki osiągnęły pewną poprawę.</li>
 <li><strong>Zbalansowane próbkowanie:</strong> Ostatnim wdrożonym przeze mnie konceptem, na który pozwoliły ramy czasowe projektu, było ścisłe zbalansowanie proporcji. W tym wariancie na np. 2 pary z wariantu Cross-Camera przypadały 2 pary danej jednostki z wybranej kamery (co przetestowałem dla obu widoków).</li>
 <li><strong>Pełna fuzja (plany na przyszłość):</strong> Na sam koniec, podczas burzy mózgów z promotorem, wpadliśmy na pomysł przetrenowania całości na parach Cross-Camera z jednoczesnym uwzględnieniem par Single-Camera z obu kamer jednocześnie. Ze względu na brak czasu pozostaje to w sferze przyszłych eksperymentów, które być może kiedyś zrealizuję z czystej ciekawości.</li>
 </ul>
@@ -577,8 +577,8 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
 <table>
   <thead>
       <tr>
-          <th style="text-align: center">Backbone</th>
-          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Architektura Modelu</th>
+          <th style="text-align: center">Metoda Ewaluacji</th>
           <th style="text-align: center">Top-1 (%)</th>
           <th style="text-align: center">Top-5 (%)</th>
           <th style="text-align: center">mAP (%)</th>
@@ -622,9 +622,9 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
 <table>
   <thead>
       <tr>
-          <th style="text-align: center">Backbone</th>
-          <th style="text-align: center">Training Setup</th>
-          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Architektura Modelu</th>
+          <th style="text-align: center">Sposób próbkowania</th>
+          <th style="text-align: center">Metoda Ewaluacji</th>
           <th style="text-align: center">Top-1 (%)</th>
           <th style="text-align: center">Top-5 (%)</th>
           <th style="text-align: center">mAP (%)</th>
@@ -633,7 +633,7 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
   <tbody>
       <tr>
           <td style="text-align: center">ResNet34</td>
-          <td style="text-align: center">Cross + Sprogø single</td>
+          <td style="text-align: center">Cross + Sprogø</td>
           <td style="text-align: center">Sprogø → Storebælt East</td>
           <td style="text-align: center">32.13</td>
           <td style="text-align: center">48.42</td>
@@ -641,7 +641,7 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       </tr>
       <tr>
           <td style="text-align: center">ResNet34</td>
-          <td style="text-align: center">Cross + Storebælt single</td>
+          <td style="text-align: center">Cross + Storebælt</td>
           <td style="text-align: center">Storebælt East → Sprogø</td>
           <td style="text-align: center">14.29</td>
           <td style="text-align: center">47.96</td>
@@ -649,7 +649,7 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       </tr>
       <tr>
           <td style="text-align: center">DINOv2</td>
-          <td style="text-align: center">Cross + Sprogø single</td>
+          <td style="text-align: center">Cross + Sprogø</td>
           <td style="text-align: center">Sprogø → Storebælt East</td>
           <td style="text-align: center">19.46</td>
           <td style="text-align: center">36.65</td>
@@ -657,7 +657,7 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       </tr>
       <tr>
           <td style="text-align: center">DINOv2</td>
-          <td style="text-align: center">Cross + Storebælt single</td>
+          <td style="text-align: center">Cross + Storebælt</td>
           <td style="text-align: center">Storebælt East → Sprogø</td>
           <td style="text-align: center">13.27</td>
           <td style="text-align: center">42.86</td>
@@ -672,9 +672,9 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
 <table>
   <thead>
       <tr>
-          <th style="text-align: center">Backbone</th>
-          <th style="text-align: center">Training Setup</th>
-          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Architektura Modelu</th>
+          <th style="text-align: center">Sposób próbkowania</th>
+          <th style="text-align: center">Metoda ewaluacji</th>
           <th style="text-align: center">Top-1 (%)</th>
           <th style="text-align: center">Top-5 (%)</th>
           <th style="text-align: center">mAP (%)</th>
@@ -683,7 +683,7 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
   <tbody>
       <tr>
           <td style="text-align: center">ResNet34</td>
-          <td style="text-align: center">Cross + Sprogø single</td>
+          <td style="text-align: center">Cross + Sprogø</td>
           <td style="text-align: center">Sprogø → Storebælt East</td>
           <td style="text-align: center">15.84</td>
           <td style="text-align: center">32.58</td>
@@ -691,7 +691,7 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       </tr>
       <tr>
           <td style="text-align: center">ResNet34</td>
-          <td style="text-align: center">Cross + Storebælt single</td>
+          <td style="text-align: center">Cross + Storebælt</td>
           <td style="text-align: center">Storebælt East → Sprogø</td>
           <td style="text-align: center">18.37</td>
           <td style="text-align: center">37.24</td>
@@ -699,7 +699,7 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       </tr>
       <tr>
           <td style="text-align: center">DINOv2</td>
-          <td style="text-align: center">Cross + Sprogø single</td>
+          <td style="text-align: center">Cross + Sprogø</td>
           <td style="text-align: center">Sprogø → Storebælt East</td>
           <td style="text-align: center">32.58</td>
           <td style="text-align: center">61.09</td>
@@ -707,7 +707,7 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
       </tr>
       <tr>
           <td style="text-align: center">DINOv2</td>
-          <td style="text-align: center">Cross + Storebælt single</td>
+          <td style="text-align: center">Cross + Storebælt</td>
           <td style="text-align: center">Storebælt East → Sprogø</td>
           <td style="text-align: center">17.35</td>
           <td style="text-align: center">48.47</td>
@@ -803,18 +803,18 @@ W przypadku wykresu waterfall, oś pozioma prezentuje pozycję wzdłuż kabla ś
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Ten etap dostarczył mi niezwykle ciekawych obserwacji. Okazało się, że o ile re-identyfikacja krzyżowa radzi sobie dość przeciętnie w ciągu dnia, o tyle <strong>w nocy staje się zdecydowanie skuteczniejsza</strong> i potrafi bardzo trafnie dopasować statek na obu widokach. Z czego to wynika? Model świetnie wyłapuje fakt, że jednostki pływające po zmroku mają bardzo zróżnicowane kolory świateł ostrzegawczych oraz unikalny układ oświetlenia burt czy masztów, co stanowi dla sieci doskonały punkt odniesienia.</p>
-<p>Z kolei warunki dzienne stanowią znacznie większe wyzwanie. Porównanie ujęcia z wysepki Sprogø (gdzie jednostka jest mocno oddalona, a obraz zniekształcony przez zjawiska atmosferyczne) z widokiem na pylon (czyli lokalizację Camera East), to bardzo skomplikowany problem wizyjny do rozwiązania przez model.</p>
-<h3 id="co-dalej-koncepcja-mega-modelu-i-potencjał-dla-obronności">
-  Co dalej? Koncepcja &ldquo;Mega-Modelu&rdquo; i potencjał dla obronności
-  <a class="heading-link" href="#co-dalej-koncepcja-mega-modelu-i-potencja%c5%82-dla-obronno%c5%9bci">
+<p>Ten etap dostarczył mi niezwykle ciekawych obserwacji. Okazało się, że o ile re-identyfikacja krzyżowa radzi sobie dość przeciętnie w ciągu dnia, o tyle <strong>w nocy staje się zdecydowanie skuteczniejsza</strong> i potrafi bardzo trafnie dopasować statek na obu widokach. Z czego to wynika? Model świetnie wyłapuje fakt, że jednostki pływające po zmroku mają bardzo zróżnicowane kolory świateł ostrzegawczych oraz unikalny układ oświetlenia burt czy masztów, co stanowi dla sieci doskonały punkt odniesienia.
+Z kolei warunki dzienne stanowią znacznie większe wyzwanie, ponieważ wiele charakterystycznych elementów wizualnych obecnych w nocy nie jest zazwyczaj wykorzystywanych przez kapitanów jednostek w ciągu dnia. W rezultacie dopasowanie miniatury statku wykonanej z kamery zlokalizowanej na wysepce Sprogø, gdzie jednostka jest znacznie oddalona, a obraz ulega degradacji wskutek zjawisk atmosferycznych, do obrazu statku uchwyconego z kamery skierowanej na pylon (Camera East) nadal należy postrzegać jako bardzo skomplikowany problem re-identyfikacji. Uzyskane wyniki sugerują, że dalsza poprawa skuteczności może wymagać wzbogacenia procesu identyfikacji o dodatkowe źródła informacji, takie jak dane satelitarne, obrazy z bezzałogowych statków powietrznych lub informacje pochodzące z jeszcze innych czujników.</p>
+<h3 id="co-dalej">
+  Co dalej?
+  <a class="heading-link" href="#co-dalej">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzenie potężnego, złożonego &ldquo;mega-modelu&rdquo;. Mógłby on składać się z kilku mniejszych, wyspecjalizowanych sieci, które na samym końcu łączyłyby swoje predykcje za pomocą odpowiednich wag (w ramach tzw. <em>late fusion</em>). Wydaje się, że takie podejście powinno przynieść świetne rezultaty.</p>
-<p>Kolejnym krokiem, na który zabrakło już czasu, byłoby wyciąganie wektorów cech (<em>embeddings</em>) bezpośrednio z systemu AIS, który przecież niesie ze sobą ogromną dawkę precyzyjnych informacji o statku. Nawet jeśli dane z jednej z kamer lub kabla uległyby zniekształceniu, model wytrenowany na tak bogatym zbiorze informacji wciąż potrafiłby podjąć trafną decyzję. W mojej ocenie takie rozwiązanie miałoby szansę zadziałać wręcz perfekcyjnie.</p>
-<p>Na sam koniec – co z mojego punktu widzenia jest niezwykle istotne – warto przenieść te wnioski na nieco szerszy grunt. Obecnie wiele państw boryka się z brakiem skutecznych rozwiązań do zwalczania niewielkich celów, takich jak drony czy pociski. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych mogłoby stanowić przełomowe wsparcie dla różnego rodzaju wojsk (od marynarki, przez siły lądowe i powietrzne, aż po siły operujące w kosmosie). Byłaby to doskonała odpowiedź na problemy, z którymi wciąż sobie nie radzimy, ponieważ obecne środki reagowania są często zbyt drogie w użyciu lub stwarzają bezpośrednie zagrożenie dla przecietnego obywatela i jego dobytku.</p>
+<p>Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzenie potężnego, złożonego &ldquo;mega-modelu&rdquo;. Mógłby on składać się z kilku mniejszych, wyspecjalizowanych sieci, które na samym końcu łączyłyby swoje predykcje za pomocą odpowiednich wag (w ramach tzw. <em>late fusion</em>). Wydaje się, że takie podejście wspólnie z dołączeniem dodatkowych danych niesie potencjał by dostarczyć świetne rezultaty.</p>
+<p>Kolejnym krokiem, na który zabrakło już czasu, byłoby wyciąganie wektorów cech bezpośrednio z systemu AIS, który przecież niesie ze sobą ogromną dawkę precyzyjnych informacji o statku. Nawet jeśli dane z jednej z kamer lub kabla uległyby zniekształceniu, model wytrenowany na tak bogatym zbiorze informacji wciąż potrafiłby podjąć trafną decyzję. W mojej ocenie takie rozwiązanie miałoby szansę zadziałać wręcz perfekcyjnie.</p>
+<p>Na sam koniec, co z mojego punktu widzenia jest niezwykle istotne. warto przenieść te wnioski na nieco szerszy grunt. Obecnie wiele państw boryka się z brakiem skutecznych rozwiązań do zwalczania niewielkich celów, takich jak drony czy pociski. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych mogłoby stanowić przełomowe wsparcie dla różnego rodzaju wojsk (od marynarki, przez siły lądowe i powietrzne, aż po siły operujące w kosmosie, a nawet dla wszystkich typów uzbrojenia operujących jednocześnie). Byłaby to doskonała odpowiedź na problemy, z którymi wciąż sobie nie radzimy, ponieważ obecne środki reagowania są często zbyt drogie w użyciu lub stwarzają bezpośrednie zagrożenie dla przecietnego obywatela i jego dobytku.</p>
 
       </div>
 
