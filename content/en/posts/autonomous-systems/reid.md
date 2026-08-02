@@ -1,44 +1,45 @@
 ---
-title: "Radarless Ship Tracking: How Underwater Fiber Optics and Ordinary Cameras Help Combat the Shadow Fleet"
+title: "Radarless ship tracking: how an underwater fiber optic cable and ordinary cameras help combat the shadow fleet"
 date: 2026-08-02
 draft: false
-description: "My Master's thesis at DTU. I demonstrate how to use data from underwater fiber optic cables (DAS), bridge-mounted cameras, and the AIS system to effectively track ships without missing a beat, even when they vanish from the radar."
+description: "My Master's thesis at DTU. I demonstrate how to use data from underwater fiber optic cables (DAS), bridge-mounted cameras, and the AIS system to keep ships in sight, even when they vanish from the radar."
 ---
 
-The phenomenon of the "shadow fleet" - ships intentionally turning off their AIS transponders to disappear from radars-is a growing challenge for maritime security. When a vessel turns off its AIS, traditional surveillance systems lose sight of it. How can we maintain continuous tracking in such situations? The answer might lie in multimodal sensor data fusion.
+The phenomenon of the "shadow fleet"—ships intentionally turning off their AIS transponders to disappear from radars—is a growing challenge for maritime security. When a vessel turns off its AIS, traditional surveillance systems lose sight of it. How can we maintain continuous tracking in such a situation? The answer might lie in multimodal sensor data fusion.
 
 The heart of such a system is the **re-identification (Re-ID)** mechanism. Simply put, it is the algorithm's ability to answer the question: *"Is this image patch or signal I am seeing right now the exact same object that passed by another camera a moment ago?"*.
 
-Because this project was highly complex, I decided to divide its description into three distinct stages, each representing a separate step in building an advanced maritime tracking system:
+Because this project was highly complex, I decided to divide its description into three successive stages, each representing a separate step in building an advanced maritime tracking system:
 
 1. **Stage 1: Single-Camera Visual Re-Identification (Single-Camera Re-ID)**
-The first part focuses on tracking the same ship exclusively in frames originating from a single, specific video source. The algorithm's task is to recognize a specific vessel, ignoring external disturbances such as changing weather conditions. Here, we analyze the data collected by each camera individually.
+The first part focuses on tracking the same ship exclusively in frames originating from a single, specific video source. The algorithm's task is to recognize a specific vessel, ignoring external disturbances such as changing weather conditions. Here, I analyze the data collected by each camera individually.
 
 2. **Stage 2: Acoustic Re-Identification using DAS (Distributed Acoustic Sensing) Cable**
-The second part takes a completely different direction and is a highly experimental stage of the project. Here, we identify ships based on vibrational and acoustic data. These signals are recorded by an underwater fiber optic cable running along the bottom of the strait, naturally acting as a massive sensor covering a vast area of the maritime corridor.
+The second part takes a completely different direction and is a highly experimental stage of the project. Here, I identify ships based on vibrational and acoustic data. These signals are recorded by an underwater fiber optic cable running along the bottom of the strait, which acts as a sensor covering a vast area of the maritime corridor.
 
 3. **Stage 3: Cross-Camera Re-Identification (Cross-Camera Re-ID)**
-The final part presents an architecture designed to handle mutual ship identification across frames from different sources-this time working "crosswise". We evaluate whether the program can pair the same vessel viewed from two drastically different perspectives.
+The final part presents an architecture designed for mutual ship identification across frames from different sources—working "crosswise." I evaluate whether the program can pair the same vessel viewed from two drastically different perspectives.
 
 ## Stage 1. Single-Camera Visual Re-Identification
 
 In this part of the project, I compared two completely different neural network architectures to see if the choice of approach makes a significant difference here.
 
-The first is ResNet34-a classic Convolutional Neural Network (CNN). It analyzes the image locally, "sliding" over it with a small filter window (e.g., 3x3 or 7x7 px) and building context layer by layer. The second variant is DINOv2, a Vision Transformer (ViT) architecture. In this case, the image is divided into smaller patches, which the network processing in parallel, instantly comparing each fragment with every other fragment using a global attention mechanism.
+The first is ResNet34—a classic Convolutional Neural Network (CNN). It analyzes the image locally, sliding a small filter (e.g., 3x3 or 7x7 px) over it and building context layer by layer. The second variant is DINOv2, a Vision Transformer (ViT) architecture. In its case, the image is divided into smaller fragments (so-called patches), which the network processes in parallel, instantly comparing each fragment with every other fragment using a global attention mechanism.
 
-I based the training process on a *supervised contrastive loss* method, so the algorithm needed precise labels. I used data from the AIS system (the maritime equivalent of Flightradar24) for this purpose. Of course, mapping AIS logs to images is rarely absolutely flawless (e.g., when ships overlap in the frame), which is why I applied spatial filters and manual verification to reliably annotate the dataset.
+I trained the process based on a *supervised contrastive loss* method, so the algorithm needed precise labels. I used data from the AIS system (the maritime equivalent of Flightradar24) for this purpose. Of course, assigning AIS logs to images is rarely absolutely flawless (e.g., when ships overlap in the frame), which is why I applied spatial filters and manual verification to reliably describe the dataset.
 
-Our visual dataset covered the period from December 2025 to January 2026. We collected a total of **2,842 frames for 50 unique ship identities**. Let's define our two image sources right away:
-- **Camera A (Sprogø):** placed on a small island, low and close to the water level.
-- **Camera B (Camera East):** placed high up on the eastern bridge pylon, offering a top-down perspective.
+The visual dataset covered the period from December 2025 to January 2026. I collected a total of **2,842 frames for 50 unique ship identities**. Let's immediately define two image sources that will appear throughout the post:
 
-While building the training set for a single camera, I subjected each baseline ship image to augmentations (including horizontal flipping and brightness modifications). From one shot, I created an artificial pair, forcing the network to learn the ship's features regardless of the direction it was sailing.
+- **Sprogø:** a camera placed on a small island, low and close to the water level.
+- **Camera East:** a camera placed high up on the eastern bridge pylon, offering a top-down perspective.
+
+While building the training set for a single camera, I subjected each baseline ship image to augmentations (including horizontal mirror reflections and brightness modifications). From one shot, I created an artificial pair, forcing the network to learn the ship's features regardless of the direction it was sailing.
 
 ### Examples of Training Pairs (Single-Camera Re-ID)
 
-Below is a visualization of the pair creation process. An artificial pair was generated from each base shot using a horizontal mirror reflection.
+Below is a visualization of the pair creation process. I generated an artificial pair from each base shot via a horizontal mirror reflection.
 
-**View 1: Sprogø Camera**
+**View 1: Sprogø**
 
 <table>
 <tr>
@@ -72,7 +73,9 @@ Below is a visualization of the pair creation process. An artificial pair was ge
 </tr>
 </table>
 
-After 80 training epochs, I achieved satisfactory results. Before moving on to the tables, here is a quick explanation of the metrics. **Top-1** indicates the percentage of situations where the algorithm provided the correct result instantly in the first place. **Top-5** is the percentage of situations where the correct ship was in the top five. Finally, **mAP** (mean Average Precision) evaluates the overall quality of the ranking generated by the model.
+*The mirror reflection is shown here for illustrative purposes, generated in the browser.*
+
+After 80 training epochs, I achieved satisfactory results. Before moving on to the tables, however, a brief explanation of the metrics. **Top-1** indicates the percentage of situations where the algorithm provided the flawless result immediately in the first place. **Top-5** is the percentage of situations where the correct ship was in the top five. In turn, **mAP** (mean Average Precision) evaluates the overall quality of the ranking generated by the model.
 
 ### Evaluation Results: Single-Camera Re-Identification
 
@@ -104,15 +107,15 @@ After 80 training epochs, I achieved satisfactory results. Before moving on to t
 
 </div>
 
-A very specific conclusion can be drawn from the tables: the camera mounted higher up on the pylon (Camera East) outperforms Sprogø by almost 15 percentage points. This is a direct result of fewer obstructing waves and a better perspective. It is also worth noting that combined training (V3) worsened the results for evaluation on both cameras-the network simply got lost trying to generalize two drastically different visual environments in a single approach.
+A very concrete conclusion can be drawn from the tables: the higher-mounted camera on the pylon (Camera East) beats Sprogø by almost 15 percentage points. This is a direct result of fewer obstructing waves and a better perspective. It is also worth noting that combined training (V3) degraded the results for evaluation on both cameras—the network simply got lost trying to generalize two drastically different visual environments in a single approach.
 
 ### Visual Frame Comparison and Match Matrices
 
-Below, I've included the match matrices. Let's treat this more as a visual *sanity check* (an illustration that the model actually sees differences) rather than definitive proof.
+Below, I am including the match matrices. Let's treat this more as a visual *sanity check* (an illustration that the model actually sees the differences) rather than final proof.
 
-<div style="display: flex; gap: 20px; justify-content: center;">
-<img src="/images/1763804942_220466000.jpg" alt="Shot 1 - Target at T=0s" width="700"/>
-<img src="/images/1763804912_220466000.jpg" alt="Shot 2 - Target at T+70s" width="700"/>
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+<img src="/images/1763804942_220466000.jpg" alt="Shot 1 - Target for T=0s" style="max-width: 48%; height: auto;"/>
+<img src="/images/1763804912_220466000.jpg" alt="Shot 2 - Target for T+70s" style="max-width: 48%; height: auto;"/>
 </div>
 
 <br>
@@ -120,28 +123,30 @@ Below, I've included the match matrices. Let's treat this more as a visual *sani
 **Shot 3 (Different vessel)**
 
 <div style="text-align: center;">
-<img src="/images/1763820365_255806370.jpg" alt="Shot 3 - Different vessel" width="900"/>
+<img src="/images/1763820365_255806370.jpg" alt="Shot 3 - Different vessel" style="max-width: 100%; height: auto;"/>
 </div>
 
 *Photos of the target vessel and an additional ship used for comparison.*
 
 <br>
 
-**Cosine Similarity Matrix (Three Vessels)**
+**Cosine Similarity Matrix (Three Units)**
 
 <div style="text-align: center;">
-<img src="/images/similarity_matrix_same_and_different.png" alt="Similarity matrix for three vessels" width="900"/>
+<img src="/images/similarity_matrix_same_and_different.png" alt="Similarity scheme for three units" style="max-width: 100%; height: auto;"/>
 </div>
+
+Two shots of the same unit achieve high similarity, while the third, foreign frame clearly stands out—which is exactly what we expect.
 
 ---
 
 #### Comparison of Two Different Ships from Two Different Days
 
-To evaluate the model's robustness to varying environmental conditions, two distinct vessels recorded on completely different days were compared.
+To evaluate the model's robustness to varying environmental conditions, I compared two distinct vessels recorded on completely different days.
 
-<div style="display: flex; gap: 20px; justify-content: center;">
-<img src="/images/1765715109_305425000.jpg" alt="Vessel 305425000" width="700"/>
-<img src="/images/1765721252_265079640.jpg" alt="Vessel 265079640" width="700"/>
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+<img src="/images/1765715109_305425000.jpg" alt="Vessel 305425000" style="max-width: 48%; height: auto;"/>
+<img src="/images/1765721252_265079640.jpg" alt="Vessel 265079640" style="max-width: 48%; height: auto;"/>
 </div>
 
 <br>
@@ -149,16 +154,18 @@ To evaluate the model's robustness to varying environmental conditions, two dist
 **Cosine Similarity Matrix (Different Days)**
 
 <div style="text-align: center;">
-<img src="/images/sim_matrix_different_days.png" alt="Similarity matrix for different days" width="900"/>
+<img src="/images/sim_matrix_different_days.png" alt="Similarity scheme for different days" style="max-width: 100%; height: auto;"/>
 </div>
+
+The low similarity confirms that the model distinguishes the vessels themselves, not just the background and lighting conditions under which they were captured.
 
 ---
 
 ## Stage 2. Acoustic Re-Identification using DAS Underwater Fiber Optic Cable
 
-The second part differs fundamentally in terms of hardware. The cable running along the bottom of the strait acts as a massive acoustic sensor here. The advantage is that weather conditions do not affect it the same way they affect a camera, and physically damaging it on the seabed is incredibly difficult.
+The second part differs fundamentally in terms of hardware. The cable running along the bottom of the strait acts as a massive acoustic sensor here. The advantage is that weather conditions do not affect it the way they do a camera, and physically damaging it on the seabed is extremely difficult.
 
-To preserve as much crucial acoustic data as possible (sound underwater waves and travels), I split the signal into 5 segments, adopting a 250-meter margin on each side from the center of the ship. The scale of this prototype dataset amounted to **545 samples for 22 unique ship identities**. It must be remembered that with such a narrow pool of test ships, the Top-5 metric will naturally be very high (because the selection of potential "mistakes" is small).
+However, weather resistance does not mean resistance to the environment itself. Ocean currents and waves cause the signal to always "drift" a bit relative to the ship's position calculated from AIS. To avoid losing key acoustic data, I adopted a 250-meter margin on each side from the center of the vessel and divided this window into 5 segments. The scale of this prototype dataset amounted to **545 samples for 22 unique ship identities**. Keep in mind that with such a narrow pool of test ships, the Top-5 metric will naturally be very high (because the choice of potential "mistakes" is small).
 
 I tested raw spatiotemporal data (*waterfall* plots) and frequency spectrograms (STFT).
 
@@ -168,7 +175,7 @@ I tested raw spatiotemporal data (*waterfall* plots) and frequency spectrograms 
 | :---: | :---: |
 | <img src="/images/Ship_FFT.png" width="400"/> | <img src="/images/Ship_NO_FFT.png" width="400"/> |
 
-*For the waterfall plot, the horizontal axis represents the position along the cable, and the vertical axis represents time. The STFT spectrogram shows the distribution of frequencies over time.*
+*For the waterfall plot, the horizontal axis presents the position along the cable, and the vertical axis presents time. The STFT spectrogram shows the frequency distribution over time.*
 
 ### Acoustic Identification Results (DAS)
 
@@ -185,19 +192,23 @@ I tested raw spatiotemporal data (*waterfall* plots) and frequency spectrograms 
 
 </div>
 
-The DINOv2 architecture on the combined raw signal and spectrogram generally performed the best, even if the mAP metric indicates otherwise in some cases. It turned out that relying solely on spectrograms can be tricky-ships of similar construction generate very similar frequencies, leading to "spectral overlapping". Only the raw spatial signal highlighted the unique way noise radiates in the water, which is precisely why the mAP metric results in the table were the best here.
+DINOv2 performed better than ResNet34 in every mode. The highest mAP was achieved by combining the raw signal with the spectrogram (34.17%), but the best Top-1 result came from the waterfall itself (47.50%)—though with such a small dataset, these differences should be treated as a trend rather than a hard ranking. More interestingly, relying solely on spectrograms can be deceptive: ships of similar build generate very similar frequencies, leading to "spectral overlapping". Only the raw spatial signal highlighted the unique way noise radiates in the water.
 
 **Similarity Matrix for Dual-Channel Model (Dual)**
-<br>
-<img src="/images/matrix_result_dual_temporal_2.png" alt="Dual Matrix"/>
+
+<div style="text-align: center;">
+<img src="/images/matrix_result_dual_temporal_2.png" alt="Dual Matrix" style="max-width: 100%; height: auto;"/>
+</div>
+
+The chart compares the same two vessels across successive time windows. The contrast between them is clearer here than when using only the raw signal or only the spectrogram, suggesting that adding the STFT channel strengthens the features already present in the spatial data.
 
 ---
 
 ## Stage 3. Cross-Camera Re-Identification (Cross-Camera Re-ID)
 
-We have reached the final stage, which constitutes an early form of data fusion-re-identifying the same vessel in shots from both cameras simultaneously. From a network architecture perspective, this is a copy of the model from the first section; the main difference lies in the data sampling approach.
+We have reached the final stage, which constitutes an early form of data fusion—re-identifying the same vessel in shots from both cameras simultaneously. From the network's perspective, this is a copy of the model from the first section; the main difference lies in the data sampling approach.
 
-The biggest problem turned out to be the lack of balance in the dataset-for every 60 pairs from a single camera, there was only 1 cross-camera pair. Without intervention, the network optimized itself using the easier images, almost ignoring pairs from two different perspectives. I decided to strictly balance the proportions (e.g., for every 2 Cross-Camera pairs, there were 2 Single-Camera pairs).
+The biggest problem turned out to be the lack of balance in the dataset—for every 60 pairs from one camera, there was only 1 cross-camera pair. Without intervention, the network optimized itself with easier images, almost ignoring pairs from two different perspectives. Therefore, I tested two variants: hybrid training on natural, imbalanced proportions and strict dataset balancing (for every 2 Cross-Camera pairs, there were 2 Single-Camera pairs).
 
 ### Example Training Pair: Cross-Camera Re-ID
 
@@ -212,6 +223,8 @@ The biggest problem turned out to be the lack of balance in the dataset-for ever
 ---
 
 ### Evaluation Results: Cross-Camera Re-ID
+
+The notation "Sprogø → Camera East" means that the model receives a query from the Sprogø camera and searches for a match in the dataset of frames from Camera East.
 
 **Table 1: Baseline Configuration (Baseline Cross-Camera)**
 
@@ -256,64 +269,66 @@ The biggest problem turned out to be the lack of balance in the dataset-for ever
 
 </div>
 
+Comparing Table 1 with the others reveals the most important takeaway from this stage: **throwing single-camera pairs into the cross-camera dataset can more than double the Top-1 metric** (14.03% → 32.13% for ResNet34 and 13.12% → 32.58% for DINOv2 in the balanced variant). The model first needs to learn what "the same ship" looks like in an easier scenario to have something to work with in a harder one.
+
+The dataset balancing itself also yields interesting results—it doesn't work identically for both architectures. ResNet34 achieved a better result on natural, imbalanced proportions (32.13% vs 15.84%), while DINOv2 benefited from strict balancing (32.58% vs 19.46%). However, the absolute performance level remains low, and this task is still an open challenge.
+
 ### Cross-Camera Analysis: Vessel Identity Verification
 
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| View from First Camera | View from Second Camera |
+| Sprogø | Camera East |
 | :---: | :---: |
-| <img src="/images/1765704238_310816000.jpg" alt="View from first camera" width="400"/> | <img src="/images/1765704150_310816000.jpg" alt="View from second camera" width="400"/> |
+| <img src="/images/1765704238_310816000.jpg" alt="View from Sprogø" width="400"/> | <img src="/images/1765704150_310816000.jpg" alt="View from Camera East" width="400"/> |
 
 </div>
 
 <div style="text-align: center; width: 100%;">
-    <strong>Similarity between two frames of the above vessel</strong>
-    <br>
-    <br>
     <img src="/images/Same_vessel_diff_day.png" alt="Cross-Camera Matrix" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 </div>
+
+Similarity between two frames of the above vessel, captured by both cameras.
 
 ---
 
 ### Cross-Camera Re-Identification in Nighttime Conditions
 
-This stage provided me with extremely interesting observations. It turned out that while cross-camera re-identification performs rather averagely during the day, **it becomes significantly more effective at night**.
+This stage provided me with the most interesting observation of the entire project. It turned out that while cross-camera re-identification performs rather averagely during the day, **it becomes significantly more effective at night**.
 
-Why is this? At night, confusing and highly similar hull textures of merchant ships disappear. Instead, unique arrangements of warning lights and hull illumination take center stage, providing the network with an excellent reference point that is independent of the viewing angle.
+Why is this? At night, the confusing, highly similar hull textures of merchant ships disappear. Instead, unique arrangements of warning lights and hull illumination take center stage, providing the network with an excellent reference point that is independent of the viewing angle.
 
 **Vessel 259222000**
+
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Camera 1 | Camera 2 |
+| Sprogø | Camera East |
 | :---: | :---: |
-| <img src="/images/1763828275_259222000.jpg" alt="Vessel 259222000 - Camera 1" width="400"/> | <img src="/images/1763828342_259222000.jpg" alt="Vessel 259222000 - Camera 2" width="400"/> |
+| <img src="/images/1763828275_259222000.jpg" alt="Vessel 259222000 - Sprogø" width="400"/> | <img src="/images/1763828342_259222000.jpg" alt="Vessel 259222000 - Camera East" width="400"/> |
 
 </div>
 
 <br>
 
 **Vessel 209184000**
+
 <div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
 
-| Camera 1 | Camera 2 |
+| Sprogø | Camera East |
 | :---: | :---: |
-| <img src="/images/1763824375_209184000.jpg" alt="Vessel 209184000 - Camera 1" width="400"/> | <img src="/images/1763824492_209184000.jpg" alt="Vessel 209184000 - Camera 2" width="400"/> |
+| <img src="/images/1763824375_209184000.jpg" alt="Vessel 209184000 - Sprogø" width="400"/> | <img src="/images/1763824492_209184000.jpg" alt="Vessel 209184000 - Camera East" width="400"/> |
 
 </div>
 
 <div style="text-align: center; width: 100%;">
-    <strong>Similarity diagram for two vessels spotted at night</strong>
-    <br>
-    <br>
     <img src="/images/2_vessels_at_night.png" alt="Similarity for two ships captured at night" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 </div>
 
-### What's Next? 
+Similarity diagram for two vessels spotted at night.
 
-If I were to develop this system further, the ideal solution would be to create a complex "mega-model". It could consist of several smaller networks (visual and acoustic), which would combine their predictions at the very end in a process known as *late fusion*.
+### What's Next?
+
+If I were to develop this system further, the ideal solution would be to create a complex "mega-model". It could consist of several smaller networks (visual and acoustic), which would combine their predictions at the very end in a framework known as *late fusion*. Each of these sensors individually is average, but each fails under different conditions—and that is exactly the point of fusion.
 
 Another powerful step would be incorporating features from the AIS system (ship type, length, speed, course) as an additional learning modality. Even if a ship turned off its transmitter right before entering a monitored zone, a model fed with such "historical" knowledge would still be able to narrow down the search and make an accurate decision.
 
-Finally, it is worth looking at the broader picture. Designing a similar, multimodal data fusion system-based on relatively cheap, passive sensors-could provide excellent support in protecting infrastructure against objects that intentionally evade traditional radars.
-
-Furthermore, this proven re-identification algorithm and its constituent models could be tested for integration with weaponry operating in all possible environments (navy + ground forces + air and space forces) to create one massive tracking system, allowing conflicts to be conducted with even greater precision.
+Finally, it is worth looking at the broader picture. Designing a similar, multimodal data fusion system—based on relatively cheap, passive, and hard-to-jam sensors—could provide excellent support in protecting infrastructure against objects that intentionally evade traditional radars. This project concerned ships in a Danish strait, but the principle itself transfers beyond the maritime domain unchanged: **several imperfect sensors, failing at different moments, together provide something much better than each of them individually.**
