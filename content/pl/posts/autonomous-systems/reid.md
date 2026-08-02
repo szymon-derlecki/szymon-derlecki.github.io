@@ -185,7 +185,7 @@ Przetestowałem surowe dane przestrzenno-czasowe (wykres typu *waterfall*) oraz 
 
 </div>
 
-Architektura DINOv2 na surowym sygnale (*waterfall*) poradziła sobie najlepiej. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe - statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do "nakładania spektralnego". Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie.
+Architektura DINOv2 na złożeniu surowego sygnału oraz spektrogramu generalnie poradziła sobie najlepiej, nawet jeśli metryka mAP wskazuje na co innego. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe - statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do "nakładania spektralnego". Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie i właśnie dlatego wyniki metryki mAP w tabeli były tutaj najlepsze.
 
 **Macierz podobieństwa dla modelu dwukanałowego (Dual)**
 <br>
