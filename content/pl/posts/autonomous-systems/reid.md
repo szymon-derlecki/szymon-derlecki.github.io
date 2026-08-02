@@ -314,4 +314,6 @@ Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzen
 
 Kolejnym potężnym krokiem byłoby włączenie cech z systemu AIS (typ statku, długość, prędkość, kurs) jako dodatkowej modalności uczącej. Nawet jeśli statek wyłączyłby nadajnik tuż przed wpłynięciem w kontrolowaną strefę, model zasilony taką "historyczną" wiedzą wciąż potrafiłby zawęzić poszukiwania i podjąć trafną decyzję.
 
-Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych - opartego o relatywnie tanie, pasywne sensory - mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom.
+Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych - opartego o relatywnie tanie, pasywne sensory - mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom. 
+
+Ponadto sprawdzony algorytm re-identyfikacji, a także wchodzące w jego skład modele możnaby spróbować zintegrować z uzbrojeniem operującym we wszelkich możliwych środowiskach (marynarka + wojska lądowe + siły powietrzne oraz kosmiczne), tak by stworzyć jeden wielki system śledzenia pozwalający prowadzić konflikty w jeszcze bardziej dokładny sposób.
