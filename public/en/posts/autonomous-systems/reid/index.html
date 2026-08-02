@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Radarless Ship Tracking: How Underwater Fiber Optics and Ordinary Cameras Help Combat the Shadow Fleet · Szymon Derlecki
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Szymon Derlecki">
+<meta name="description" content="My Master&#39;s thesis at DTU. I demonstrate how to use data from underwater fiber optic cables (DAS), bridge-mounted cameras, and the AIS system to effectively track ships without missing a beat, even when they vanish from the radar.">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Radarless Ship Tracking: How Underwater Fiber Optics and Ordinary Cameras Help Combat the Shadow Fleet">
+  <meta name="twitter:description" content="My Master&#39;s thesis at DTU. I demonstrate how to use data from underwater fiber optic cables (DAS), bridge-mounted cameras, and the AIS system to effectively track ships without missing a beat, even when they vanish from the radar.">
+
+<meta property="og:url" content="http://localhost:1313/en/posts/autonomous-systems/reid/">
+  <meta property="og:site_name" content="Szymon Derlecki">
+  <meta property="og:title" content="Radarless Ship Tracking: How Underwater Fiber Optics and Ordinary Cameras Help Combat the Shadow Fleet">
+  <meta property="og:description" content="My Master&#39;s thesis at DTU. I demonstrate how to use data from underwater fiber optic cables (DAS), bridge-mounted cameras, and the AIS system to effectively track ships without missing a beat, even when they vanish from the radar.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-08-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-08-02T00:00:00+00:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/en/posts/autonomous-systems/reid/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/custom.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/en/">
+      Szymon Derlecki
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/en/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/en/posts/">Portfolio</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/en/contact/">Contact</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="/posts/autonomous-systems/reid/">PL</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/en/posts/autonomous-systems/reid/">
+              Radarless Ship Tracking: How Underwater Fiber Optics and Ordinary Cameras Help Combat the Shadow Fleet
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2026-08-02T00:00:00Z">
+                August 2, 2026
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              10-minute read
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      
+
+
+      <div class="post-content">
+        
+        <p>The phenomenon of the &ldquo;shadow fleet&rdquo; - ships intentionally turning off their AIS transponders to disappear from radars-is a growing challenge for maritime security. When a vessel turns off its AIS, traditional surveillance systems lose sight of it. How can we maintain continuous tracking in such situations? The answer might lie in multimodal sensor data fusion.</p>
+<p>The heart of such a system is the <strong>re-identification (Re-ID)</strong> mechanism. Simply put, it is the algorithm&rsquo;s ability to answer the question: <em>&ldquo;Is this image patch or signal I am seeing right now the exact same object that passed by another camera a moment ago?&rdquo;</em>.</p>
+<p>Because this project was highly complex, I decided to divide its description into three distinct stages, each representing a separate step in building an advanced maritime tracking system:</p>
+<ol>
+<li>
+<p><strong>Stage 1: Single-Camera Visual Re-Identification (Single-Camera Re-ID)</strong>
+The first part focuses on tracking the same ship exclusively in frames originating from a single, specific video source. The algorithm&rsquo;s task is to recognize a specific vessel, ignoring external disturbances such as changing weather conditions. Here, we analyze the data collected by each camera individually.</p>
+</li>
+<li>
+<p><strong>Stage 2: Acoustic Re-Identification using DAS (Distributed Acoustic Sensing) Cable</strong>
+The second part takes a completely different direction and is a highly experimental stage of the project. Here, we identify ships based on vibrational and acoustic data. These signals are recorded by an underwater fiber optic cable running along the bottom of the strait, naturally acting as a massive sensor covering a vast area of the maritime corridor.</p>
+</li>
+<li>
+<p><strong>Stage 3: Cross-Camera Re-Identification (Cross-Camera Re-ID)</strong>
+The final part presents an architecture designed to handle mutual ship identification across frames from different sources-this time working &ldquo;crosswise&rdquo;. We evaluate whether the program can pair the same vessel viewed from two drastically different perspectives.</p>
+</li>
+</ol>
+<h2 id="stage-1-single-camera-visual-re-identification">
+  Stage 1. Single-Camera Visual Re-Identification
+  <a class="heading-link" href="#stage-1-single-camera-visual-re-identification">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>In this part of the project, I compared two completely different neural network architectures to see if the choice of approach makes a significant difference here.</p>
+<p>The first is ResNet34-a classic Convolutional Neural Network (CNN). It analyzes the image locally, &ldquo;sliding&rdquo; over it with a small filter window (e.g., 3x3 or 7x7 px) and building context layer by layer. The second variant is DINOv2, a Vision Transformer (ViT) architecture. In this case, the image is divided into smaller patches, which the network processing in parallel, instantly comparing each fragment with every other fragment using a global attention mechanism.</p>
+<p>I based the training process on a <em>supervised contrastive loss</em> method, so the algorithm needed precise labels. I used data from the AIS system (the maritime equivalent of Flightradar24) for this purpose. Of course, mapping AIS logs to images is rarely absolutely flawless (e.g., when ships overlap in the frame), which is why I applied spatial filters and manual verification to reliably annotate the dataset.</p>
+<p>Our visual dataset covered the period from December 2025 to January 2026. We collected a total of <strong>2,842 frames for 50 unique ship identities</strong>. Let&rsquo;s define our two image sources right away:</p>
+<ul>
+<li><strong>Camera A (Sprogø):</strong> placed on a small island, low and close to the water level.</li>
+<li><strong>Camera B (Camera East):</strong> placed high up on the eastern bridge pylon, offering a top-down perspective.</li>
+</ul>
+<p>While building the training set for a single camera, I subjected each baseline ship image to augmentations (including horizontal flipping and brightness modifications). From one shot, I created an artificial pair, forcing the network to learn the ship&rsquo;s features regardless of the direction it was sailing.</p>
+<h3 id="examples-of-training-pairs-single-camera-re-id">
+  Examples of Training Pairs (Single-Camera Re-ID)
+  <a class="heading-link" href="#examples-of-training-pairs-single-camera-re-id">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Below is a visualization of the pair creation process. An artificial pair was generated from each base shot using a horizontal mirror reflection.</p>
+<p><strong>View 1: Sprogø Camera</strong></p>
+<table>
+<tr>
+<th>Original shot</th>
+<th>Modified shot</th>
+</tr>
+<tr>
+<td>
+<img src="/images/single_cam_cam2.jpg" width="400"/>
+</td>
+<td>
+<img src="/images/single_cam_cam2.jpg" width="400" style="transform: scaleX(-1);"/>
+</td>
+</tr>
+</table>
+<p><strong>View 2: Camera East (pylon)</strong></p>
+<table>
+<tr>
+<th>Original shot</th>
+<th>Modified shot</th>
+</tr>
+<tr>
+<td>
+<img src="/images/single_cam_cam1.jpg" width="400"/>
+</td>
+<td>
+<img src="/images/single_cam_cam1.jpg" width="400" style="transform: scaleX(-1);"/>
+</td>
+</tr>
+</table>
+<p>After 80 training epochs, I achieved satisfactory results. Before moving on to the tables, here is a quick explanation of the metrics. <strong>Top-1</strong> indicates the percentage of situations where the algorithm provided the correct result instantly in the first place. <strong>Top-5</strong> is the percentage of situations where the correct ship was in the top five. Finally, <strong>mAP</strong> (mean Average Precision) evaluates the overall quality of the ranking generated by the model.</p>
+<h3 id="evaluation-results-single-camera-re-identification">
+  Evaluation Results: Single-Camera Re-Identification
+  <a class="heading-link" href="#evaluation-results-single-camera-re-identification">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Table 1: Results for ResNet34 Architecture</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Training Data</th>
+          <th style="text-align: center">Evaluation Data</th>
+          <th style="text-align: center">Top-1 Acc (%)</th>
+          <th style="text-align: center">Top-5 Acc (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>V1:</strong> Sprogø</td>
+          <td style="text-align: center">Sprogø</td>
+          <td style="text-align: center">72.85</td>
+          <td style="text-align: center">91.86</td>
+          <td style="text-align: center">41.44</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>V2:</strong> Camera East</td>
+          <td style="text-align: center">Camera East</td>
+          <td style="text-align: center">87.76</td>
+          <td style="text-align: center">96.94</td>
+          <td style="text-align: center">47.13</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Camera East</td>
+          <td style="text-align: center">Sprogø</td>
+          <td style="text-align: center">68.78</td>
+          <td style="text-align: center">90.05</td>
+          <td style="text-align: center">33.01</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Camera East</td>
+          <td style="text-align: center">Camera East</td>
+          <td style="text-align: center">80.10</td>
+          <td style="text-align: center">92.86</td>
+          <td style="text-align: center">50.43</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p><strong>Table 2: Results for DINOv2 Architecture</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Training Data</th>
+          <th style="text-align: center">Evaluation Data</th>
+          <th style="text-align: center">Top-1 Acc (%)</th>
+          <th style="text-align: center">Top-5 Acc (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>V1:</strong> Sprogø</td>
+          <td style="text-align: center">Sprogø</td>
+          <td style="text-align: center">75.57</td>
+          <td style="text-align: center">93.21</td>
+          <td style="text-align: center">44.81</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>V2:</strong> Camera East</td>
+          <td style="text-align: center">Camera East</td>
+          <td style="text-align: center">86.73</td>
+          <td style="text-align: center">96.43</td>
+          <td style="text-align: center">53.46</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Camera East</td>
+          <td style="text-align: center">Sprogø</td>
+          <td style="text-align: center">71.95</td>
+          <td style="text-align: center">92.76</td>
+          <td style="text-align: center">43.75</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>V3:</strong> Sprogø + Camera East</td>
+          <td style="text-align: center">Camera East</td>
+          <td style="text-align: center">82.65</td>
+          <td style="text-align: center">93.88</td>
+          <td style="text-align: center">51.14</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<p>A very specific conclusion can be drawn from the tables: the camera mounted higher up on the pylon (Camera East) outperforms Sprogø by almost 15 percentage points. This is a direct result of fewer obstructing waves and a better perspective. It is also worth noting that combined training (V3) worsened the results for evaluation on both cameras-the network simply got lost trying to generalize two drastically different visual environments in a single approach.</p>
+<h3 id="visual-frame-comparison-and-match-matrices">
+  Visual Frame Comparison and Match Matrices
+  <a class="heading-link" href="#visual-frame-comparison-and-match-matrices">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Below, I&rsquo;ve included the match matrices. Let&rsquo;s treat this more as a visual <em>sanity check</em> (an illustration that the model actually sees differences) rather than definitive proof.</p>
+<div style="display: flex; gap: 20px; justify-content: center;">
+<img src="/images/1763804942_220466000.jpg" alt="Shot 1 - Target at T=0s" width="700"/>
+<img src="/images/1763804912_220466000.jpg" alt="Shot 2 - Target at T+70s" width="700"/>
+</div>
+<br>
+<p><strong>Shot 3 (Different vessel)</strong></p>
+<div style="text-align: center;">
+<img src="/images/1763820365_255806370.jpg" alt="Shot 3 - Different vessel" width="900"/>
+</div>
+<p><em>Photos of the target vessel and an additional ship used for comparison.</em></p>
+<br>
+<p><strong>Cosine Similarity Matrix (Three Vessels)</strong></p>
+<div style="text-align: center;">
+<img src="/images/similarity_matrix_same_and_different.png" alt="Similarity matrix for three vessels" width="900"/>
+</div>
+<hr>
+<h4 id="comparison-of-two-different-ships-from-two-different-days">
+  Comparison of Two Different Ships from Two Different Days
+  <a class="heading-link" href="#comparison-of-two-different-ships-from-two-different-days">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>To evaluate the model&rsquo;s robustness to varying environmental conditions, two distinct vessels recorded on completely different days were compared.</p>
+<div style="display: flex; gap: 20px; justify-content: center;">
+<img src="/images/1765715109_305425000.jpg" alt="Vessel 305425000" width="700"/>
+<img src="/images/1765721252_265079640.jpg" alt="Vessel 265079640" width="700"/>
+</div>
+<br>
+<p><strong>Cosine Similarity Matrix (Different Days)</strong></p>
+<div style="text-align: center;">
+<img src="/images/sim_matrix_different_days.png" alt="Similarity matrix for different days" width="900"/>
+</div>
+<hr>
+<h2 id="stage-2-acoustic-re-identification-using-das-underwater-fiber-optic-cable">
+  Stage 2. Acoustic Re-Identification using DAS Underwater Fiber Optic Cable
+  <a class="heading-link" href="#stage-2-acoustic-re-identification-using-das-underwater-fiber-optic-cable">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The second part differs fundamentally in terms of hardware. The cable running along the bottom of the strait acts as a massive acoustic sensor here. The advantage is that weather conditions do not affect it the same way they affect a camera, and physically damaging it on the seabed is incredibly difficult.</p>
+<p>To preserve as much crucial acoustic data as possible (sound underwater waves and travels), I split the signal into 5 segments, adopting a 250-meter margin on each side from the center of the ship. The scale of this prototype dataset amounted to <strong>545 samples for 22 unique ship identities</strong>. It must be remembered that with such a narrow pool of test ships, the Top-5 metric will naturally be very high (because the selection of potential &ldquo;mistakes&rdquo; is small).</p>
+<p>I tested raw spatiotemporal data (<em>waterfall</em> plots) and frequency spectrograms (STFT).</p>
+<h3 id="acoustic-signal-analysis-das">
+  Acoustic Signal Analysis (DAS)
+  <a class="heading-link" href="#acoustic-signal-analysis-das">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">STFT Spectrogram</th>
+          <th style="text-align: center">Data in &lsquo;WATERFALL&rsquo; plot format</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="/images/Ship_FFT.png" width="400"/></td>
+          <td style="text-align: center"><img src="/images/Ship_NO_FFT.png" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+<p><em>For the waterfall plot, the horizontal axis represents the position along the cable, and the vertical axis represents time. The STFT spectrogram shows the distribution of frequencies over time.</em></p>
+<h3 id="acoustic-identification-results-das">
+  Acoustic Identification Results (DAS)
+  <a class="heading-link" href="#acoustic-identification-results-das">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Architecture</th>
+          <th style="text-align: center">Data Type</th>
+          <th style="text-align: center">mAP (%)</th>
+          <th style="text-align: center">Top-1 (%)</th>
+          <th style="text-align: center">Top-5 (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Waterfall</td>
+          <td style="text-align: center">27.37</td>
+          <td style="text-align: center">22.50</td>
+          <td style="text-align: center">65.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Spectrogram</td>
+          <td style="text-align: center">29.43</td>
+          <td style="text-align: center">35.00</td>
+          <td style="text-align: center">70.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Waterfall + Spectrogram</td>
+          <td style="text-align: center">27.55</td>
+          <td style="text-align: center">22.50</td>
+          <td style="text-align: center">75.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Waterfall</td>
+          <td style="text-align: center">34.03</td>
+          <td style="text-align: center">47.50</td>
+          <td style="text-align: center">95.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Spectrogram</td>
+          <td style="text-align: center">33.44</td>
+          <td style="text-align: center">30.00</td>
+          <td style="text-align: center">70.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Waterfall + Spectrogram</td>
+          <td style="text-align: center">34.17</td>
+          <td style="text-align: center">30.00</td>
+          <td style="text-align: center">85.00</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<p>The DINOv2 architecture on the combined raw signal and spectrogram generally performed the best, even if the mAP metric indicates otherwise in some cases. It turned out that relying solely on spectrograms can be tricky-ships of similar construction generate very similar frequencies, leading to &ldquo;spectral overlapping&rdquo;. Only the raw spatial signal highlighted the unique way noise radiates in the water, which is precisely why the mAP metric results in the table were the best here.</p>
+<p><strong>Similarity Matrix for Dual-Channel Model (Dual)</strong>
+<br>
+<img src="/images/matrix_result_dual_temporal_2.png" alt="Dual Matrix"/></p>
+<hr>
+<h2 id="stage-3-cross-camera-re-identification-cross-camera-re-id">
+  Stage 3. Cross-Camera Re-Identification (Cross-Camera Re-ID)
+  <a class="heading-link" href="#stage-3-cross-camera-re-identification-cross-camera-re-id">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>We have reached the final stage, which constitutes an early form of data fusion-re-identifying the same vessel in shots from both cameras simultaneously. From a network architecture perspective, this is a copy of the model from the first section; the main difference lies in the data sampling approach.</p>
+<p>The biggest problem turned out to be the lack of balance in the dataset-for every 60 pairs from a single camera, there was only 1 cross-camera pair. Without intervention, the network optimized itself using the easier images, almost ignoring pairs from two different perspectives. I decided to strictly balance the proportions (e.g., for every 2 Cross-Camera pairs, there were 2 Single-Camera pairs).</p>
+<h3 id="example-training-pair-cross-camera-re-id">
+  Example Training Pair: Cross-Camera Re-ID
+  <a class="heading-link" href="#example-training-pair-cross-camera-re-id">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">View 1: Sprogø (Flipped + Brightness Change)</th>
+          <th style="text-align: center">View 2: Camera East (Original)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="/images/single_cam_cam2.jpg" style="transform: scaleX(-1); filter: brightness(0.65);" alt="Sprogø - Augmentation" width="400"/></td>
+          <td style="text-align: center"><img src="/images/single_cam_cam1.jpg" alt="Camera East - Original" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<hr>
+<h3 id="evaluation-results-cross-camera-re-id">
+  Evaluation Results: Cross-Camera Re-ID
+  <a class="heading-link" href="#evaluation-results-cross-camera-re-id">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Table 1: Baseline Configuration (Baseline Cross-Camera)</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Model Architecture</th>
+          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Top-1 (%)</th>
+          <th style="text-align: center">Top-5 (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
+          <td style="text-align: center">14.03</td>
+          <td style="text-align: center">33.94</td>
+          <td style="text-align: center">18.80</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
+          <td style="text-align: center">12.76</td>
+          <td style="text-align: center">52.04</td>
+          <td style="text-align: center">18.81</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
+          <td style="text-align: center">13.12</td>
+          <td style="text-align: center">36.20</td>
+          <td style="text-align: center">21.18</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
+          <td style="text-align: center">21.94</td>
+          <td style="text-align: center">45.92</td>
+          <td style="text-align: center">24.49</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p><strong>Table 2: Hybrid Training (Imbalanced Data-Sampling)</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Model Architecture</th>
+          <th style="text-align: center">Sampling Method</th>
+          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Top-1 (%)</th>
+          <th style="text-align: center">Top-5 (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Cross + Sprogø</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
+          <td style="text-align: center">32.13</td>
+          <td style="text-align: center">48.42</td>
+          <td style="text-align: center">26.67</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Cross + Camera East</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
+          <td style="text-align: center">14.29</td>
+          <td style="text-align: center">47.96</td>
+          <td style="text-align: center">21.11</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Cross + Sprogø</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
+          <td style="text-align: center">19.46</td>
+          <td style="text-align: center">36.65</td>
+          <td style="text-align: center">21.42</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Cross + Camera East</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
+          <td style="text-align: center">13.27</td>
+          <td style="text-align: center">42.86</td>
+          <td style="text-align: center">23.08</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p><strong>Table 3: Hybrid Training (Balanced Data-Sampling)</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Model Architecture</th>
+          <th style="text-align: center">Sampling Method</th>
+          <th style="text-align: center">Evaluation Protocol</th>
+          <th style="text-align: center">Top-1 (%)</th>
+          <th style="text-align: center">Top-5 (%)</th>
+          <th style="text-align: center">mAP (%)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Cross + Sprogø</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
+          <td style="text-align: center">15.84</td>
+          <td style="text-align: center">32.58</td>
+          <td style="text-align: center">24.55</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ResNet34</td>
+          <td style="text-align: center">Cross + Camera East</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
+          <td style="text-align: center">18.37</td>
+          <td style="text-align: center">37.24</td>
+          <td style="text-align: center">26.48</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Cross + Sprogø</td>
+          <td style="text-align: center">Sprogø → Camera East</td>
+          <td style="text-align: center">32.58</td>
+          <td style="text-align: center">61.09</td>
+          <td style="text-align: center">24.39</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DINOv2</td>
+          <td style="text-align: center">Cross + Camera East</td>
+          <td style="text-align: center">Camera East → Sprogø</td>
+          <td style="text-align: center">17.35</td>
+          <td style="text-align: center">48.47</td>
+          <td style="text-align: center">23.24</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="cross-camera-analysis-vessel-identity-verification">
+  Cross-Camera Analysis: Vessel Identity Verification
+  <a class="heading-link" href="#cross-camera-analysis-vessel-identity-verification">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">View from First Camera</th>
+          <th style="text-align: center">View from Second Camera</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="/images/1765704238_310816000.jpg" alt="View from first camera" width="400"/></td>
+          <td style="text-align: center"><img src="/images/1765704150_310816000.jpg" alt="View from second camera" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div style="text-align: center; width: 100%;">
+    <strong>Similarity between two frames of the above vessel</strong>
+    <br>
+    <br>
+    <img src="/images/Same_vessel_diff_day.png" alt="Cross-Camera Matrix" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+</div>
+<hr>
+<h3 id="cross-camera-re-identification-in-nighttime-conditions">
+  Cross-Camera Re-Identification in Nighttime Conditions
+  <a class="heading-link" href="#cross-camera-re-identification-in-nighttime-conditions">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This stage provided me with extremely interesting observations. It turned out that while cross-camera re-identification performs rather averagely during the day, <strong>it becomes significantly more effective at night</strong>.</p>
+<p>Why is this? At night, confusing and highly similar hull textures of merchant ships disappear. Instead, unique arrangements of warning lights and hull illumination take center stage, providing the network with an excellent reference point that is independent of the viewing angle.</p>
+<p><strong>Vessel 259222000</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Camera 1</th>
+          <th style="text-align: center">Camera 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="/images/1763828275_259222000.jpg" alt="Vessel 259222000 - Camera 1" width="400"/></td>
+          <td style="text-align: center"><img src="/images/1763828342_259222000.jpg" alt="Vessel 259222000 - Camera 2" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p><strong>Vessel 209184000</strong></p>
+<div align="center" style="max-width: 100%; overflow-x: auto; font-size: 0.9em;">
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Camera 1</th>
+          <th style="text-align: center">Camera 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><img src="/images/1763824375_209184000.jpg" alt="Vessel 209184000 - Camera 1" width="400"/></td>
+          <td style="text-align: center"><img src="/images/1763824492_209184000.jpg" alt="Vessel 209184000 - Camera 2" width="400"/></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div style="text-align: center; width: 100%;">
+    <strong>Similarity diagram for two vessels spotted at night</strong>
+    <br>
+    <br>
+    <img src="/images/2_vessels_at_night.png" alt="Similarity for two ships captured at night" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+</div>
+<h3 id="whats-next">
+  What&rsquo;s Next?
+  <a class="heading-link" href="#whats-next">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>If I were to develop this system further, the ideal solution would be to create a complex &ldquo;mega-model&rdquo;. It could consist of several smaller networks (visual and acoustic), which would combine their predictions at the very end in a process known as <em>late fusion</em>.</p>
+<p>Another powerful step would be incorporating features from the AIS system (ship type, length, speed, course) as an additional learning modality. Even if a ship turned off its transmitter right before entering a monitored zone, a model fed with such &ldquo;historical&rdquo; knowledge would still be able to narrow down the search and make an accurate decision.</p>
+<p>Finally, it is worth looking at the broader picture. Designing a similar, multimodal data fusion system-based on relatively cheap, passive sensors-could provide excellent support in protecting infrastructure against objects that intentionally evade traditional radars.</p>
+<p>Furthermore, this proven re-identification algorithm and its constituent models could be tested for integration with weaponry operating in all possible environments (navy + ground forces + air and space forces) to create one massive tracking system, allowing conflicts to be conducted with even greater precision.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2026
+     Szymon Derlecki 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

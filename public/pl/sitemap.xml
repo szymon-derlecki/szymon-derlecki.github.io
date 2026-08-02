@@ -41,6 +41,16 @@
   </url><url>
     <loc>http://localhost:1313/posts/autonomous-systems/reid/</loc>
     <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/autonomous-systems/reid/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="http://localhost:1313/posts/autonomous-systems/reid/"
+                />
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-08-02T00:00:00+00:00</lastmod>

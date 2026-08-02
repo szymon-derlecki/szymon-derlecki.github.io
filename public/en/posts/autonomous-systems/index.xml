@@ -6,8 +6,15 @@
     <description>Recent content in Autonomous Systems on Szymon Derlecki</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/en/posts/autonomous-systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Radarless Ship Tracking: How Underwater Fiber Optics and Ordinary Cameras Help Combat the Shadow Fleet</title>
+      <link>http://localhost:1313/en/posts/autonomous-systems/reid/</link>
+      <pubDate>Sun, 02 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/autonomous-systems/reid/</guid>
+      <description>&lt;p&gt;The phenomenon of the &amp;ldquo;shadow fleet&amp;rdquo;—ships intentionally turning off their AIS transponders to disappear from radars—is a growing challenge for maritime security. When a vessel turns off its AIS, traditional surveillance systems lose sight of it. How can we maintain continuous tracking in such situations? The answer might lie in multimodal sensor data fusion.&lt;/p&gt;&#xA;&lt;p&gt;The heart of such a system is the &lt;strong&gt;re-identification (Re-ID)&lt;/strong&gt; mechanism. Simply put, it is the algorithm&amp;rsquo;s ability to answer the question: &lt;em&gt;&amp;ldquo;Is this image patch or signal I am seeing right now the exact same object that passed by another camera a moment ago?&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>How to predict a wind turbine failure using TCN networks?</title>
       <link>http://localhost:1313/en/posts/autonomous-systems/wind-turbine-downtime-reduction/</link>

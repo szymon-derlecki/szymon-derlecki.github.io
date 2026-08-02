@@ -5,7 +5,7 @@ draft: false
 description: "My Master's thesis at DTU. I demonstrate how to use data from underwater fiber optic cables (DAS), bridge-mounted cameras, and the AIS system to effectively track ships without missing a beat, even when they vanish from the radar."
 ---
 
-The phenomenon of the "shadow fleet"—ships intentionally turning off their AIS transponders to disappear from radars—is a growing challenge for maritime security. When a vessel turns off its AIS, traditional surveillance systems lose sight of it. How can we maintain continuous tracking in such situations? The answer might lie in multimodal sensor data fusion.
+The phenomenon of the "shadow fleet" - ships intentionally turning off their AIS transponders to disappear from radars-is a growing challenge for maritime security. When a vessel turns off its AIS, traditional surveillance systems lose sight of it. How can we maintain continuous tracking in such situations? The answer might lie in multimodal sensor data fusion.
 
 The heart of such a system is the **re-identification (Re-ID)** mechanism. Simply put, it is the algorithm's ability to answer the question: *"Is this image patch or signal I am seeing right now the exact same object that passed by another camera a moment ago?"*.
 
@@ -18,13 +18,13 @@ The first part focuses on tracking the same ship exclusively in frames originati
 The second part takes a completely different direction and is a highly experimental stage of the project. Here, we identify ships based on vibrational and acoustic data. These signals are recorded by an underwater fiber optic cable running along the bottom of the strait, naturally acting as a massive sensor covering a vast area of the maritime corridor.
 
 3. **Stage 3: Cross-Camera Re-Identification (Cross-Camera Re-ID)**
-The final part presents an architecture designed to handle mutual ship identification across frames from different sources—this time working "crosswise". We evaluate whether the program can pair the same vessel viewed from two drastically different perspectives.
+The final part presents an architecture designed to handle mutual ship identification across frames from different sources-this time working "crosswise". We evaluate whether the program can pair the same vessel viewed from two drastically different perspectives.
 
 ## Stage 1. Single-Camera Visual Re-Identification
 
 In this part of the project, I compared two completely different neural network architectures to see if the choice of approach makes a significant difference here.
 
-The first is ResNet34—a classic Convolutional Neural Network (CNN). It analyzes the image locally, "sliding" over it with a small filter window (e.g., 3x3 or 7x7 px) and building context layer by layer. The second variant is DINOv2, a Vision Transformer (ViT) architecture. In this case, the image is divided into smaller patches, which the network processing in parallel, instantly comparing each fragment with every other fragment using a global attention mechanism.
+The first is ResNet34-a classic Convolutional Neural Network (CNN). It analyzes the image locally, "sliding" over it with a small filter window (e.g., 3x3 or 7x7 px) and building context layer by layer. The second variant is DINOv2, a Vision Transformer (ViT) architecture. In this case, the image is divided into smaller patches, which the network processing in parallel, instantly comparing each fragment with every other fragment using a global attention mechanism.
 
 I based the training process on a *supervised contrastive loss* method, so the algorithm needed precise labels. I used data from the AIS system (the maritime equivalent of Flightradar24) for this purpose. Of course, mapping AIS logs to images is rarely absolutely flawless (e.g., when ships overlap in the frame), which is why I applied spatial filters and manual verification to reliably annotate the dataset.
 
@@ -104,7 +104,7 @@ After 80 training epochs, I achieved satisfactory results. Before moving on to t
 
 </div>
 
-A very specific conclusion can be drawn from the tables: the camera mounted higher up on the pylon (Camera East) outperforms Sprogø by almost 15 percentage points. This is a direct result of fewer obstructing waves and a better perspective. It is also worth noting that combined training (V3) worsened the results for evaluation on both cameras—the network simply got lost trying to generalize two drastically different visual environments in a single approach.
+A very specific conclusion can be drawn from the tables: the camera mounted higher up on the pylon (Camera East) outperforms Sprogø by almost 15 percentage points. This is a direct result of fewer obstructing waves and a better perspective. It is also worth noting that combined training (V3) worsened the results for evaluation on both cameras-the network simply got lost trying to generalize two drastically different visual environments in a single approach.
 
 ### Visual Frame Comparison and Match Matrices
 
@@ -185,7 +185,7 @@ I tested raw spatiotemporal data (*waterfall* plots) and frequency spectrograms 
 
 </div>
 
-The DINOv2 architecture on the combined raw signal and spectrogram generally performed the best, even if the mAP metric indicates otherwise in some cases. It turned out that relying solely on spectrograms can be tricky—ships of similar construction generate very similar frequencies, leading to "spectral overlapping". Only the raw spatial signal highlighted the unique way noise radiates in the water, which is precisely why the mAP metric results in the table were the best here.
+The DINOv2 architecture on the combined raw signal and spectrogram generally performed the best, even if the mAP metric indicates otherwise in some cases. It turned out that relying solely on spectrograms can be tricky-ships of similar construction generate very similar frequencies, leading to "spectral overlapping". Only the raw spatial signal highlighted the unique way noise radiates in the water, which is precisely why the mAP metric results in the table were the best here.
 
 **Similarity Matrix for Dual-Channel Model (Dual)**
 <br>
@@ -195,9 +195,9 @@ The DINOv2 architecture on the combined raw signal and spectrogram generally per
 
 ## Stage 3. Cross-Camera Re-Identification (Cross-Camera Re-ID)
 
-We have reached the final stage, which constitutes an early form of data fusion—re-identifying the same vessel in shots from both cameras simultaneously. From a network architecture perspective, this is a copy of the model from the first section; the main difference lies in the data sampling approach.
+We have reached the final stage, which constitutes an early form of data fusion-re-identifying the same vessel in shots from both cameras simultaneously. From a network architecture perspective, this is a copy of the model from the first section; the main difference lies in the data sampling approach.
 
-The biggest problem turned out to be the lack of balance in the dataset—for every 60 pairs from a single camera, there was only 1 cross-camera pair. Without intervention, the network optimized itself using the easier images, almost ignoring pairs from two different perspectives. I decided to strictly balance the proportions (e.g., for every 2 Cross-Camera pairs, there were 2 Single-Camera pairs).
+The biggest problem turned out to be the lack of balance in the dataset-for every 60 pairs from a single camera, there was only 1 cross-camera pair. Without intervention, the network optimized itself using the easier images, almost ignoring pairs from two different perspectives. I decided to strictly balance the proportions (e.g., for every 2 Cross-Camera pairs, there were 2 Single-Camera pairs).
 
 ### Example Training Pair: Cross-Camera Re-ID
 
@@ -314,6 +314,6 @@ If I were to develop this system further, the ideal solution would be to create 
 
 Another powerful step would be incorporating features from the AIS system (ship type, length, speed, course) as an additional learning modality. Even if a ship turned off its transmitter right before entering a monitored zone, a model fed with such "historical" knowledge would still be able to narrow down the search and make an accurate decision.
 
-Finally, it is worth looking at the broader picture. Designing a similar, multimodal data fusion system—based on relatively cheap, passive sensors—could provide excellent support in protecting infrastructure against objects that intentionally evade traditional radars.
+Finally, it is worth looking at the broader picture. Designing a similar, multimodal data fusion system-based on relatively cheap, passive sensors-could provide excellent support in protecting infrastructure against objects that intentionally evade traditional radars.
 
 Furthermore, this proven re-identification algorithm and its constituent models could be tested for integration with weaponry operating in all possible environments (navy + ground forces + air and space forces) to create one massive tracking system, allowing conflicts to be conducted with even greater precision.

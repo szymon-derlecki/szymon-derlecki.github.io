@@ -139,8 +139,6 @@
           
           
             
-          
-            
               
                 <li class="navigation-item menu-separator">
                   <span>|</span>
@@ -148,7 +146,7 @@
                 
               
               <li class="navigation-item">
-                <a href="/en/">EN</a>
+                <a href="/en/posts/autonomous-systems/reid/">EN</a>
               </li>
             
           
@@ -181,7 +179,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              8 min czytania
+              9 min czytania
             </span>
           </div>
           
@@ -502,7 +500,7 @@ Finałowa część przedstawia architekturę, której zadaniem jest wzajemna ide
   </tbody>
 </table>
 </div>
-<p>Architektura DINOv2 na surowym sygnale (<em>waterfall</em>) poradziła sobie najlepiej. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe - statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do &ldquo;nakładania spektralnego&rdquo;. Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie.</p>
+<p>Architektura DINOv2 na złożeniu surowego sygnału oraz spektrogramu generalnie poradziła sobie najlepiej, nawet jeśli metryka mAP wskazuje na co innego. Okazało się, że opieranie się na samych spektrogramach bywa zdradliwe - statki o podobnej budowie generują bardzo podobne częstotliwości, co prowadzi do &ldquo;nakładania spektralnego&rdquo;. Dopiero surowy sygnał przestrzenny uwydatniał unikalny sposób promieniowania hałasu w wodzie i właśnie dlatego wyniki metryki mAP w tabeli były tutaj najlepsze.</p>
 <p><strong>Macierz podobieństwa dla modelu dwukanałowego (Dual)</strong>
 <br>
 <img src="/images/matrix_result_dual_temporal_2.png" alt="Dual Matrix"/></p>
@@ -781,6 +779,7 @@ Finałowa część przedstawia architekturę, której zadaniem jest wzajemna ide
 <p>Gdybym miał rozwijać ten system dalej, idealnym rozwiązaniem byłoby stworzenie złożonego &ldquo;mega-modelu&rdquo;. Mógłby on składać się z kilku mniejszych sieci (wizualnych i akustycznych), które na samym końcu łączyłyby swoje predykcje w ramach tzw. <em>late fusion</em>.</p>
 <p>Kolejnym potężnym krokiem byłoby włączenie cech z systemu AIS (typ statku, długość, prędkość, kurs) jako dodatkowej modalności uczącej. Nawet jeśli statek wyłączyłby nadajnik tuż przed wpłynięciem w kontrolowaną strefę, model zasilony taką &ldquo;historyczną&rdquo; wiedzą wciąż potrafiłby zawęzić poszukiwania i podjąć trafną decyzję.</p>
 <p>Na sam koniec warto spojrzeć szerzej. Zaprojektowanie podobnego, wielomodalnego systemu fuzji danych - opartego o relatywnie tanie, pasywne sensory - mogłoby stanowić świetne wsparcie w ochronie infrastruktury przed obiektami, które celowo wymykają się tradycyjnym radarom.</p>
+<p>Ponadto sprawdzony algorytm re-identyfikacji, a także wchodzące w jego skład modele możnaby spróbować zintegrować z uzbrojeniem operującym we wszelkich możliwych środowiskach (marynarka + wojska lądowe + siły powietrzne oraz kosmiczne), tak by stworzyć jeden wielki system śledzenia pozwalający prowadzić konflikty w jeszcze bardziej dokładny sposób.</p>
 
       </div>
 
